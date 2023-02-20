@@ -23,7 +23,7 @@ export class AuthService {
       httpOptions
       );
   }
-  signup(username: string, email: string, password: string, firstname: string, lastname: string): Observable<any>{
+  signup(username: string, email: string, firstname: string, lastname: string, password: string): Observable<any>{
     return this.http.post(baseURL + 'signup', {
       username,
       email,

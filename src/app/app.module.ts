@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
@@ -14,6 +13,8 @@ import {RouterOutlet} from "@angular/router";
 import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {JwtInterceptorProviders} from "./helpers/jwt.interceptor";
+import { HeaderComponent } from './shared/header/header.component';
+import { FooterComponent } from './shared/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,9 @@ import {JwtInterceptorProviders} from "./helpers/jwt.interceptor";
     HomeComponent,
     AdminComponent,
     UserComponent,
-    StaffComponent
+    StaffComponent,
+    HeaderComponent,
+    FooterComponent
   ],
     imports: [
         BrowserModule,

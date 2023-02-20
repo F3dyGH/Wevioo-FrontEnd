@@ -18,12 +18,21 @@ export class LoginComponent implements OnInit{
   isNotLoggedIn = false;
   errorMessage = '';
   roles: string[] = [];
+
   constructor(private authService: AuthService, private storageService: StorageService, private router: Router) {
   }
   ngOnInit(): void {
     if(this.storageService.isLoggedIn()){
       this.isLoggedIn = true;
       this.roles = this.storageService.getUser().roles;
+      const user = this.storageService.getUser();
+      setTimeout(() => {
+        window.alert('You are already logged in');
+      }, 500);
+      if(user.roles == "ROLE_ADMIN"){
+        this.router.navigate(['/admin']);
+      }
+
     }
   }
   onSubmit(): void{
@@ -36,7 +45,14 @@ export class LoginComponent implements OnInit{
         this.isNotLoggedIn = false;
         this.isLoggedIn = true;
         this.roles = this.storageService.getUser().roles;
-        this.router.navigate(['/profile'])
+        const user = this.storageService.getUser();
+        // this.router.navigate(['/profile'])
+        if(user.roles == "ROLE_ADMIN"){
+          this.router.navigate(['/admin']);
+        }
+        else if (user.roles == "ROLE_STAFF"){
+          this.router.navigate(['/staff']);
+        }
       },
       error: err => {
           this.errorMessage = err.error.message;
