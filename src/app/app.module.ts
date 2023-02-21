@@ -15,6 +15,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {JwtInterceptorProviders} from "./helpers/jwt.interceptor";
 import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
+import { AdminHeaderComponent } from './admin/admin-header/admin-header.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { FooterComponent } from './shared/footer/footer.component';
     UserComponent,
     StaffComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    AdminHeaderComponent
   ],
     imports: [
         BrowserModule,
