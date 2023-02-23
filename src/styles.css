@@ -387,6 +387,9 @@ ul {
 .bg-yellow {
   background-color: #FBBC04 !important;
 }
+.bg-purple {
+  background-color: #5f4585 !important;
+}
 
 .bg-secondary-light {
   background-color: var(--bs-secondary-light);

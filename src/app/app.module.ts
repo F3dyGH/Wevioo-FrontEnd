@@ -1,44 +1,30 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
-import { SignupComponent } from './signup/signup.component';
-import { ProfileComponent } from './profile/profile.component';
-import { HomeComponent } from './home/home.component';
-import { AdminComponent } from './admin/admin.component';
-import { UserComponent } from './user/user.component';
-import { StaffComponent } from './staff/staff.component';
+import { LoginComponent } from './auth/login/login.component';
+import { SignupComponent } from './auth/signup/signup.component';
+import { ProfileComponent } from './user/profile/profile.component';
+import { HomeComponent } from './user/home/home.component';
 import { AppRoutingModule } from './app-routing.module';
 import {RouterOutlet} from "@angular/router";
 import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
-import {JwtInterceptorProviders} from "./helpers/jwt.interceptor";
-import { HeaderComponent } from './shared/header/header.component';
-import { FooterComponent } from './shared/footer/footer.component';
-import { AdminHeaderComponent } from './admin/admin-header/admin-header.component';
+// import { AdminHeaderComponent } from './admin/admin-header/admin-header.component';
+import {AuthModule} from "./auth/auth.module";
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    SignupComponent,
-    ProfileComponent,
-    HomeComponent,
-    AdminComponent,
-    UserComponent,
-    StaffComponent,
-    HeaderComponent,
-    FooterComponent,
-    AdminHeaderComponent
   ],
     imports: [
         BrowserModule,
         AppRoutingModule,
         RouterOutlet,
         FormsModule,
-        HttpClientModule
+        HttpClientModule,
+        AuthModule
     ],
-  providers: [JwtInterceptorProviders],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

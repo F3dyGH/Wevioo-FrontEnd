@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
+/*
 import {AuthService} from "./services/auth/auth.service";
 import {StorageService} from "./services/storage/storage.service";
+*/
 
 @Component({
   selector: 'app-root',
@@ -15,9 +17,9 @@ export class AppComponent {
   firstname?: string;
   lastname?: string;
 
-  constructor(private authService : AuthService, private storageService: StorageService) {}
+  constructor(/*private authService : AuthService, private storageService: StorageService*/) {}
   ngOnInit(): void{}
-  logout(): void {
+  /*logout(): void {
         this.storageService.clean();
-  }
+  }*/
 }
