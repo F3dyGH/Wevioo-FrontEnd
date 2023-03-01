@@ -11,15 +11,9 @@ import {StorageService} from "./services/storage/storage.service";
 })
 export class AppComponent {
   title = 'cantine-ng';
-  private roles: string[] =[];
-  isLoggedIn = false;
-  username?: string;
-  firstname?: string;
-  lastname?: string;
 
-  constructor(/*private authService : AuthService, private storageService: StorageService*/) {}
+
+  constructor() {}
   ngOnInit(): void{}
-  /*logout(): void {
-        this.storageService.clean();
-  }*/
+
 }

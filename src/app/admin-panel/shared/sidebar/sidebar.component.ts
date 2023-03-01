@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, ContentChild, ElementRef} from '@angular/core';
 
 @Component({
   selector: 'app-sidebar',
@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent {
-
+  @ContentChild('contentPlaceholder', { static: true })
+  contentPlaceholder!: ElementRef;
 }

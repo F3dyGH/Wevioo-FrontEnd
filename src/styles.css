@@ -2,6 +2,7 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 @import "~magnific-popup/dist/magnific-popup";
 @import "assets/css/fontawesome-all.min.css";
+@import "assets/vendors/mdi/css/materialdesignicons.min.css";
 
 :root {
   --bs-primary-soft: #ceddff;
@@ -199,6 +200,9 @@ ul {
 }
 .mt-100 {
   margin-top: 100px;
+}
+.mt-210 {
+  margin-top: 210px;
 }
 .mt-60 {
   margin-top: 60px;
