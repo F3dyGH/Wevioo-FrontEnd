@@ -1,0 +1,11 @@
+@import "src/assets/css/style.css";
+dialog{
+  font-size: 1rem;
+  color: #212529;
+  text-align: left;
+  list-style: none;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid rgba(151, 151, 151, 0.3);
+  border-radius: 0.25rem;
+}

@@ -11,7 +11,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class AuthService {
-
+  private authTokenKey = "auth-user";
   constructor(private http:HttpClient) {}
 
   login(username: string, password: string): Observable<any>{
@@ -33,5 +33,33 @@ export class AuthService {
     },
       httpOptions
     );
+  }
+  setToken(token: string): void {
+    localStorage.setItem(this.authTokenKey, token);
+  }
+  getToken(): string | null {
+     return localStorage.getItem(this.authTokenKey);
+  }
+  getUsername():any{
+    const token = this.getToken();
+    if (token) {
+      const tokenStr = JSON.parse(token);
+      const username = tokenStr.username;
+      console.log(username);
+      return username;
+    } else {
+      console.log('Token is not set in localStorage');
+    }
+  }
+  getRole():any{
+    const token = this.getToken();
+    if (token) {
+      const tokenStr = JSON.parse(token);
+      const role = tokenStr.roles;
+      console.log(role);
+      return role;
+    } else {
+      console.log('Token is not set in localStorage');
+    }
   }
 }

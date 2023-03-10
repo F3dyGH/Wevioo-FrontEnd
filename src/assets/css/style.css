@@ -10810,6 +10810,15 @@ code {
   -moz-transform: translateY(-50%);
   display: block; }
 
+.center {
+
+  position: center;
+  top: 51%;
+  right: 0px;
+  left: 0;
+  margin: auto;
+  display: block; }
+
 .bg-dark-grey {
   background: #fff; }
 
