@@ -38,14 +38,21 @@ export class AuthService {
     localStorage.setItem(this.authTokenKey, token);
   }
   getToken(): string | null {
-     return localStorage.getItem(this.authTokenKey);
+    return localStorage.getItem(this.authTokenKey);
+  }
+  getTokenn(): any {
+    const token = this.getToken();
+    if (token) {
+      const tokenStr = JSON.parse(token).accessToken;
+      return tokenStr;
+    }
   }
   getUsername():any{
     const token = this.getToken();
     if (token) {
       const tokenStr = JSON.parse(token);
       const username = tokenStr.username;
-      console.log(username);
+      console.log(tokenStr);
       return username;
     } else {
       console.log('Token is not set in localStorage');
