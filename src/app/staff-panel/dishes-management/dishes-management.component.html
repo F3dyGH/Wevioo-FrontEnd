@@ -1,0 +1,71 @@
+<app-headerAdmin></app-headerAdmin>
+<app-sidebar>
+  <div title>
+    <h3 class="page-title"> Dishes Management </h3>
+  </div>
+  <div content>
+    <table class="table table-bordered">
+      <thead>
+      <tr>
+        <th>Photo</th>
+        <th> Dish Name</th>
+        <th> Description</th>
+        <th> Price</th>
+        <th> Actions</th>
+      </tr>
+      </thead>
+      <tbody *ngFor="let d of dishes">
+      <tr>
+        <td>{{d.photo}}</td>
+        <td>{{d.name}}</td>
+        <td>{{d.description}}</td>
+        <td>{{d.price}}</td>
+
+        <td class="p-2">
+          <button class="btn btn-icon btn-inverse-success ml-5" (click)="dialog.showModal();"><!-- editDish(d)-->
+            <i class="fa fa-pen"></i>
+          </button>
+          <button type="button" class="btn btn-icon btn-inverse-danger ml-1"
+                  (click)="dialog2.showModal();"><!-- editUser(u)-->
+            <i class="fa fa-trash"></i>
+          </button>
+        </td>
+      </tr>
+      <dialog #dialog class="col-lg-5">
+        <div class="modal-title text-center">
+          <h4> Update Role </h4>
+        </div>
+        <div class="modal-body">
+          <div>
+            <select class="dropdown col-5 ml-lg-auto text-center center">
+              <option class="text-success">
+                <span>Admin</span>
+                <span>Staff</span>
+                <span>User</span>
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer btn col-lg">
+          <button class="  btn btn-success" (click)="null">Save</button>
+          <button class="  btn btn-danger" (click)="dialog.close()">Close</button>
+        </div>
+      </dialog>
+      <dialog #dialog2 class="col-lg-5">
+        <div class="modal-title text-center">
+          <h4> Delete User </h4>
+        </div>
+        <div class="modal-body">
+          <div class="text-center">
+            <span>Do you really want to delete this user ?</span>
+          </div>
+        </div>
+        <div class="modal-footer btn col-lg">
+          <button class="btn btn-danger" (click)="null">Delete</button>
+          <button class="btn btn-inverse-light" (click)="dialog2.close()">Close</button>
+        </div>
+      </dialog>
+      </tbody>
+    </table>
+  </div>
+</app-sidebar>
