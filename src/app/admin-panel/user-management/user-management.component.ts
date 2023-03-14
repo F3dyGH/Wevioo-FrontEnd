@@ -24,7 +24,7 @@ export class UserManagementComponent implements OnInit {
       .subscribe((data: any[]) => {
         this.users = data;
       });
-    this.userManagementService.getAllRoles().subscribe((data:any[])=>{
+    this.userManagementService.getAllRoles().subscribe((data: any[]) => {
       this.roles = data;
     })
   }
@@ -39,7 +39,7 @@ export class UserManagementComponent implements OnInit {
   updateUserRole() {
     //console.log(user);
     //const roleId = this.selectedUser.roles[0].id;
-    this.userManagementService.updateUserRole(this.selectedUser.id,this.selectedRole).subscribe((res: any) => {
+    this.userManagementService.updateUserRole(this.selectedUser.id, this.selectedRole).subscribe((res: any) => {
       this.userManagementService.getAllUsers().subscribe((data: any[]) => {
         this.users = data;
       });
@@ -47,9 +47,9 @@ export class UserManagementComponent implements OnInit {
     });
   }
 
-  deleteUser(id:any) {
+  deleteUser(id: any) {
     console.log(id);
-    this.userManagementService.deleteUser(id).subscribe(()=>{
+    this.userManagementService.deleteUser(id).subscribe(() => {
       this.userManagementService.getAllUsers().subscribe((data: any[]) => {
         this.users = data;
       });

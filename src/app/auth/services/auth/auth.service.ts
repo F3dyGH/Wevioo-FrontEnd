@@ -40,7 +40,7 @@ export class AuthService {
   getToken(): string | null {
     return localStorage.getItem(this.authTokenKey);
   }
-  getTokenn(): any {
+  getaccessToken(): any {
     const token = this.getToken();
     if (token) {
       const tokenStr = JSON.parse(token).accessToken;

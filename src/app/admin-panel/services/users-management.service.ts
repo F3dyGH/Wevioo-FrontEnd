@@ -14,7 +14,7 @@ export class UsersManagementService {
   constructor(private http: HttpClient, private authService: AuthService) {
   }
   getHeader(): any{
-    const token = this.authService.getTokenn();
+    const token = this.authService.getaccessToken();
     const headers = new HttpHeaders({
       'Content-Type':'application/json',
       'Authorization': 'Bearer '+ token
