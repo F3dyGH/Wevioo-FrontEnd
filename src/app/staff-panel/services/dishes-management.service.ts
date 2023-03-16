@@ -29,7 +29,7 @@ export class DishesManagementService {
     return this.http.get(this.baseURL + 'all', {headers});
   }
 
-  addDish(name: string, price: any, photo: any, description: string): Observable<any> {
+  addDish(name: any, price: any, photo: any, description: any): Observable<any> {
     const headers = this.getHeader();
 
     return this.http.post(this.baseURL + 'add', {
@@ -49,7 +49,7 @@ export class DishesManagementService {
       price,
       description,
       photo
-    },{headers})
+    }, {headers})
   }
 
   deleteDish(id: any): Observable<any> {
@@ -62,7 +62,12 @@ export class DishesManagementService {
   getDishById(id: any): Observable<any> {
     const headers = this.getHeader();
 
-    return this.http.get(this.baseURL + id,{headers});
+    return this.http.get(this.baseURL + id, {headers});
   }
 
+ /* getPhoto(photoName: string) {
+    const headers = this.getHeader();
+
+    return this.http.get(`${this.baseURL}photos/${photoName}`, {responseType: 'blob',headers});
+  }*/ //to review
 }

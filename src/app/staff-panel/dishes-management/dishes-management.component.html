@@ -14,7 +14,7 @@
       <div class="modal-title text-center">
         <h4> Update Dish </h4>
       </div>
-      <form name="form" #f="ngForm" (ngSubmit)="f.form.valid && Add()">
+      <form name="form" #frm="ngForm" (ngSubmit)="frm.form.valid">
         <div class="modal-body">
           <div class="container-fluid">
             <div class="row">
@@ -53,11 +53,11 @@
             </div>
           </div>
         </div>
-        <div class="modal-footer btn col-lg">
-          <button type="submit" class="btn btn-success"(click)="dialog3.close()">Save</button>
-          <button class="btn btn-danger" (click)="dialog3.close()">Close</button>
-        </div>
       </form>
+      <div class="modal-footer btn col-lg">
+        <button type="submit" class="btn btn-success" (click)="dialog3.close(); Add()">Save</button>
+        <button class="btn btn-danger" (click)="dialog3.close()">Close</button>
+      </div>
     </dialog>
 
     <table class="table table-bordered">
@@ -73,6 +73,7 @@
       <tbody *ngFor="let d of dishes">
       <tr>
         <td><img src="assets/img/office-img-1.jpg"></td>
+<!--        <td><img [src]="getPhotoUrl(d.photo)"></td>-->
         <td class="text-center">{{d.name}}</td>
         <td class="text-center">{{d.description}}</td>
         <td class="text-center">{{d.price}}</td>
@@ -82,7 +83,7 @@
             <i class="fa fa-pen"></i>
           </button>
           <button type="button" class="btn btn-icon btn-inverse-danger ml-1 mr-n5"
-                  (click)="dialog2.showModal();"><!-- editUser(u)-->
+                  (click)="dialog2.showModal();">
             <i class="fa fa-trash"></i>
           </button>
         </td>
@@ -131,7 +132,7 @@
             </div>
           </div>
           <div class="modal-footer btn col-lg">
-            <button type="submit" class="btn btn-success" (click)="Update()">Save</button>
+            <button type="submit" class="btn btn-success">Save</button>
             <button class="btn btn-danger" (click)="dialog.close()">Close</button>
           </div>
         </form>

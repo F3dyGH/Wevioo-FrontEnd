@@ -16,7 +16,7 @@ export class DishesManagementComponent implements OnInit {
   };
   dishes!: any[];
   selectedDish!: any;
-
+  photoUrl!:any;
   ngOnInit(): void {
     this.dishService.getAllDishes()
       .subscribe((data: any[]) => {
@@ -48,13 +48,13 @@ export class DishesManagementComponent implements OnInit {
   }
 
   Add() {
-    const {name, price, description, photo} = this.DishForm;
-    this.dishService.addDish(name, price, photo, description).subscribe(res => {
-      this.dishService.getAllDishes().subscribe((data: any[]) => {
-        this.dishes = data;
+    const {name, price, photo, description} = this.DishForm;
+      this.dishService.addDish(name, price, photo, description).subscribe(res => {
+        this.dishService.getAllDishes().subscribe((data: any[]) => {
+          this.dishes = data;        this.DishForm = {};
+
+        });
       });
-      this.DishForm = {};
-    });
   }
   Delete(id : any){
     this.dishService.deleteDish(id).subscribe(res => {
@@ -64,4 +64,13 @@ export class DishesManagementComponent implements OnInit {
 
     });
   }
+ /* getPhotoUrl(photoName: any){
+    this.dishService.getPhoto(photoName).subscribe(data => {
+      const reader = new FileReader();
+      reader.readAsDataURL(data);
+      reader.onloadend = () => {
+        this.photoUrl = reader.result;
+      };
+    });
+  }*/ //to review
 }
