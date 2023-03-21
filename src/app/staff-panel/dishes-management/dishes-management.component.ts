@@ -8,29 +8,46 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
   styleUrls: ['./dishes-management.component.css']
 })
 export class DishesManagementComponent implements OnInit {
+
   DishForm: any = {
     name: null,
     price: null,
     description: null,
     photo: null
   };
+
   dishes!: any[];
   selectedDish!: any;
-  photoUrl!:any;
+  photoUrl!: any;
+
   ngOnInit(): void {
     this.dishService.getAllDishes()
       .subscribe((data: any[]) => {
         this.dishes = data;
+        this.photoUrl = [];
+        this.dishes.forEach(dish => {
+          this.dishService.getPhoto(dish.photo).subscribe(response => {
+
+            const reader = new FileReader();
+            reader.onload = () => {
+              dish.photoUrl = reader.result as string;
+              this.photoUrl.push(reader.result as string);
+            };
+            reader.readAsDataURL(response);
+            console.log(this.photoUrl)
+          });
+        });
       });
   }
 
-  constructor(private fb: FormBuilder, private dishService: DishesManagementService) {
+  constructor(private dishService: DishesManagementService) {
   }
 
   editDish(dish: any) {
-   this.selectedDish = dish;
-   this.DishForm = dish
-   console.log(this.DishForm);
+    this.selectedDish = dish;
+    //this.DishForm = dish
+    this.DishForm = {};
+    console.log(this.selectedDish);
 
   }
 
@@ -42,35 +59,23 @@ export class DishesManagementComponent implements OnInit {
         this.dishes = data;
       });
       this.selectedDish = null;
-      this.DishForm = {};
-
     });
   }
 
   Add() {
     const {name, price, photo, description} = this.DishForm;
-      this.dishService.addDish(name, price, photo, description).subscribe(res => {
-        this.dishService.getAllDishes().subscribe((data: any[]) => {
-          this.dishes = data;        this.DishForm = {};
-
-        });
+    this.dishService.addDish(name, price, photo, description).subscribe(res => {
+      this.dishService.getAllDishes().subscribe((data: any[]) => {
+        this.dishes = data;
       });
+    });
   }
-  Delete(id : any){
+
+  Delete(id: any) {
     this.dishService.deleteDish(id).subscribe(res => {
       this.dishService.getAllDishes().subscribe((data: any[]) => {
         this.dishes = data;
       });
-
     });
   }
- /* getPhotoUrl(photoName: any){
-    this.dishService.getPhoto(photoName).subscribe(data => {
-      const reader = new FileReader();
-      reader.readAsDataURL(data);
-      reader.onloadend = () => {
-        this.photoUrl = reader.result;
-      };
-    });
-  }*/ //to review
 }

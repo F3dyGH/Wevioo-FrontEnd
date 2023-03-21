@@ -8,6 +8,7 @@ import {AuthService} from "../../auth/services/auth/auth.service";
 })
 export class DishesManagementService {
   private baseURL = 'http://localhost:8082/api/staff/dish/';
+  photoUrl!: string;
 
   constructor(private http: HttpClient, private authService: AuthService) {
   }
@@ -61,13 +62,19 @@ export class DishesManagementService {
 
   getDishById(id: any): Observable<any> {
     const headers = this.getHeader();
-
     return this.http.get(this.baseURL + id, {headers});
   }
 
- /* getPhoto(photoName: string) {
+  getPhoto(photoName: any) : Observable<any> {
     const headers = this.getHeader();
 
-    return this.http.get(`${this.baseURL}photos/${photoName}`, {responseType: 'blob',headers});
-  }*/ //to review
+    return this.http.get(this.baseURL + "photo/" + photoName, {responseType: 'blob',headers})
+    /*  .subscribe((photoBlob: Blob) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(photoBlob);
+      reader.onloadend = () => {
+        this.photoUrl = reader.result as string;
+      };
+    });*/;
+  } //to review
 }

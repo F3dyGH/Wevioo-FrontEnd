@@ -12,9 +12,9 @@
     </div>
     <dialog #dialog3 class="col-lg-5 modal-xl">
       <div class="modal-title text-center">
-        <h4> Update Dish </h4>
+        <h4> Add Dish </h4>
       </div>
-      <form name="form" #frm="ngForm" (ngSubmit)="frm.form.valid">
+      <form name="form" #frm="ngForm">
         <div class="modal-body">
           <div class="container-fluid">
             <div class="row">
@@ -56,7 +56,7 @@
       </form>
       <div class="modal-footer btn col-lg">
         <button type="submit" class="btn btn-success" (click)="dialog3.close(); Add()">Save</button>
-        <button class="btn btn-danger" (click)="dialog3.close()">Close</button>
+        <button class="btn btn-danger" (click)="dialog3.close();">Close</button>
       </div>
     </dialog>
 
@@ -72,8 +72,9 @@
       </thead>
       <tbody *ngFor="let d of dishes">
       <tr>
-        <td><img src="assets/img/office-img-1.jpg"></td>
-<!--        <td><img [src]="getPhotoUrl(d.photo)"></td>-->
+<!--        <td><img src="assets/img/office-img-1.jpg"></td>-->
+        <td><img [src]="d.photoUrl"></td>
+<!--        <td><img src="{{ getPhotos(d.photo)  }}"></td>-->
         <td class="text-center">{{d.name}}</td>
         <td class="text-center">{{d.description}}</td>
         <td class="text-center">{{d.price}}</td>
@@ -90,15 +91,16 @@
       </tr>
       <dialog #dialog class="col-lg-5 modal-xl">
         <div class="modal-title text-center">
-          <h4> Update Dish </h4>
+          <h4> Update {{d.name}} </h4>
         </div>
-        <form name="form" #f="ngForm" (ngSubmit)="f.form.valid && Update()">
+        <form name="form" #f="ngForm" (ngSubmit)="f.form.valid">
           <div class="modal-body">
             <div class="container-fluid">
               <div class="row">
                 <div class="col-md-4">
                   <div class="card ml-5">
-                    <img src="assets/img/office-img-1.jpg">
+                    <img [src]="photoUrl">
+<!--                    <img src="assets/img/office-img-1.jpg">-->
                   </div>
                 </div>
                 <div class="col-md-5 ml-auto">
@@ -131,11 +133,11 @@
               </div>
             </div>
           </div>
-          <div class="modal-footer btn col-lg">
-            <button type="submit" class="btn btn-success">Save</button>
-            <button class="btn btn-danger" (click)="dialog.close()">Close</button>
-          </div>
         </form>
+        <div class="modal-footer btn col-lg">
+        <button type="submit" class="btn btn-success" (click)="Update()">Save</button>
+        <button class="btn btn-danger" (click)="dialog.close()">Close</button>
+      </div>
       </dialog>
       <dialog #dialog2 class="col-lg-5">
         <div class="modal-title text-center">
