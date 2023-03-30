@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
 
 const baseURL = 'http://localhost:8082/api/auth/'
@@ -23,16 +23,19 @@ export class AuthService {
       httpOptions
       );
   }
-  signup(username: string, email: string, firstname: string, lastname: string, password: string): Observable<any>{
+  signup( username: any, password: any, firstname: any, lastname: any): Observable<any>{
     return this.http.post(baseURL + 'signup', {
       username,
-      email,
       password,
       firstname,
       lastname
     },
       httpOptions
     );
+  }
+  forgotPassword(email: any) : Observable<any>{
+    //const params = new HttpParams().set('email', email);
+    return this.http.post( baseURL+ 'forgot-password/' + email, {});
   }
   setToken(token: string): void {
     localStorage.setItem(this.authTokenKey, token);

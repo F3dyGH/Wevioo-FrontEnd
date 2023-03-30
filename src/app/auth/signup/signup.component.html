@@ -33,38 +33,21 @@
               class="mt-4 register-form"
             >
               <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-12">
                   <label for="Username" class="mb-1"
-                  >Username <span class="text-danger">*</span></label
+                  >Email <span class="text-danger">*</span></label
                   >
                   <div class="input-group mb-3">
                     <input
                       type="text"
                       class="form-control"
-                      placeholder="Username"
+                      placeholder="Email"
                       required
                       minlength="3"
                       id="username"
                       name="Username"
                       #username="ngModel"
                       [(ngModel)]="form.username"
-                    />
-                  </div>
-                </div>
-                <div class="col-sm-6">
-                  <label for="email" class="mb-1"
-                  >Email <span class="text-danger">*</span></label
-                  >
-                  <div class="input-group mb-3">
-                    <input
-                      type="email"
-                      class="form-control"
-                      placeholder="Email"
-                      id="email"
-                      required
-                      #email = "ngModel"
-                      [(ngModel)]="form.email"
-                      name="email"
                     />
                   </div>
                 </div>
