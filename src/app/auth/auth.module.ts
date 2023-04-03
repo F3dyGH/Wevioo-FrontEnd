@@ -8,13 +8,17 @@ import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {JwtInterceptorProviders} from "./helpers/jwt.interceptor";
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { ConfirmComponent } from './forgot-password/confirm/confirm.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 
 @NgModule({
   declarations: [
     LoginComponent,
     SignupComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    ConfirmComponent,
+    ResetPasswordComponent
   ],
   imports: [
     CommonModule,
