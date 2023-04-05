@@ -1,8 +1,12 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
+import {JwtHelperService} from "@auth0/angular-jwt";
+import {Router} from "@angular/router";
+import {StorageService} from "../storage/storage.service";
 
 const baseURL = 'http://localhost:8082/api/auth/'
+
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
@@ -12,7 +16,10 @@ const httpOptions = {
 })
 export class AuthService {
   private authTokenKey = "auth-user";
-  constructor(private http:HttpClient) {}
+  private jwtHelper!: JwtHelperService;
+  constructor(private http:HttpClient, private storageService: StorageService, private router : Router) {
+    this.jwtHelper = new JwtHelperService();
+  }
 
   login(username: string, password: string): Observable<any>{
     return this.http.post(baseURL + 'login',
@@ -73,6 +80,18 @@ export class AuthService {
       return role;
     } else {
       console.log('Token is not set in localStorage');
+    }
+  }
+  public logout(): void {
+    this.storageService.clean();
+    this.router.navigate(['']);
+  }
+
+  public checkTokenExpiration(): void {
+    const token = this.getaccessToken();
+    console.log(token)
+    if (token && this.jwtHelper.isTokenExpired(token)){
+      this.logout();
     }
   }
 }

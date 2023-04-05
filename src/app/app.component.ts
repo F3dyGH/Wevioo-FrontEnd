@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {AuthService} from "./auth/services/auth/auth.service";
 /*
 import {AuthService} from "./services/auth/auth.service";
 import {StorageService} from "./services/storage/storage.service";
@@ -13,7 +14,9 @@ export class AppComponent {
   title = 'cantine-ng';
 
 
-  constructor() {}
+  constructor(private authService: AuthService) {
+    this.authService.checkTokenExpiration()
+  }
   ngOnInit(): void{}
 
 }
