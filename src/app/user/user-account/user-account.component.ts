@@ -1,16 +1,16 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ContentChild, ElementRef, OnInit} from '@angular/core';
 /*import {StorageService} from "../../services/storage/storage.service";
 import {UserService} from "../../services/user/user.service";*/
 
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  selector: 'app-userAccount',
+  templateUrl: './user-account.component.html',
+  styleUrls: ['./user-account.component.css']
 })
-export class ProfileComponent  implements OnInit{
+export class UserAccountComponent implements OnInit{
   currentUser: any;
-  content?: string;
-
+  @ContentChild('content', { static: true })
+  content!: ElementRef;
   constructor(/*private storageService: StorageService, private userService: UserService*/) {
   }
   ngOnInit(): void {
