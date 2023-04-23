@@ -40,15 +40,15 @@ export class DishesManagementService {
     return this.http.post(this.baseURL + 'add', formData,{headers})
   }
 
-  updateDish(id: any, name: any, price: any, description: any, photo: any): Observable<any> {
-    const headers = this.getHeader();
+  updateDish(id: any, formData: FormData): Observable<any> {
 
-    return this.http.put(this.baseURL + 'update/' + id, {
-      name,
-      price,
-      description,
-      photo
-    }, {headers})
+    const token = this.authService.getaccessToken();
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'multipart/form-data');
+    headers.append('Accept', 'application/json');
+    headers.append('Authorization', 'Bearer ' + token);
+
+    return this.http.put(this.baseURL + 'update/' + id, formData, {headers})
   }
 
   deleteDish(id: any): Observable<any> {
@@ -58,22 +58,9 @@ export class DishesManagementService {
 
   }
 
-
   getDishById(id: any): Observable<any> {
     const headers = this.getHeader();
     return this.http.get(this.baseURL + id, {headers});
   }
 
-  getPhoto(photoName: any): Observable<any> {
-    const headers = this.getHeader();
-
-    return this.http.get(this.baseURL + "photo/" + photoName, {responseType: 'blob', headers});
-  }
-
-  uploadPhoto(id: any, file: any): Observable<any> {
-    const headers = this.getHeader();
-    const formData = new FormData();
-    formData.append('file', file);
-    return this.http.post(this.baseURL + id + "/photo", formData, {headers});
-  }
 }

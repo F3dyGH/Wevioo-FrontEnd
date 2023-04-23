@@ -119,15 +119,13 @@
       </thead>
       <tbody *ngFor="let d of dishes">
       <tr>
-        <!--        <td><img src="assets/img/office-img-1.jpg"></td>-->
         <td><img [src]="('data:image/*;base64,' + d.image)" alt="{{d.name}}"></td>
-        <!--        <td><img src="{{ getPhotos(d.photo)  }}"></td>-->
         <td class="text-center">{{d.name}}</td>
         <td class="text-center">{{d.description}}</td>
         <td class="text-center">{{d.price}}</td>
 
         <td class="p-0">
-          <button class="btn btn-icon btn-inverse-success ml-5" (click)="dialog.showModal(); "><!--editDish(d)-->
+          <button class="btn btn-icon btn-inverse-success ml-5" (click)="dialog.showModal(); editDish(d)">
             <i class="fa fa-pen"></i>
           </button>
           <button type="button" class="btn btn-icon btn-inverse-danger ml-1 mr-n5"
@@ -140,15 +138,13 @@
         <div class="modal-title text-center">
           <h4> Update {{d.name}} </h4>
         </div>
-<!--
-        <form name="form" #f="ngForm" (ngSubmit)="f.form.valid">
+        <form [formGroup]="DishFormUpdate" enctype="multipart/form-data">
           <div class="modal-body">
             <div class="container-fluid">
               <div class="row">
                 <div class="col-md-4">
                   <div class="card ml-5">
-                    <img class="edit-dish-photo" [src]="d.photoUrl">
-                    &lt;!&ndash;                    <img src="assets/img/office-img-1.jpg">&ndash;&gt;
+                    <img class="edit-dish-photo" [src]="('data:image/*;base64,' + d.image)">
                   </div>
                 </div>
                 <div class="col-md-5 ml-auto">
@@ -156,25 +152,22 @@
                     <div class="form-row">
                       <div class="form-group col-md-6">
                         <label class="col-form-label">Name</label>
-                        <input type="text" class="form-control" name="name" #name="ngModel" [(ngModel)]="DishForm.name">
+                        <input type="text" class="form-control" formControlName="name">
                       </div>
                       <div class="form-group col-md-6">
                         <label class="col-form-label">Price</label>
-                        <input type="number" class="form-control" name="price" #price="ngModel"
-                               [(ngModel)]="DishForm.price">
+                        <input type="number" class="form-control" formControlName="price">
                       </div>
                       <div class="form-group col">
                         <label class="col-form-label">Description</label>
-                        <textarea class="form-control" name="description" #description="ngModel"
-                                  [(ngModel)]="DishForm.description"></textarea>
+                        <textarea class="form-control" formControlName="description"></textarea>
                       </div>
                     </div>
                     <div class="form-row">
                       <div class="col">
                         <label for="file-upload" class="custom-file-button">Select Photo</label>
-                        <input id="file-upload" type="file" accept=".png, .jpg, .jpeg" name="photo" #photo="ngModel"
-                               [(ngModel)]="DishForm.photo">
-                        <button class="btn btn-inverse-success" (change)="onFileChange($event)">Upload</button>
+                        <input id="file-upload" type="file" accept=".png, .jpg, .jpeg"
+                               (change)="onFileUpdate($event)">
                       </div>
                     </div>
                   </div>
@@ -183,9 +176,8 @@
             </div>
           </div>
         </form>
--->
         <div class="modal-footer btn col-lg">
-          <button type="submit" class="btn btn-success" >Save</button><!--(click)="Update()"-->
+          <button type="submit" class="btn btn-success" (click)="Update()" >Save</button><!---->
           <button class="btn btn-danger" (click)="dialog.close()">Close</button>
         </div>
       </dialog>
