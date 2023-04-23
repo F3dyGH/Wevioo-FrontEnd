@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {AuthService} from "../../auth/services/auth/auth.service";
+import {AuthService} from "../../../auth/services/auth/auth.service";
 
 @Injectable({
   providedIn: 'root'
@@ -30,16 +30,14 @@ export class DishesManagementService {
     return this.http.get(this.baseURL + 'all', {headers});
   }
 
-  addDish(name: any, price: any, photo: any, description: any): Observable<any> {
-    const headers = this.getHeader();
+  addDish(formData: FormData): Observable<any> {
+    const token = this.authService.getaccessToken();
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'multipart/form-data');
+    headers.append('Accept', 'application/json');
+    headers.append('Authorization', 'Bearer ' + token);
 
-    return this.http.post(this.baseURL + 'add', {
-        name,
-        price,
-        photo,
-        description
-      },
-      {headers})
+    return this.http.post(this.baseURL + 'add', formData,{headers})
   }
 
   updateDish(id: any, name: any, price: any, description: any, photo: any): Observable<any> {
@@ -60,21 +58,22 @@ export class DishesManagementService {
 
   }
 
+
   getDishById(id: any): Observable<any> {
     const headers = this.getHeader();
     return this.http.get(this.baseURL + id, {headers});
   }
 
-  getPhoto(photoName: any) : Observable<any> {
+  getPhoto(photoName: any): Observable<any> {
     const headers = this.getHeader();
 
-    return this.http.get(this.baseURL + "photo/" + photoName, {responseType: 'blob',headers})
-    /*  .subscribe((photoBlob: Blob) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(photoBlob);
-      reader.onloadend = () => {
-        this.photoUrl = reader.result as string;
-      };
-    });*/;
-  } //to review
+    return this.http.get(this.baseURL + "photo/" + photoName, {responseType: 'blob', headers});
+  }
+
+  uploadPhoto(id: any, file: any): Observable<any> {
+    const headers = this.getHeader();
+    const formData = new FormData();
+    formData.append('file', file);
+    return this.http.post(this.baseURL + id + "/photo", formData, {headers});
+  }
 }
