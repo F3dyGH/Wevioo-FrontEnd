@@ -19934,6 +19934,12 @@ dl li {
   cursor: pointer;
   border-radius: 8%;
 }
+.custom-file-icon {
+
+   padding: 10px 20px;
+   cursor: pointer;
+
+ }
 #file-upload {
   display: none;
 }

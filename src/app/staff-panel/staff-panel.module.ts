@@ -7,12 +7,15 @@ import {AdminPanelModule} from "../admin-panel/admin-panel.module";
 import {AuthModule} from "../auth/auth.module";
 import { DishesManagementComponent } from './dishes-management/dishes-management.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {NgxFileDropModule} from "ngx-file-drop";
+import { DessertManagementComponent } from './dessert-management/dessert-management.component';
 
 
 @NgModule({
   declarations: [
     HomeComponent,
-    DishesManagementComponent
+    DishesManagementComponent,
+    DessertManagementComponent
   ],
     imports: [
         CommonModule,
@@ -20,7 +23,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
         AdminPanelModule,
         AuthModule,
         ReactiveFormsModule,
-        FormsModule
+        FormsModule,
+        NgxFileDropModule
     ]
 })
 export class StaffPanelModule { }

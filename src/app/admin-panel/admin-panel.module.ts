@@ -7,7 +7,7 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { HomeComponent } from './home-admin/home.component';
 import { UserManagementComponent } from './user-management/user-management.component';
 import {DialogModule} from "@angular/cdk/dialog";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -25,7 +25,8 @@ import {FormsModule} from "@angular/forms";
     CommonModule,
     AdminPanelRoutingModule,
     DialogModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class AdminPanelModule { }

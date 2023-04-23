@@ -1,0 +1,15 @@
+#file-upload {
+  display: none;
+}
+.upload-photo{
+  display:flex;
+  gap:5px;
+  width: 80%;
+  margin-left: 150px;
+  padding-top: 13px;
+  cursor: pointer;
+  color: orange;
+}
+.upload-photo:hover{
+  color: purple;
+}

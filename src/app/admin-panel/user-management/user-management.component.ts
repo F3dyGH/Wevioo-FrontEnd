@@ -1,7 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {UsersManagementService} from "../services/users-management.service";
-import {Observable} from "rxjs";
-import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-user-management',
@@ -12,11 +10,11 @@ export class UserManagementComponent implements OnInit {
 
   users!: any[];
   roles!: any[];
-
+  index = 0;
   selectedUser: any;
   selectedRole!: any;
 
-  constructor(private userManagementService: UsersManagementService, private router: Router) {
+  constructor(private userManagementService: UsersManagementService) {
   }
 
   ngOnInit(): void {
@@ -37,8 +35,6 @@ export class UserManagementComponent implements OnInit {
   }
 
   updateUserRole() {
-    //console.log(user);
-    //const roleId = this.selectedUser.roles[0].id;
     this.userManagementService.updateUserRole(this.selectedUser.id, this.selectedRole).subscribe((res: any) => {
       this.userManagementService.getAllUsers().subscribe((data: any[]) => {
         this.users = data;

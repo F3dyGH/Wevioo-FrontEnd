@@ -60,6 +60,13 @@ export class AuthService {
       return tokenStr;
     }
   }
+  getUserId(){
+    const token = this.getToken();
+    if(token){
+      const id = JSON.parse(token).id;
+      return id;
+    }
+  }
   getUsername():any{
     const token = this.getToken();
     if (token) {
@@ -76,7 +83,6 @@ export class AuthService {
     if (token) {
       const tokenStr = JSON.parse(token);
       const role = tokenStr.roles;
-      console.log(role);
       return role;
     } else {
       console.log('Token is not set in localStorage');

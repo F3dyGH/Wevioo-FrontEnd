@@ -20,7 +20,5 @@ export class HeaderComponent implements OnInit{
     this.userName = this.authService.getUsername();
   }
   }
-  constructor(private authService:AuthService, private storageService: StorageService) {
-
-  }
+  constructor(private authService:AuthService, private storageService: StorageService) {}
 }

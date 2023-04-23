@@ -21,8 +21,7 @@ export class SidebarComponent {
     }
   }
 
-  constructor(private storageService: StorageService, private authService: AuthService, private route:Router) {
-  }
+  constructor(private storageService: StorageService, private authService: AuthService, private route:Router) {}
 
   logout(){
     this.storageService.clean();

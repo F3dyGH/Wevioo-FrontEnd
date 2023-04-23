@@ -246,6 +246,11 @@ ul {
 .left--100 {
   left: -100px !important;
 }
+.left--200 {
+  left: -200px !important;
+
+
+}
 .right--100 {
   right: -100px !important;
 }
@@ -4052,4 +4057,7 @@ i {
 .p-signup{
   padding: 2rem !important;
 }
-
+.edit-dish-photo{
+  height: 500px;
+  width: 480px;
+}

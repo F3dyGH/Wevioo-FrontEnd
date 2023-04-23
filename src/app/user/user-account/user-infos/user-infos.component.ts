@@ -7,18 +7,28 @@ import {UsersManagementService} from "../../../admin-panel/services/users-manage
   templateUrl: './user-infos.component.html',
   styleUrls: ['./user-infos.component.css']
 })
-export class UserInfosComponent implements OnInit{
+export class UserInfosComponent implements OnInit {
   currentUser: any;
-  userId= this.authService.getUserId();
-  constructor(private authService:AuthService, private userService: UsersManagementService) {
+  photoUrl!: any;
+  userId = this.authService.getUserId();
+
+  constructor(private authService: AuthService, private userService: UsersManagementService) {
 
   }
+
   ngOnInit(): void {
-    this.currentUser = this.userService.getUser(this.userId).subscribe((data: any[]) => {
-      this.currentUser = data;
-      console.log(this.currentUser)
-    });
-    console.log(this.currentUser);
+    this.currentUser = this.userService.getUser(this.userId)
+      .subscribe((data: any[]) => {
+        this.currentUser = data;
+        this.userService.getPhoto(this.currentUser.photo).subscribe(response => {
+          const reader = new FileReader();
+          reader.onload = () => {
+            this.currentUser.photoUrl = reader.result as string;
+          };
+          reader.readAsDataURL(response);
+          console.log(response); console.log(this.currentUser.id);
+        });
+      });
     console.log(this.userId);
   }
 

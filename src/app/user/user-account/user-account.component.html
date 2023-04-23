@@ -1,14 +1,3 @@
-<!--<ul>
-  <li class="nav-item">
-    <a href class="nav-link" (click)="logout()">Log out</a>
-  </li>
-</ul>-->
-<!--
-<p>profile works!</p>
-<div class="container">
-  <span>Welcome {{currentUser.username}}</span>
-</div>
--->
 <app-header></app-header>
 <section class="support-content ptb-120">
   <div class="container">
@@ -29,8 +18,9 @@
               type="button"
               role="tab"
               aria-selected="true"
+              routerLink="/profile/edit"
             ><i class="fa fa-user mr-4"></i>
-               Edit My personal infos
+              Edit my personal infos
             </button>
             <button
               class="nav-link"
