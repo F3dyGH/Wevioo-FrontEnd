@@ -9,6 +9,7 @@ import { DishesManagementComponent } from './dishes-management/dishes-management
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {NgxFileDropModule} from "ngx-file-drop";
 import { DessertManagementComponent } from './dessert-management/dessert-management.component';
+import {JwtInterceptorProviders} from "../auth/helpers/jwt.interceptor";
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { DessertManagementComponent } from './dessert-management/dessert-managem
         ReactiveFormsModule,
         FormsModule,
         NgxFileDropModule
-    ]
+    ],
+  providers: [JwtInterceptorProviders]
 })
 export class StaffPanelModule { }

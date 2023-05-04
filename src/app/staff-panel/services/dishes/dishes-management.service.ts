@@ -16,7 +16,6 @@ export class DishesManagementService {
   getHeader(): any {
     const token = this.authService.getaccessToken();
     const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
       'Authorization': 'Bearer ' + token
     });
 
@@ -31,22 +30,19 @@ export class DishesManagementService {
   }
 
   addDish(formData: FormData): Observable<any> {
-    const token = this.authService.getaccessToken();
-    const headers = new HttpHeaders();
+    const headers = this.getHeader();
     headers.append('Content-Type', 'multipart/form-data');
-    headers.append('Accept', 'application/json');
-    headers.append('Authorization', 'Bearer ' + token);
+    headers.append('Accept','application/json');
+
 
     return this.http.post(this.baseURL + 'add', formData,{headers})
   }
 
   updateDish(id: any, formData: FormData): Observable<any> {
 
-    const token = this.authService.getaccessToken();
-    const headers = new HttpHeaders();
+    const headers = this.getHeader();
     headers.append('Content-Type', 'multipart/form-data');
     headers.append('Accept', 'application/json');
-    headers.append('Authorization', 'Bearer ' + token);
 
     return this.http.put(this.baseURL + 'update/' + id, formData, {headers})
   }

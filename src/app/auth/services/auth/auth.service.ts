@@ -72,7 +72,6 @@ export class AuthService {
     if (token) {
       const tokenStr = JSON.parse(token);
       const username = tokenStr.username;
-      console.log(tokenStr);
       return username;
     } else {
       console.log('Token is not set in localStorage');
@@ -95,7 +94,6 @@ export class AuthService {
 
   public checkTokenExpiration(): void {
     const token = this.getaccessToken();
-    console.log(token)
     if (token && this.jwtHelper.isTokenExpired(token)){
       this.logout();
     }
