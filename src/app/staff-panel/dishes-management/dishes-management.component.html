@@ -23,7 +23,7 @@
       <div class="modal-title text-center">
         <h4> Add Dish </h4>
       </div>
-      <form name="form" [formGroup]="DishForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+      <form name="form" [formGroup]="DishForm" (ngSubmit)="onSubmit(); dialog3.close()" enctype="multipart/form-data">
         <div class="modal-body">
           <div class="container-fluid">
             <div class="row">
