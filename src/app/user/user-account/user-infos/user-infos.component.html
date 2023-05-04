@@ -2,10 +2,10 @@
     <div content>
       <div class="text-center bg-light p-5 rounded-custom">
         <img
-          [src]="currentUser.photoUrl"
-          alt="author"
+          [src]="('data:image/*;base64,' + currentUser.image)"
+          alt="{{currentUser.image}}"
           width="200"
-          class="img-fluid shadow-sm rounded-circle"
+          class="shadow profile-picture "
         />
         <div class="author-info my-4 pb-120">
           <h5 class="mb-0">{{currentUser.firstname}} {{currentUser.lastname}}</h5>

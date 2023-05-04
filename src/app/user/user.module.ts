@@ -7,7 +7,7 @@ import {SignupComponent} from "../auth/signup/signup.component";
 import {UserAccountComponent} from "./user-account/user-account.component";
 import {HomeComponent} from "./home/home.component";
 import {RouterOutlet} from "@angular/router";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {BrowserModule} from "@angular/platform-browser";
 import {JwtInterceptorProviders} from "../auth/helpers/jwt.interceptor";
@@ -27,13 +27,14 @@ import { EditInfosComponent } from './user-account/edit-infos/edit-infos.compone
     UserInfosComponent,
     EditInfosComponent
   ],
-  imports: [
-    CommonModule,
-    UserRoutingModule,
-    // RouterOutlet,
-    FormsModule,
-    HttpClientModule
-  ],
+    imports: [
+        CommonModule,
+        UserRoutingModule,
+        // RouterOutlet,
+        FormsModule,
+        HttpClientModule,
+        ReactiveFormsModule
+    ],
   providers: [JwtInterceptorProviders],
   exports: [
     HeaderComponent

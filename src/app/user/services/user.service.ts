@@ -15,21 +15,17 @@ export class UserService {
   getHeader(): any {
     const token = this.authService.getaccessToken();
     const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
       'Authorization': 'Bearer ' + token
     });
     return headers;
   }
 
-  updateUser(req: any, photo: FileList): Observable<any> {
-    const token = this.authService.getaccessToken();
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'multipart/form-data',
-        'Authorization': 'Bearer ' + token
-      })
-    };
-    console.log(req)
+  updateUser(id: any, formData: FormData) : Observable<any>{
+    const headers = this.getHeader();
+    headers.append('Content-Type', 'multipart/form-data');
+    headers.append('Accept', 'application/json');
+
+    /*console.log(req)
     const id = this.authService.getUserId();
     console.log(id)
     const userMultipartFormParam = 'user';
@@ -39,9 +35,10 @@ export class UserService {
     formData.append(userMultipartFormParam, userAsJsonBlob);
 
     const filesAsArray = Array.from(photo)
-    formData.append(photoMultipartFormParam, filesAsArray[0]);
+    formData.append(photoMultipartFormParam, filesAsArray[0]);*/
 
-    return this.http.put(this.baseURL + 'update/' + id, formData, httpOptions)
+
+    return this.http.put(this.baseURL + 'update/' + id, formData, {headers})
   }
 
   getPhoto(photoName: any): Observable<any> {

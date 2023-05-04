@@ -4061,3 +4061,16 @@ i {
   height: 500px;
   width: 480px;
 }
+
+.profile-picture {
+  border-radius: 100%;
+  overflow: hidden;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  margin: 0 auto;
+  border: 5px solid var(--bs-primary);
+  width: 150px;
+  height: 150px;
+}
+
