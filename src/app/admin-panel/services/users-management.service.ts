@@ -24,14 +24,21 @@ export class UsersManagementService {
     return headers;
 
   }
-  getAllUsers(): Observable<any> {
+  getEnabledUsers(): Observable<any> {
     const headers = this.getHeader();
     console.log(headers);
-    return this.http.get(this.baseURL + 'all-users', {headers});
+    return this.http.get(this.baseURL + 'enabled-users', {headers});
+  }
+  getDisabledUsers(): Observable<any> {
+    const headers = this.getHeader();
+    console.log(headers);
+    return this.http.get(this.baseURL + 'disabled-users', {headers});
   }
 
   updateUserRole(id: any, idRole: any): Observable<any> {
     const headers = this.getHeader();
+    const headersd = this.getHeader().value;
+    console.log(headersd)
     return this.http.put(this.baseURL+'update-role/'+ id +'/roles/' + idRole, {}, {headers});
   }
 
@@ -40,9 +47,13 @@ export class UsersManagementService {
     return this.http.get(this.authURL + 'find/' + id,{headers});
   }
 
-  deleteUser(id: any): Observable<any> {
+  disableUser(id: any): Observable<any> {
     const headers = this.getHeader();
-    return this.http.delete(this.baseURL +'delete-user/' + id, {headers});
+    return this.http.put(this.baseURL +'disable/' + id, {},{headers});
+  }
+  enableUser(id: any): Observable<any> {
+    const headers = this.getHeader();
+    return this.http.put(this.baseURL +'enable/' + id, {},{headers});
   }
 
   getPhoto(photoName: any): Observable<any> {

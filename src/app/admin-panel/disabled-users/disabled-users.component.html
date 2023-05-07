@@ -1,0 +1,75 @@
+<app-headerAdmin></app-headerAdmin>
+<app-sidebar>
+  <div title>
+    <h3 class="page-title"> Disabled Users </h3>
+  </div>
+  <div content>
+    <table class="table table-bordered table-responsive-sm">
+      <thead>
+      <tr class="text-center">
+        <th> #</th>
+        <th> First name</th>
+        <th> Last name</th>
+        <th> Email</th>
+        <th> Role</th>
+        <th> Actions</th>
+      </tr>
+      </thead>
+      <tbody *ngFor="let u of users; let i = index">
+      <tr class="text-center">
+        <td>{{i+1}}</td>
+        <td>{{u.firstname}}</td>
+        <td>{{u.lastname}}</td>
+        <td>{{u.username}}</td>
+        <td [ngSwitch]="u.roles[0].name">
+          <span *ngSwitchCase="'ROLE_ADMIN'">Admin</span>
+          <span *ngSwitchCase="'ROLE_STAFF'">Staff</span>
+          <span *ngSwitchCase="'ROLE_USER'">User</span>
+        </td>
+        <td class="p-2 align-items-center justify-content-center">
+          <button class="btn btn-icon btn-inverse-dark" (click)="dialog.showModal(); editUser(u)">
+            <i class="fa fa-pen"></i>
+          </button>
+          <button type="button" class="btn btn-icon btn-inverse-success ml-1" (click)="dialog2.showModal(); editUser(u)">
+            <i class="fa fa-check-circle"></i>
+          </button>
+        </td>
+      </tr>
+      <dialog #dialog class="col-lg-5">
+        <div class="modal-title text-center">
+          <h4> Update Role </h4>
+        </div>
+        <div class="modal-body">
+          <div>
+            <select class="dropdown col-5 ml-lg-auto text-center center" [(ngModel)]="selectedRole">
+              <option class="text-success" *ngFor="let r of roles" [value]="r.id" [ngSwitch]="r.id">
+                <span *ngSwitchCase="1">Admin</span>
+                <span *ngSwitchCase="2">Staff</span>
+                <span *ngSwitchCase="3">User</span>
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer btn col-lg">
+          <button class="btn btn-success" (click)= "updateUserRole()">Save</button>
+          <button class="btn btn-danger" (click)="dialog.close()">Close</button>
+        </div>
+      </dialog>
+      <dialog #dialog2 class="col-lg-5" >
+        <div class="modal-title text-center">
+          <h4> Enable {{u.firstname}} </h4>
+        </div>
+        <div class="modal-body">
+          <div class="text-center">
+            <span>Do you really want to enable this user ?</span>
+          </div>
+        </div>
+        <div class="modal-footer btn col-lg">
+          <button class="btn btn-success" (click)="enableUser(u.id)">Enable</button>
+          <button class="btn btn-inverse-light" (click)="dialog2.close()">Close</button>
+        </div>
+      </dialog>
+      </tbody>
+    </table>
+  </div>
+</app-sidebar>

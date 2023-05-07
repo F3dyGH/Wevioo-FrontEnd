@@ -1,13 +1,12 @@
-import {Component, OnInit} from '@angular/core';
+import { Component } from '@angular/core';
 import {UsersManagementService} from "../services/users-management.service";
 
 @Component({
-  selector: 'app-user-management',
-  templateUrl: './user-management.component.html',
-  styleUrls: ['./user-management.component.css']
+  selector: 'app-disabled-users',
+  templateUrl: './disabled-users.component.html',
+  styleUrls: ['./disabled-users.component.css']
 })
-export class UserManagementComponent implements OnInit {
-
+export class DisabledUsersComponent {
   users!: any[];
   roles!: any[];
   index = 0;
@@ -18,7 +17,7 @@ export class UserManagementComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userManagementService.getEnabledUsers()
+    this.userManagementService.getDisabledUsers()
       .subscribe((data: any[]) => {
         this.users = data;
       });
@@ -36,17 +35,17 @@ export class UserManagementComponent implements OnInit {
 
   updateUserRole() {
     this.userManagementService.updateUserRole(this.selectedUser.id, this.selectedRole).subscribe((res: any) => {
-      this.userManagementService.getEnabledUsers().subscribe((data: any[]) => {
+      this.userManagementService.getDisabledUsers().subscribe((data: any[]) => {
         this.users = data;
       });
       this.selectedUser = null;
     });
   }
 
-  disableUser(id: any) {
+  enableUser(id: any) {
     console.log(id);
-    this.userManagementService.disableUser(id).subscribe(() => {
-      this.userManagementService.getEnabledUsers().subscribe((data: any[]) => {
+    this.userManagementService.enableUser(id).subscribe(() => {
+      this.userManagementService.getDisabledUsers().subscribe((data: any[]) => {
         this.users = data;
       });
     });

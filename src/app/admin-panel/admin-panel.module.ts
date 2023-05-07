@@ -8,6 +8,7 @@ import { HomeComponent } from './home-admin/home.component';
 import { UserManagementComponent } from './user-management/user-management.component';
 import {DialogModule} from "@angular/cdk/dialog";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { DisabledUsersComponent } from './disabled-users/disabled-users.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     HeaderComponent,
     SidebarComponent,
     HomeComponent,
-    UserManagementComponent
+    UserManagementComponent,
+    DisabledUsersComponent
   ],
   exports: [
     SidebarComponent,
