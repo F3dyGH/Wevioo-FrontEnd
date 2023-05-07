@@ -1,10 +1,10 @@
 <div class="container-fluid page-body-wrapper">
-  <nav class="sidebar sidebar-offcanvas" id="sidebar" [class.sidebar--visible]="isSidebarVisible">
+  <nav class="sidebar sidebar-offcanvas " id="sidebar" [class.sidebar--visible]="isSidebarVisible" style="position: fixed; height: 100%">
     <div *ngIf="role == 'ROLE_ADMIN'">
     <ul class="nav">
       <li class="nav-item nav-category">Main</li>
       <li class="nav-item">
-        <a class="nav-link mt-5" href="../../index.html">
+        <a class="nav-link mt-5" routerLink="/admin">
           <span class="icon-bg"><i class="fa fa-dashboard menu-icon"></i></span>
           <span class="menu-title">Dashboard</span>
         </a>
@@ -16,9 +16,9 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">
-          <span class="icon-bg"><i class="fa fa-m menu-icon"></i></span>
-          <span class="menu-title">menu 3</span>
+        <a class="nav-link" href="/admin/users/disabled">
+          <span class="icon-bg"><i class="fa fa-ban menu-icon"></i></span>
+          <span class="menu-title">Disabled Users</span>
         </a>
       </li>
       <li class="nav-item">
@@ -125,8 +125,8 @@
     </ul>
     </div>
   </nav>
-  <div class="main-panel mt-60">
-    <div class="content-wrapper">
+  <div class="main-panel mt-60 ml-260">
+    <div class="content-wrapper embed-responsive">
       <div class="page-header">
         <ng-content select="[title]"></ng-content>
       </div>
