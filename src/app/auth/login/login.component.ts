@@ -16,7 +16,8 @@ export class LoginComponent implements OnInit{
 
   isLoggedIn = false;
   isNotLoggedIn = false;
-  errorMessage = '';
+  isEnabled = true;
+  errorMessage?: string;
   roles: string[] = [];
 
   constructor(private authService: AuthService, private storageService: StorageService, private router: Router) {
@@ -25,6 +26,7 @@ export class LoginComponent implements OnInit{
     if(this.storageService.isLoggedIn()){
       this.isLoggedIn = true;
       this.roles = this.storageService.getUser().roles;
+      this.isEnabled = this.storageService.getUser().enabled;
       const user = this.storageService.getUser();
       setTimeout(() => {
         window.alert('You are already logged in');
@@ -35,7 +37,6 @@ export class LoginComponent implements OnInit{
       if(user.roles == "ROLE_STAFF"){
         this.router.navigate(['/staff'])
       }
-
     }
   }
   onSubmit(): void{
@@ -55,14 +56,19 @@ export class LoginComponent implements OnInit{
         }
         else if (user.roles == "ROLE_STAFF"){
           this.router.navigate(['/staff']);
-        }
-        else{
+        } else{
           this.router.navigate(["/home"]);
         }
       },
       error: err => {
-          this.errorMessage = err.error.message;
+        if (err.status == 401){
+          this.errorMessage = "Invalid Credentials";
           this.isNotLoggedIn = true;
+        }
+        if(err.status==403){
+          this.errorMessage = "Your account is disabled, please contact the admin"
+        }
+
       }
     })
   }

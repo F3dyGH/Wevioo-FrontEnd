@@ -31,6 +31,7 @@
               novalidate
               class="mt-4 register-form"
             >
+              <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
               <div class="col-md-12">
                 <label for="email" class="col-sm-2 col-form-label">Email<span class="text-danger">*</span></label>
                 <div class="col-sm-12">
@@ -43,6 +44,7 @@
                 <div class="col-sm-12 mb-3">
                   <input type="password" class="form-control col-md-auto" required minlength="6" #password="ngModel"
                          [(ngModel)]="form.password" name="Password" id="password">
+
                 </div>
               </div>
               <div class="col-md-12 ">
