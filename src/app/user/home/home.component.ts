@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import {AuthService} from "../../auth/services/auth/auth.service";
+import {StorageService} from "../../auth/services/storage/storage.service";
 // import {UserService} from "../../services/user/user.service";
 
 @Component({
@@ -8,8 +10,13 @@ import {Component, OnInit} from '@angular/core';
 })
 export class HomeComponent implements OnInit{
 
+  isLoggedIn = false;
 
-  constructor() { }
+  constructor(private storageService: StorageService) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.storageService.isLoggedIn()){
+      this.isLoggedIn =true;
+    }
+  }
 }

@@ -8,6 +8,7 @@ import {ResetPasswordComponent} from "../auth/reset-password/reset-password.comp
 import {UserInfosComponent} from "./user-account/user-infos/user-infos.component";
 import {AuthGuardService} from "../auth/services/guard/auth-guard.service";
 import {EditInfosComponent} from "./user-account/edit-infos/edit-infos.component";
+import {ChangePasswordComponent} from "./user-account/change-password/change-password.component";
 
 const routes: Routes = [
   {path:'', component:HomeComponent},
@@ -17,7 +18,8 @@ const routes: Routes = [
   {path:'forgot-password', component:ForgotPasswordComponent},
   {path:'reset-password', component:ResetPasswordComponent},
   {path:'profile', component:UserInfosComponent, canActivate: [AuthGuardService]},
-  {path:'profile/edit', component:EditInfosComponent, canActivate: [AuthGuardService]}
+  {path:'profile/edit', component:EditInfosComponent, canActivate: [AuthGuardService]},
+  {path:'profile/change-password', component:ChangePasswordComponent, canActivate: [AuthGuardService]}
 ];
 
 @NgModule({

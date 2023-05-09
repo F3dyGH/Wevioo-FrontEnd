@@ -24,20 +24,6 @@ export class UserService {
     const headers = this.getHeader();
     headers.append('Content-Type', 'multipart/form-data');
     headers.append('Accept', 'application/json');
-
-    /*console.log(req)
-    const id = this.authService.getUserId();
-    console.log(id)
-    const userMultipartFormParam = 'user';
-    const photoMultipartFormParam = 'photo';
-    const formData: FormData = new FormData();
-    const userAsJsonBlob: Blob = new Blob([JSON.stringify(req)], {type: 'application/json'});
-    formData.append(userMultipartFormParam, userAsJsonBlob);
-
-    const filesAsArray = Array.from(photo)
-    formData.append(photoMultipartFormParam, filesAsArray[0]);*/
-
-
     return this.http.put(this.baseURL + 'update/' + id, formData, {headers})
   }
 
@@ -50,5 +36,10 @@ export class UserService {
       })
     };
     return this.http.get(this.baseURL + "photo/" + photoName, httpOptions);
+  }
+  updatePassword(id:any, password:any): Observable<any>{
+    const headers = this.getHeader();
+    const params = {password}
+    return this.http.put(this.baseURL + 'changePassword/' + id, {},{headers, params})
   }
 }

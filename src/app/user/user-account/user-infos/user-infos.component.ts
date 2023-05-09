@@ -20,14 +20,6 @@ export class UserInfosComponent implements OnInit {
     this.currentUser = this.userService.getUser(this.userId)
       .subscribe((data: any[]) => {
         this.currentUser = data;
-        this.userService.getPhoto(this.currentUser.photo).subscribe(response => {
-          const reader = new FileReader();
-          reader.onload = () => {
-            this.currentUser.photoUrl = reader.result as string;
-          };
-          reader.readAsDataURL(response);
-          console.log(response); console.log(this.currentUser.id);
-        });
       });
     console.log(this.userId);
   }

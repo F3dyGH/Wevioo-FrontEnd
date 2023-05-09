@@ -9,6 +9,7 @@ import { UserManagementComponent } from './user-management/user-management.compo
 import {DialogModule} from "@angular/cdk/dialog";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { DisabledUsersComponent } from './disabled-users/disabled-users.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { DisabledUsersComponent } from './disabled-users/disabled-users.componen
     SidebarComponent,
     HomeComponent,
     UserManagementComponent,
-    DisabledUsersComponent
+    DisabledUsersComponent,
+    ChangePasswordComponent
   ],
   exports: [
     SidebarComponent,

@@ -10,13 +10,15 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {NgxFileDropModule} from "ngx-file-drop";
 import { DessertManagementComponent } from './dessert-management/dessert-management.component';
 import {JwtInterceptorProviders} from "../auth/helpers/jwt.interceptor";
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 
 @NgModule({
   declarations: [
     HomeComponent,
     DishesManagementComponent,
-    DessertManagementComponent
+    DessertManagementComponent,
+    ChangePasswordComponent
   ],
     imports: [
         CommonModule,

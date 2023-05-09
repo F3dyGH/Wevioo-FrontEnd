@@ -16,13 +16,18 @@
           <p class="lead" data-aos="fade-up" data-aos-delay="50">
            Intro Paragraph
           </p>
+
           <div
             class="action-btns text-center pt-4"
             data-aos="fade-up"
             data-aos-delay="100"
+            [ngSwitch]="isLoggedIn"
           >
-            <a routerLink="/login" class="btn bg-dark text-light me-3"
+            <a *ngSwitchCase="false" routerLink="/login" class="btn bg-dark text-light me-3"
             >Sign In</a
+            >
+            <a *ngSwitchCase="true" routerLink="/login" class="btn bg-dark text-light me-3"
+            >Browse day menu</a
             >
           </div>
         </div>

@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit{
   }
   onSubmit(): void{
     const {email, password} = this.form;
-
+console.log(this.form.password)
     this.authService.login(email, password).subscribe({
       next: data =>{
         console.log(data);
@@ -50,7 +50,6 @@ export class LoginComponent implements OnInit{
         this.isLoggedIn = true;
         this.roles = this.storageService.getUser().roles;
         const user = this.storageService.getUser();
-        // this.router.navigate(['/profile'])
         if(user.roles == "ROLE_ADMIN"){
           this.router.navigate(['/admin']);
         }

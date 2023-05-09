@@ -15,22 +15,21 @@ import {AppComponent} from "../app.component";
 import {HeaderComponent} from "./shared/header/header.component";
 import { UserInfosComponent } from './user-account/user-infos/user-infos.component';
 import { EditInfosComponent } from './user-account/edit-infos/edit-infos.component';
+import { ChangePasswordComponent } from './user-account/change-password/change-password.component';
 
 
 @NgModule({
   declarations: [
-    /* LoginComponent,
-      SignupComponent,*/
     UserAccountComponent,
     HomeComponent,
     HeaderComponent,
     UserInfosComponent,
-    EditInfosComponent
+    EditInfosComponent,
+    ChangePasswordComponent
   ],
     imports: [
         CommonModule,
         UserRoutingModule,
-        // RouterOutlet,
         FormsModule,
         HttpClientModule,
         ReactiveFormsModule
