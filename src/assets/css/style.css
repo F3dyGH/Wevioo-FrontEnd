@@ -19012,7 +19012,7 @@ dl li {
 }
 
 .rtl .sidebar .nav .nav-item.sidebar-user-actions .user-details .sidebar-profile-img {
-  margin-left: 1rem;
+  margin-left: 0;
   margin-right: 0;
 }
 

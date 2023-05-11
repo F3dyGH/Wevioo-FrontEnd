@@ -11,6 +11,7 @@ import {NgxFileDropModule} from "ngx-file-drop";
 import { DessertManagementComponent } from './dessert-management/dessert-management.component';
 import {JwtInterceptorProviders} from "../auth/helpers/jwt.interceptor";
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { MenuManagementComponent } from './menu-management/menu-management.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
     HomeComponent,
     DishesManagementComponent,
     DessertManagementComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    MenuManagementComponent
   ],
     imports: [
         CommonModule,

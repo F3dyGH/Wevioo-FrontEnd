@@ -1,0 +1,93 @@
+<app-headerAdmin></app-headerAdmin>
+<app-sidebar>
+  <div title>
+    <h3 class="page-title">Menu Management</h3>
+  </div>
+  <div content>
+    <div class="row">
+      <div class="col-lg-12 mb-3 d-flex justify-content-between">
+        <div class="col-lg-1">
+          <button class="btn btn-inverse-success" style="width: 100px"><i class="fa fa-add"></i> Add</button>
+        </div>
+        <div class="col-lg-4">
+          <div class="input-group">
+            <div class="input-group-prepend bg-transparent">
+              <i class="input-group-text border-0 fa fa-search pr-3"></i>
+            </div>
+            <input type="text" class="form-control bg-transparent border-1" placeholder="Search">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-4 col-md-6 mt-4" *ngFor="let m of menus">
+        <div class="single-article rounded-custom mb-4 mb-lg-0">
+          <a routerLink="/news-details" class="article-img">
+            <img
+              [src]="('data:image/*;base64,' + m.dishes[0].image)"
+              alt="article"
+              class="img-fluid"
+              style="max-height: 100px"
+            />
+          </a>
+          <div class="article-content p-4">
+            <div class="article-category mb-4 d-block">
+              <a
+                href="javascript:;"
+                class="d-inline-block text-white badge badge-gradient-success"
+              >{{m.date}}</a> <!-- 3awedhha b date pipe-->
+            </div>
+            <a (click)="dialog.showModal()" style="cursor: pointer">
+              <h2 class="h3 menu-title limit-2-line-text text-center">
+                {{m.name}} </h2>
+            </a>
+            <div *ngFor="let d of m.dishes">
+              <span><i class="fa fa-check"></i> {{d.name}}</span>
+            </div>
+            <div *ngIf="m.dishes.length>2">
+              <span class="d-flex">and more ...</span>
+            </div>
+              <div class="d-flex pt-4">
+                <h6 class="article-title">Total Price:</h6>
+                <div class="avatar-info">
+                  <div>
+                    <h6 class="ml-5">{{getTotalPrice(m)}} DT</h6>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+        <dialog #dialog class="col-lg-5 modal-xl flex-column">
+
+          <div class="modal-title text-center">
+            <button type="button" class="close mr-3" aria-label="Close" (click)="dialog.close()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4>{{m.name}}</h4>
+            <span class="avatar-info text-center">Date {{m.date}}</span>
+          </div>
+          <table class="table table-hover mt-2 position-relative flex-grow-1">
+            <thead>
+            <tr>
+              <th class="text-center">Photo</th>
+              <th class="text-center"> Dish Name</th>
+              <th class="text-center"> Description</th>
+              <th class="text-center"> Price</th>
+            </tr>
+            </thead>
+            <tbody >
+            <tr *ngFor="let d of m.dishes">
+              <td class="d-flex align-items-center justify-content-center"><img
+                [src]="('data:image/*;base64,' + d.image)"></td>
+              <td class="text-center">{{d.name}}</td>
+              <td class="text-center">{{d.description}}</td>
+              <td class="text-center">{{d.price}}</td>
+            </tr>
+            </tbody>
+          </table>
+          <h4 class="text-right mt-3 mr-4">Total price : {{getTotalPrice(m)}} DT</h4>
+        </dialog>
+      </div>
+    </div>
+  </div>
+</app-sidebar>
