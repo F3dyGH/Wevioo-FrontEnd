@@ -1,1 +1,4 @@
 @import "src/assets/css/style.css";
+img{
+  object-fit: contain;
+}
