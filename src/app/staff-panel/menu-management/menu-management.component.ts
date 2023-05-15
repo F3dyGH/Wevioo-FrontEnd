@@ -11,7 +11,7 @@ export class MenuManagementComponent implements OnInit {
   menus!: any[];
   index = 0;
   total = 0;
-  dishes: any[] = []
+  dessert: any;
   selectedMenu!: any;
 
   constructor(private menuService: MenuService) {
@@ -20,27 +20,33 @@ export class MenuManagementComponent implements OnInit {
   ngOnInit(): void {
     this.menuService.getAllMenus().subscribe((data: any) => {
       this.menus = data;
-      this.menus.forEach((menu: any) => {
-        menu.dishes.forEach((dish: any) => {
+     /* this.menus.forEach((menu: any) => {
+        menu.dessert.forEach((dish: any) => {
           if (dish.image && dish.image.data) {
             dish.imageData = 'data:image/jpeg;base64,' + this.arrayBufferToBase64(dish.photo.data);
           }
         })
-      })
+      })*/
+      this.menus.forEach((menu: any) => {
+        if (menu.image && menu.image.data) {
+
+          menu.imageData = 'data:image/jpeg;base64,' + this.arrayBufferToBase64(menu.photo.data);
+        }
+      });
       console.log(data);
     });
   }
 
-  getTotalPrice(menu: any) {
+  /*getTotalPrice(menu: any) {
     this.total = 0;
-    menu.dishes.forEach((dish: any) => {
+    menu.dessert.forEach((dish: any) => {
       this.total += dish.price;
-      this.dishes.push(dish);
-      console.log(this.dishes.push(dish));
+      this.dessert.push(dish);
+      console.log(this.dessert.push(dish));
     });
     return this.total;
 
-  }
+  }*/
 
   showMenuDetails(menu: any) {
     this.selectedMenu = menu

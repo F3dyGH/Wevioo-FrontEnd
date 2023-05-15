@@ -24,14 +24,14 @@
         <div class="single-article rounded-custom mb-4 mb-lg-0">
           <a routerLink="/news-details" class="article-img">
             <img
-              [src]="('data:image/*;base64,' + m.dishes[0].image)"
+              [src]="('data:image/*;base64,' + m.image)"
               alt="article"
               class="img-fluid"
               style="max-height: 100px"
             />
           </a>
           <div class="article-content p-4">
-            <div class="article-category mb-4 d-block">
+            <div class="article-category mb-4 d-block text-center">
               <a
                 href="javascript:;"
                 class="d-inline-block text-white badge badge-gradient-success"
@@ -41,17 +41,17 @@
               <h2 class="h3 menu-title limit-2-line-text text-center">
                 {{m.name}} </h2>
             </a>
-            <div *ngFor="let d of m.dishes">
-              <span><i class="fa fa-check"></i> {{d.name}}</span>
-            </div>
-            <div *ngIf="m.dishes.length>2">
+<!--            <div *ngFor="let d of m.dessert">-->
+              <span><i class="fa fa-check"></i> {{m.dessert.name}}</span>
+<!--            </div>-->
+            <!--<div *ngIf="m.starters.length>2">
               <span class="d-flex">and more ...</span>
-            </div>
+            </div>-->
               <div class="d-flex pt-4">
                 <h6 class="article-title">Total Price:</h6>
                 <div class="avatar-info">
                   <div>
-                    <h6 class="ml-5">{{getTotalPrice(m)}} DT</h6>
+<!--                    <h6 class="ml-5">{{getTotalPrice(m)}} DT</h6>-->
                   </div>
                 </div>
               </div>
@@ -64,7 +64,7 @@
               <span aria-hidden="true">&times;</span>
             </button>
             <h4>{{m.name}}</h4>
-            <span class="avatar-info text-center">Date {{m.date}}</span>
+            <span class="avatar-info">Date {{m.date}}</span>
           </div>
           <table class="table table-hover mt-2 position-relative flex-grow-1">
             <thead>
@@ -76,16 +76,16 @@
             </tr>
             </thead>
             <tbody >
-            <tr *ngFor="let d of m.dishes">
-              <td class="d-flex align-items-center justify-content-center"><img
-                [src]="('data:image/*;base64,' + d.image)"></td>
-              <td class="text-center">{{d.name}}</td>
-              <td class="text-center">{{d.description}}</td>
-              <td class="text-center">{{d.price}}</td>
+            <tr><!--*ngFor="let d of m.dessert"-->
+              <!--<td class="d-flex align-items-center justify-content-center"><img
+                [src]="('data:image/*;base64,' + m.dessert.photo)"></td>
+              --><td class="text-center">{{m.dessert.name}}</td>
+              <td class="text-center">{{m.dessert.description}}</td>
+              <td class="text-center">{{m.dessert.price}}</td>
             </tr>
             </tbody>
           </table>
-          <h4 class="text-right mt-3 mr-4">Total price : {{getTotalPrice(m)}} DT</h4>
+<!--          <h4 class="text-right mt-3 mr-4">Total price : {{getTotalPrice(m)}} DT</h4>-->
         </dialog>
       </div>
     </div>
