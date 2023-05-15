@@ -7,7 +7,7 @@ import {AuthService} from "../../../auth/services/auth/auth.service";
   providedIn: 'root'
 })
 export class DishesManagementService {
-  private baseURL = 'http://localhost:8082/api/staff/dish/';
+  private baseURL = 'http://localhost:8082/api/staff/starter/';
   photoUrl!: string;
 
   constructor(private http: HttpClient, private authService: AuthService) {
