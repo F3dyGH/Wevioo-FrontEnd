@@ -7,6 +7,7 @@ import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {AuthModule} from "./auth/auth.module";
 import {AdminPanelModule} from "./admin-panel/admin-panel.module";
+import {NgxPaginationModule} from "ngx-pagination";
 
 @NgModule({
   declarations: [
@@ -19,7 +20,9 @@ import {AdminPanelModule} from "./admin-panel/admin-panel.module";
         FormsModule,
         HttpClientModule,
         AuthModule,
-        AdminPanelModule
+        AdminPanelModule,
+      NgxPaginationModule,
+
     ],
   providers: [],
   bootstrap: [AppComponent]
