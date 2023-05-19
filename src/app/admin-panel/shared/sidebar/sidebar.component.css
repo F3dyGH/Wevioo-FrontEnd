@@ -1,1 +1,17 @@
 @import "src/assets/css/style.css";
+
+
+.sidebar--visible {
+  position: fixed;
+  max-height: calc(100vh - 64px);
+  top: 64px;
+  bottom: 0;
+  overflow: auto;
+  right: -258px;
+  -webkit-transition: all 0.25s ease-out;
+  transition: all 0.25s ease-out;
+}
+
+.sidebar-offcanvas.active {
+  right: 0;
+}

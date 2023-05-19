@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DishesManagementComponent } from './dishes-management.component';
+import { StarterDishManagementComponent } from './starter-dish-management.component';
 
 describe('DishesManagementComponent', () => {
-  let component: DishesManagementComponent;
-  let fixture: ComponentFixture<DishesManagementComponent>;
+  let component: StarterDishManagementComponent;
+  let fixture: ComponentFixture<StarterDishManagementComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DishesManagementComponent ]
+      declarations: [ StarterDishManagementComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(DishesManagementComponent);
+    fixture = TestBed.createComponent(StarterDishManagementComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -4061,8 +4061,7 @@ i {
   padding: 2rem !important;
 }
 .edit-dish-photo{
-  height: 500px;
-  width: 480px;
+  object-fit: fill;
 }
 
 .profile-picture {

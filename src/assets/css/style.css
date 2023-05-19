@@ -18111,9 +18111,9 @@ dl li {
 }
 
 .navbar .navbar-brand-wrapper .navbar-brand.brand-logo-mini img {
-  width: calc(70px - 50px);
+  width: 80px ;
   max-width: 100%;
-  height: 28px;
+  height: 80px;
   margin: auto;
 }
 

@@ -19,7 +19,4 @@ export class UserAccountComponent implements OnInit{
       this.isLoggedIn = true;
     }
   }
-  /*logout(): void {
-    this.storageService.clean();
-  }*/
 }

@@ -1,14 +1,14 @@
 import {Component, OnInit} from '@angular/core';
-import {DishesManagementService} from "../services/dishes/dishes-management.service";
+import {StarterDishManagementService} from "../services/starter-dish/starter-dish-management.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-dishes-management',
-  templateUrl: './dishes-management.component.html',
-  styleUrls: ['./dishes-management.component.css']
+  templateUrl: './starter-dish-management.component.html',
+  styleUrls: ['./starter-dish-management.component.css']
 })
-export class DishesManagementComponent implements OnInit {
+export class StarterDishManagementComponent implements OnInit {
 
   file: File[] = [];
   fileData!: string;
@@ -25,7 +25,7 @@ export class DishesManagementComponent implements OnInit {
     this.AllDishes();
   }
 
-  constructor(private dishService: DishesManagementService, private http: HttpClient, private formBuilder: FormBuilder) {
+  constructor(private dishService: StarterDishManagementService, private http: HttpClient, private formBuilder: FormBuilder) {
     this.DishForm = this.formBuilder.group({
       name: ['', Validators.required],
       price: ['', Validators.required],

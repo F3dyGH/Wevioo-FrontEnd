@@ -13,8 +13,13 @@ export class SidebarComponent {
   content!: ElementRef;
   @ContentChild('title', { static: true })
   title!: ElementRef;
-  @Input() isSidebarVisible!: boolean;
+  isSidebarVisible: boolean = false;
+
+  onSidebarToggle() {
+    this.isSidebarVisible = !this.isSidebarVisible;
+  }
   role: any;
+
   ngOnInit(): void {
     if(this.storageService.isLoggedIn()){
       this.role = this.authService.getRole();

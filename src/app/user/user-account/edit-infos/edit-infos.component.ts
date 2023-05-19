@@ -1,8 +1,8 @@
-import {Component, ElementRef, OnInit, Renderer2, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {UsersManagementService} from "../../../admin-panel/services/users-management.service";
 import {AuthService} from "../../../auth/services/auth/auth.service";
 import {UserService} from "../../services/user.service";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-edit-infos',
@@ -10,7 +10,6 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
   styleUrls: ['./edit-infos.component.css']
 })
 export class EditInfosComponent implements OnInit {
-//  @ViewChild('fileInput') fileInput!: ElementRef;
   file!: File[];
   fileData!: string;
   fileUpdate: File[] = [];
@@ -19,7 +18,7 @@ export class EditInfosComponent implements OnInit {
   currentUser: any;
   imageData!: any;
   userId = this.authService.getUserId();
-  preview : any;
+  preview: any;
 
 
   constructor(private authService: AuthService, private userService: UsersManagementService, private editUserService: UserService, private fb: FormBuilder) {
@@ -32,86 +31,10 @@ export class EditInfosComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCurrentUser();
-    /* */
   }
 
-  /*
-    createImageFromBlob(image: Blob) {
-      const upload = async (event: any) => {
-        const files = [...event.target.files].map(file => {
-          const reader = new FileReader();
-          return new Promise(resolve => {
-            reader.onload = () => resolve(reader.result);
-            this.imageToShow = () => resolve(reader.result);
-            reader.readAsText(file);
-          });
-        });
-        const res = await Promise.all(files);
-        console.log(res)
-      }
-
-      const input = document.querySelector('input');
-      input!.addEventListener('change', upload);
-    }
-  */
-
-  /*
-    addChecklist(files: FileList) {
-      this.photo = files
-      this.createImageFromBlob(this.photo)
-
-      // for(let i =0 ; i< this.pictures.length; i++){
-      //   this.createImageFromBlob(this.pictures[i])
-      // }
-    }
-  */
-
-  /*
-    onPhotoChange(event: any) {
-      /!* const file = event.target.files[0];
-       if (file) {
-         this.user.photo = file;
-       }*!/
-      //////////////////////////////////
-      const reader = new FileReader();
-      reader.onload = () => {
-        this.photoUrl = reader.result as string;
-      };
-      reader.readAsDataURL(event.target.files[0]);
-      /!*const file = event.target.files[0];
-      const fileName = file.name;
-      this.fileInput.nativeElement.value = '';
-      this.fileInput.nativeElement.value = fileName;*!/
-    }
-  */
-
-  /* onSubmit() {
-    * const formData = new FormData();
-      formData.append('id', this.currentUser.id);
-      formData.append('firstname', this.user.firstname);
-      formData.append('lastname', this.user.lastname);
-      formData.append('email', this.user.email);
-      if (this.user.photo) {
-        formData.append('photo', this.user.photo);
-      }*/
-
-  /*this.email = this.user.email;
-  this.firstname = this.user.firstname;
-  this.lastname = this.user.lastname;
-  this.photo = this.user.photo;
-  this.editUserService.updateUser({
-    username: this.user.email,
-    firstname: this.user.firstname,
-    lastname: this.user.lastname
-  }, this.photo).subscribe()
-}*/
-  onSubmit() {/*
-    const updatedUser = {
-      ...this.currentUser,
-      ...this.userForm.value
-    };*/
+  onSubmit() {
     const formData = new FormData();
-    //formData.append('user', JSON.stringify(this.userForm.value));
     formData.append('username', this.userForm.get('username')?.value)
     formData.append('firstname', this.userForm.get('firstname')?.value)
     formData.append('lastname', this.userForm.get('lastname')?.value)
@@ -121,7 +44,6 @@ export class EditInfosComponent implements OnInit {
       formData.append('file', this.currentUser.image);
     }
     console.log(this.currentUser)
-//console.log(formData.get('user'))
     console.log(formData.get('username'))
     console.log(formData.get('firstname'))
     console.log(formData.get('lastname'))
@@ -129,7 +51,6 @@ export class EditInfosComponent implements OnInit {
     this.editUserService.updateUser(this.currentUser.id, formData)
       .subscribe(updatedUser => {
         console.log('User updated:', updatedUser);
-        //formData.get('file') == this.currentUser.image;
         this.getCurrentUser();
       });
   }
@@ -156,16 +77,8 @@ export class EditInfosComponent implements OnInit {
     this.currentUser = this.userService.getUser(this.userId)
       .subscribe((data: any[]) => {
         this.currentUser = data;
-        /* this.userService.getPhoto(this.currentUser.photo).subscribe(response => {
-           const reader = new FileReader();
-           reader.onload = () => {
-             this.currentUser.photoUrl = reader.result as string;
-           };
-           reader.readAsDataURL(response);
 
-         });*/
         if (this.currentUser.image && this.currentUser.image.data) {
-
           this.currentUser.imageData = 'data:image/jpeg;base64,' + this.arrayBufferToBase64(this.currentUser.photo.data);
         }
         const userData = {
@@ -184,6 +97,6 @@ export class EditInfosComponent implements OnInit {
     for (let i = 0; i < len; i++) {
       binary += String.fromCharCode(bytes[i]);
     }
-    return btoa(binary);
+    return binary;
   }
 }

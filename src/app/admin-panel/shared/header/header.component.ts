@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {StorageService} from "../../../auth/services/storage/storage.service";
 import {AuthService} from "../../../auth/services/auth/auth.service";
 
@@ -8,11 +8,11 @@ import {AuthService} from "../../../auth/services/auth/auth.service";
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit{
-  isSidebarVisible = false;
   userName : any;
+  @Output() toggleSidebarEvent = new EventEmitter<void>();
 
   toggleSidebar() {
-    this.isSidebarVisible = !this.isSidebarVisible;
+    this.toggleSidebarEvent.emit();
   }
 
   ngOnInit(): void {
