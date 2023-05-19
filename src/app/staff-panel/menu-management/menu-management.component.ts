@@ -143,6 +143,7 @@ export class MenuManagementComponent implements OnInit {
     console.log(this.selectedMenu.id);
     this.menuService.updateMenu(this.selectedMenu.id, formData).subscribe(res => {
       this.menuFormUpdate.reset();
+      this.fileUpdate = [];
       console.log(formData)
       this.menuService.getAllMenus().subscribe((data: any[]) => {
         this.menus = data;
