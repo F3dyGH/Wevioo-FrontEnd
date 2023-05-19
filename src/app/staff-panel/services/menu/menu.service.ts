@@ -17,9 +17,7 @@ export class MenuService {
     const headers = new HttpHeaders({
       'Authorization': 'Bearer ' + token
     });
-
     return headers;
-
   }
 
   getAllMenus(): Observable<any> {
@@ -27,9 +25,17 @@ export class MenuService {
     return this.http.get(this.baseURL + '/all', {headers});
   }
 
-  addMenu( formData: FormData): Observable<any> {
+  addMenu(formData: FormData): Observable<any> {
     const headers = this.getHeader();
     console.log(headers)
     return this.http.post(this.baseURL + '/create', formData, {headers})
+  }
+  updateMenu(id : any ,formData : FormData) : Observable<any> {
+    const headers = this.getHeader();
+    return this.http.put(this.baseURL+'/update/'+ id, formData,{headers});
+  }
+  deleteMenu(id : any):Observable<any>{
+    const headers = this.getHeader();
+    return this.http.delete(this.baseURL +'/delete/' + id,{headers});
   }
 }

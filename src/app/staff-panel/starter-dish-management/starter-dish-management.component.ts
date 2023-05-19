@@ -154,6 +154,6 @@ export class DishesManagementComponent implements OnInit {
     for (let i = 0; i < len; i++) {
       binary += String.fromCharCode(bytes[i]);
     }
-    return btoa(binary);
+    return binary;
   }
 }

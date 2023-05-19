@@ -6,7 +6,7 @@ import {AuthService} from "../../../auth/services/auth/auth.service";
 @Injectable({
   providedIn: 'root'
 })
-export class DishesManagementService {
+export class StarterDishManagementService {
   private baseURL = 'http://localhost:8082/api/staff/starter/';
   photoUrl!: string;
 
@@ -16,7 +16,6 @@ export class DishesManagementService {
   getHeader(): any {
     const token = this.authService.getaccessToken();
     const headers = new HttpHeaders({
-      'Content-Type':'application/json',
       'Authorization': 'Bearer ' + token
     });
 
@@ -32,25 +31,17 @@ export class DishesManagementService {
 
   addDish(formData: FormData): Observable<any> {
     const headers = this.getHeader();
-    headers.append('Content-Type', 'multipart/form-data');
-    headers.append('Accept','application/json');
-
 
     return this.http.post(this.baseURL + 'add', formData,{headers})
   }
 
   updateDish(id: any, formData: FormData): Observable<any> {
-
     const headers = this.getHeader();
-    headers.append('Accept', 'multipart/form-data');
-    //headers.append('Accept', 'application/json');
-
     return this.http.put(this.baseURL + 'update/' + id, formData, {headers})
   }
 
   deleteDish(id: any): Observable<any> {
     const headers = this.getHeader();
-
     return this.http.delete(this.baseURL + 'delete/' + id, {headers});
 
   }

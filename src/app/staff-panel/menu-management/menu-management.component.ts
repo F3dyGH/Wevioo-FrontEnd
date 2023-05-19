@@ -18,13 +18,27 @@ export class MenuManagementComponent implements OnInit {
   desserts: any[] = [];
   selectedMenu!: any;
   MenuForm!: FormGroup;
+  menuFormUpdate!: FormGroup;
   file: File[] = [];
   fileData!: string;
+  fileUpdate: File[] = [];
+  fileDataUpdate!: string;
   imageData!: string;
   p: number = 1;
+  isSidebarVisible = false;
 
+  toggleSidebar() {
+    this.isSidebarVisible = !this.isSidebarVisible;
+  }
   constructor(private menuService: MenuService, private dessertService: DessertsService, private formBuilder: FormBuilder) {
     this.MenuForm = this.formBuilder.group({
+      name: ['', Validators.required],
+      price: ['', Validators.required],
+      dessert: ['', Validators.required],
+      date: ['', Validators.required],
+      photo: ['', Validators.required]
+    });
+    this.menuFormUpdate = this.formBuilder.group({
       name: ['', Validators.required],
       price: ['', Validators.required],
       dessert: ['', Validators.required],
@@ -36,13 +50,6 @@ export class MenuManagementComponent implements OnInit {
   ngOnInit(): void {
     this.menuService.getAllMenus().subscribe((data: any) => {
       this.menus = data;
-      /* this.menus.forEach((menu: any) => {
-         menu.dessert.forEach((dish: any) => {
-           if (dish.image && dish.image.data) {
-             dish.imageData = 'data:image/jpeg;base64,' + this.arrayBufferToBase64(dish.photo.data);
-           }
-         })
-       })*/
       this.menus.forEach((menu: any) => {
         if (menu.image && menu.image.data) {
           menu.imageData = 'data:image/jpeg;base64,' + this.arrayBufferToBase64(menu.photo.data);
@@ -70,7 +77,6 @@ export class MenuManagementComponent implements OnInit {
     console.log(this.MenuForm.value);
     this.menuService.addMenu(formData).subscribe(res => {
         this.MenuForm.reset();
-        this.file = [];
         this.menuService.getAllMenus().subscribe((data: any[]) => {
           this.menus = data;
         });
@@ -94,16 +100,66 @@ export class MenuManagementComponent implements OnInit {
     }
   }
 
-  /*getTotalPrice(menu: any) {
-    this.total = 0;
-    menu.dessert.forEach((dish: any) => {
-      this.total += dish.price;
-      this.dessert.push(dish);
-      console.log(this.dessert.push(dish));
-    });
-    return this.total;
+  onFileUpdate(event: any) {
+    this.fileUpdate = event.target.files;
+    const reader = new FileReader();
+    if (this.fileUpdate && this.fileUpdate.length > 0) {
+      const fileType = this.fileUpdate[0].type;
+      if (fileType && fileType.match('image.*')) {
+        reader.readAsDataURL(this.fileUpdate[0]);
+        console.log(this.fileUpdate[0].name);
+      }
+      reader.onload = () => {
+        this.fileDataUpdate = reader.result as string;
+      };
+    }
+  }
 
-  }*/
+  editMenu(menu: any) {
+    this.selectedMenu = menu;
+    const menuData = {
+      name: menu.name,
+      price: menu.price,
+      dessert: menu.dessert.id,
+      date: menu.date,
+      photo: menu.image
+    }
+    this.menuFormUpdate.setValue(menuData)
+    console.log(this.selectedMenu.id);
+    console.log(menuData);
+  }
+
+  Update() {
+    const formData = new FormData();
+
+    formData.append('name', this.menuFormUpdate.value.name);
+    formData.append('price', this.menuFormUpdate.value.price);
+    formData.append('dessert', this.menuFormUpdate.value.dessert);
+    formData.append('date', this.menuFormUpdate.value.date);
+    if (this.fileUpdate.length > 0) {
+      formData.append('photo', this.fileUpdate[0], this.fileUpdate[0].name);
+    }
+    console.log(formData.get('photo'))
+    console.log(this.selectedMenu.id);
+    this.menuService.updateMenu(this.selectedMenu.id, formData).subscribe(res => {
+      this.menuFormUpdate.reset();
+      console.log(formData)
+      this.menuService.getAllMenus().subscribe((data: any[]) => {
+        this.menus = data;
+      });
+      this.selectedMenu = null;
+    });
+  }
+
+  delete(menu:any){
+    this.selectedMenu = menu
+    this.menuService.deleteMenu(this.selectedMenu.id).subscribe(res =>{
+      this.menuService.getAllMenus().subscribe((data:any)=>{
+        this.menus = data;
+      });
+      }
+    )
+  }
 
   showMenuDetails(menu: any) {
     this.selectedMenu = menu
@@ -116,7 +172,7 @@ export class MenuManagementComponent implements OnInit {
     for (let i = 0; i < len; i++) {
       binary += String.fromCharCode(bytes[i]);
     }
-    return btoa(binary);
+    return binary;
   }
 
 }
