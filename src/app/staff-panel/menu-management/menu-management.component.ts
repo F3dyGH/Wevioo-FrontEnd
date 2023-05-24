@@ -166,6 +166,10 @@ export class MenuManagementComponent implements OnInit {
     this.selectedMenu = menu
   }
 
+  clearUpdateForm(){
+    this.menuFormUpdate.reset();
+  }
+
   arrayBufferToBase64(buffer: ArrayBuffer) {
     let binary = '';
     const bytes = new Uint8Array(buffer);

@@ -16,6 +16,8 @@ import {HeaderComponent} from "./shared/header/header.component";
 import { UserInfosComponent } from './user-account/user-infos/user-infos.component';
 import { EditInfosComponent } from './user-account/edit-infos/edit-infos.component';
 import { ChangePasswordComponent } from './user-account/change-password/change-password.component';
+import { DailyMenuComponent } from './daily-menu/daily-menu.component';
+import { MenuDetailsComponent } from './daily-menu/menu-details/menu-details.component';
 
 
 @NgModule({
@@ -25,7 +27,9 @@ import { ChangePasswordComponent } from './user-account/change-password/change-p
     HeaderComponent,
     UserInfosComponent,
     EditInfosComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    DailyMenuComponent,
+    MenuDetailsComponent
   ],
     imports: [
         CommonModule,

@@ -19,7 +19,7 @@ export class EditInfosComponent implements OnInit {
   imageData!: any;
   userId = this.authService.getUserId();
   preview: any;
-
+  user: any;
 
   constructor(private authService: AuthService, private userService: UsersManagementService, private editUserService: UserService, private fb: FormBuilder) {
     this.userForm = this.fb.group({
@@ -38,12 +38,10 @@ export class EditInfosComponent implements OnInit {
     formData.append('username', this.userForm.get('username')?.value)
     formData.append('firstname', this.userForm.get('firstname')?.value)
     formData.append('lastname', this.userForm.get('lastname')?.value)
-    if (this.file.length > 0) {
+    if (this.file && this.file.length > 0) {
       formData.append('file', this.file[0], this.file[0].name);
-    } else {
-      formData.append('file', this.currentUser.image);
     }
-    console.log(this.currentUser)
+    console.log(this.currentUser.image)
     console.log(formData.get('username'))
     console.log(formData.get('firstname'))
     console.log(formData.get('lastname'))
@@ -88,6 +86,7 @@ export class EditInfosComponent implements OnInit {
         }
         this.userForm.setValue(userData);
       });
+
   }
 
   arrayBufferToBase64(buffer: ArrayBuffer) {

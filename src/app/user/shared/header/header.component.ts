@@ -15,7 +15,7 @@ export class HeaderComponent implements OnInit {
   constructor(private storageService: StorageService, private authService:AuthService, private route:Router) {}
 
   @HostListener('window:scroll', ['$event']) onscroll() {
-    if (window.scrollY > 80) {
+    if (window.scrollY > 0) {
       this.sticky = true;
     } else {
       this.sticky = false;
