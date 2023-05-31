@@ -18,6 +18,9 @@ import { EditInfosComponent } from './user-account/edit-infos/edit-infos.compone
 import { ChangePasswordComponent } from './user-account/change-password/change-password.component';
 import { DailyMenuComponent } from './daily-menu/daily-menu.component';
 import { MenuDetailsComponent } from './daily-menu/menu-details/menu-details.component';
+import { SandwichesComponent } from './sandwiches/sandwiches.component';
+import { PizzaComponent } from './pizza/pizza.component';
+import { FoodCategoriesComponent } from './food-categories/food-categories.component';
 
 
 @NgModule({
@@ -29,7 +32,10 @@ import { MenuDetailsComponent } from './daily-menu/menu-details/menu-details.com
     EditInfosComponent,
     ChangePasswordComponent,
     DailyMenuComponent,
-    MenuDetailsComponent
+    MenuDetailsComponent,
+    SandwichesComponent,
+    PizzaComponent,
+    FoodCategoriesComponent
   ],
     imports: [
         CommonModule,

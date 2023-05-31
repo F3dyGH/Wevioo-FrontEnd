@@ -11,6 +11,9 @@ import {EditInfosComponent} from "./user-account/edit-infos/edit-infos.component
 import {ChangePasswordComponent} from "./user-account/change-password/change-password.component";
 import {DailyMenuComponent} from "./daily-menu/daily-menu.component";
 import {MenuDetailsComponent} from "./daily-menu/menu-details/menu-details.component";
+import {SandwichesComponent} from "./sandwiches/sandwiches.component";
+import {PizzaComponent} from "./pizza/pizza.component";
+import {FoodCategoriesComponent} from "./food-categories/food-categories.component";
 
 const routes: Routes = [
   {path:'', component:HomeComponent},
@@ -23,7 +26,8 @@ const routes: Routes = [
   {path:'profile/edit', component:EditInfosComponent, canActivate: [AuthGuardService]},
   {path:'profile/change-password', component:ChangePasswordComponent, canActivate: [AuthGuardService]},
   {path:'menu', component: DailyMenuComponent, canActivate: [AuthGuardService]},
-  {path:'menu/:name', component: MenuDetailsComponent, canActivate:[AuthGuardService]}
+  {path:'menu/:name', component: MenuDetailsComponent, canActivate:[AuthGuardService]},
+  {path:':category',component:FoodCategoriesComponent, canActivate:[AuthGuardService]},
 ];
 
 @NgModule({

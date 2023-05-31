@@ -10,9 +10,11 @@ import {Observable} from "rxjs";
 export class Food_by_categoriesService {
 
   apiUrl: string;
+  userApi:string;
 
   constructor(private authService :AuthService, private http: HttpClient) {
     this.apiUrl = environment.apiUrl+"staff/foodDrinks/"
+    this.userApi = environment.apiUrl+"user/"
   }
 
   getHeaders() {
@@ -27,6 +29,12 @@ export class Food_by_categoriesService {
     const headers = this.getHeaders();
     console.log(category);
     return this.http.get(this.apiUrl+category,{headers})
+  }
+
+  getByCategoryUser(category: any): Observable<any> {
+    const headers = this.getHeaders();
+    console.log(category);
+    return this.http.get(this.userApi + category, {headers})
   }
 
   add(formData: FormData): Observable<any> {

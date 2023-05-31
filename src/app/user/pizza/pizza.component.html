@@ -1,0 +1,48 @@
+<app-header></app-header>
+<section id="open-positions" class="open-jobs ptb-60">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <div class="section-heading">
+          <h2 class="text-primary">Sandwiches</h2>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center custom-shadow">
+      <div class="col-lg-4 col-md-6 mt-5 mb-5" *ngFor="let p of pizzas">
+        <a
+          [routerLink]="['/sandwiches', p.name ]"
+          class="text-decoration-none mt-3 mt-xl-0 mt-lg-0 p-5 text-white rounded-custom">
+          <div class="blur-image ml-3" [style.background-image]="'url(data:image/*;base64,' + p.image + ')'"
+               style="background-size: cover;
+                      background-position: center;">
+            <div class="overlay rounded-custom"></div>
+          </div>
+          <div class="container-content ml-3 rounded-custom position-relative p-4">
+            <div class="d-flex mb-3 justify-content-between align-items-center">
+              <span class="mb-2 mr-3 h5 text-light">{{p.name}}</span>
+              <span class="badge px-3 py-2 bg-light text-dark rounded-pill small ml-3"
+              >{{p.price}} DT</span
+              >
+            </div>
+            <ul class="list-unstyled text-light">
+              <li>
+                <span class="far fa-salad me-1"></span> <strong> Starter Dish of your choice</strong>
+              </li>
+              <li>
+                <span class="far fa-burger-cheese me-1"></span> <strong> {{p.name}}</strong>
+              </li>
+              <li>
+                <span class="far fa-candy-cane me-1"></span> <strong> {{p.description}}</strong>
+              </li>
+            </ul>
+            <div class="btn btn-outline-light btn-sm d-inline-block bg-dark-dark  mt-4">
+              See Details
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
