@@ -1,0 +1,4 @@
+<ng-container [ngSwitch]="category">
+  <app-pizzas-management *ngSwitchCase="'pizza'"></app-pizzas-management>
+  <app-sandwiches-management *ngSwitchCase="'sandwiches'"></app-sandwiches-management>
+</ng-container>

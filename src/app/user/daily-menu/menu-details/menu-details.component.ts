@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Params} from "@angular/router";
-import {MenuService} from "../../../staff-panel/services/menu/menu.service";
+import {ActivatedRoute} from "@angular/router";
 import {DailyMenuService} from "../../services/daily-menu/daily-menu.service";
 
 @Component({

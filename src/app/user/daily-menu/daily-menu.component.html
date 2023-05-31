@@ -51,11 +51,11 @@
         </span>
       </div>
     </div>
-    <div class="row justify-content-center">
-      <div class="col-lg-4 col-md-6 mt-5" *ngFor="let m of menus">
+    <div class="row justify-content-center custom-shadow">
+      <div class="col-lg-4 col-md-6 mt-5 mb-5" *ngFor="let m of menus">
         <a
           [routerLink]="['/menu', m.name ]"
-          class="text-decoration-none mt-3 mt-xl-0 mt-lg-0 p-5 text-white  rounded-custom ">
+          class="text-decoration-none mt-3 mt-xl-0 mt-lg-0 p-5 text-white rounded-custom">
           <div class="blur-image ml-3" [style.background-image]="'url(data:image/*;base64,' + m.image + ')'"
                style="background-size: cover;
                       background-position: center;">
@@ -68,7 +68,7 @@
               >{{m.price}} DT</span
               >
             </div>
-            <ul class="job-info-list list-unstyled text-light">
+            <ul class="list-unstyled text-light">
               <li>
                 <span class="far fa-salad me-1"></span> <strong> Starter Dish of your choice</strong>
               </li>

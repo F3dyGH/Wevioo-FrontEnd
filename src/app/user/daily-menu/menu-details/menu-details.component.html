@@ -1,33 +1,50 @@
 <app-header></app-header>
-<section id="open-positions" class="open-jobs ptb-120">
-<div class="container">
-  <div class="row">
-    <div class="col-lg-6">
-      <img  [src]="('data:image/*;base64,' + menu.image)" class="img-fluid" alt="Item Photo">
+<section id="open-positions" class="open-jobs ptb-60">
+  <div class="container">
+    <div class="row custom-shadow">
+      <div class="col-lg-6 ptb-60 pl-4">
+        <img [src]="('data:image/*;base64,' + menu.image)" class="img-fluid rounded-custom" alt="Item Photo">
+      </div>
+      <div class="col-lg-6 ptb-60 pr-5">
+        <h2>{{menu.name}}</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer commodo ligula at libero porta, id laoreet
+          urna finibus. Aliquam quis nisl at turpis lacinia ultricies. Sed in ex ultrices, venenatis urna vel, convallis
+          sapien.</p>
+      </div>
     </div>
-    <div class="col-lg-6">
-      <h2>{{menu.name}}</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer commodo ligula at libero porta, id laoreet urna finibus. Aliquam quis nisl at turpis lacinia ultricies. Sed in ex ultrices, venenatis urna vel, convallis sapien.</p>
-    </div>
-  </div>
-  <div class="row mt-4">
-    <div class="col">
-      <h3>Additional Photos</h3>
-      <div class="row">
-        <div class="col-md-3">
-          <img [src]="('data:image/*;base64,' + menu.dessert.image)" class="img-fluid" alt="Additional Photo 1">
-        </div>
-        <div class="col-md-3">
-          <img src="assets/img/dashboard-img.png" class="img-fluid" alt="Additional Photo 2">
-        </div>
-        <div class="col-md-3">
-          <img src="assets/img/dashboard-img.png" class="img-fluid" alt="Additional Photo 3">
-        </div>
-        <div class="col-md-3">
-          <img src="assets/img/dashboard-img.png" class="img-fluid" alt="Additional Photo 4">
+    <div class="row mt-4">
+      <div class="col text-center mt-3">
+        <h3>Menu Content</h3>
+        <div class="row mt-5 custom-shadow">
+          <div class="col-md-3 center">
+            <div class="row mb-3 center">
+              <h6>Starter Dish</h6>
+            </div>
+            <div class="row">
+              <img [src]="('data:image/*;base64,' + menu.dessert.image)" class="img-fluid rounded-custom"
+                   alt="Starter Dish Photo">
+            </div>
+          </div>
+          <div class="col-md-3 center ptb-60">
+            <div class="row mb-3 center">
+              <h6>Main Dish</h6>
+            </div>
+            <div class="row">
+              <img [src]="('data:image/*; base64, ' + menu.image )" class="img-fluid rounded-custom"
+                   alt="Main Dish Photo">
+            </div>
+          </div>
+          <div class="col-md-3 center">
+            <div class="row mb-3 center">
+              <h6>Dessert</h6>
+            </div>
+            <div class="row">
+              <img [src]="('data:image/*;base64,' + menu.dessert.image)" class="img-fluid rounded-custom"
+                   alt="Dessert Photo">
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 </section>

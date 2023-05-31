@@ -26,6 +26,7 @@ export class MenuManagementComponent implements OnInit {
   imageData!: string;
   p: number = 1;
   isSidebarVisible = false;
+  errorMessage?:string;
 
   toggleSidebar() {
     this.isSidebarVisible = !this.isSidebarVisible;
@@ -50,11 +51,11 @@ export class MenuManagementComponent implements OnInit {
   ngOnInit(): void {
     this.menuService.getAllMenus().subscribe((data: any) => {
       this.menus = data;
-      this.menus.forEach((menu: any) => {
+    /*  this.menus.forEach((menu: any) => {
         if (menu.image && menu.image.data) {
           menu.imageData = 'data:image/jpeg;base64,' + this.arrayBufferToBase64(menu.photo.data);
         }
-      });
+      });*/
       console.log(data);
     });
 
@@ -81,7 +82,11 @@ export class MenuManagementComponent implements OnInit {
           this.menus = data;
         });
       },
-      (error) => console.log(error))
+      (error) => {
+      if(error.status = 409){
+        this.errorMessage = "Menu already exists"
+      }
+      })
   }
 
   onFileSelected(event: any) {
@@ -162,15 +167,11 @@ export class MenuManagementComponent implements OnInit {
     )
   }
 
-  showMenuDetails(menu: any) {
-    this.selectedMenu = menu
-  }
-
   clearUpdateForm(){
     this.menuFormUpdate.reset();
   }
 
-  arrayBufferToBase64(buffer: ArrayBuffer) {
+ /* arrayBufferToBase64(buffer: ArrayBuffer) {
     let binary = '';
     const bytes = new Uint8Array(buffer);
     const len = bytes.byteLength;
@@ -178,6 +179,6 @@ export class MenuManagementComponent implements OnInit {
       binary += String.fromCharCode(bytes[i]);
     }
     return binary;
-  }
+  }*/
 
 }

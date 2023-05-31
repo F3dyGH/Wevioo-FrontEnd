@@ -2,14 +2,17 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {AuthService} from "../../../auth/services/auth/auth.service";
 import {Observable} from "rxjs";
+import {environment} from "../../../../environments/environment.development";
 
 @Injectable({
   providedIn: 'root'
 })
 export class MenuService {
   baseURL = 'http://localhost:8082/api/staff/menu'
+  private apiUrl : string;
 
   constructor(private http: HttpClient, private authService: AuthService) {
+    this.apiUrl = environment.apiUrl+"staff/menu"
   }
 
   getHeader(): any {
@@ -22,7 +25,7 @@ export class MenuService {
 
   getAllMenus(): Observable<any> {
     const headers = this.getHeader();
-    return this.http.get(this.baseURL + '/all', {headers});
+    return this.http.get(this.apiUrl + '/all', {headers});
   }
 
   addMenu(formData: FormData): Observable<any> {

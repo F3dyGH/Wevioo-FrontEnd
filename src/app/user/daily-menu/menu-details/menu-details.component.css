@@ -1,0 +1,9 @@
+.center {
+
+  position: center;
+  top: 51%;
+  right: 0px;
+  left: 0;
+  margin: auto;
+  display: block;
+}

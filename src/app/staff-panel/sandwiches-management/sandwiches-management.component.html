@@ -1,0 +1,199 @@
+<app-headerAdmin></app-headerAdmin>
+<app-sidebar>
+  <div title>
+    <h3 class="page-title">Sandwiches Management</h3>
+  </div>
+  <div content>
+    <div class="row">
+      <div class="col-lg-12 mb-3 d-flex justify-content-between">
+        <div class="col-lg-1">
+          <dialog #dialog2 class="col-lg-5 modal-xl">
+            <div class="modal-title text-center">
+              <h4> Add Dish </h4>
+            </div>
+            <form name="form" [formGroup]="SandwichForm" enctype="multipart/form-data">
+              <div class="modal-body">
+                <div class="container-fluid">
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="card ml-5">
+                        <img src="assets/img/office-img-1.jpg">
+                      </div>
+                    </div>
+                    <div class="col-md-5 ml-auto">
+                      <div class="row">
+                        <div class="form-row">
+                          <div class="form-group col-md-6">
+                            <label class="col-form-label">Name</label>
+                            <input type="text" class="form-control" formControlName="name">
+                          </div>
+                          <div class="form-group col-md-6">
+                            <label class="col-form-label">Price</label>
+                            <input type="number" class="form-control" formControlName="price">
+                          </div>
+                          <div class="form-group col">
+                            <label class="col-form-label">Description</label>
+                            <textarea class="form-control" formControlName="description"></textarea>
+                          </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="col">
+                            <label for="file-upload1" class="custom-file-button">Upload Photo</label>
+                            <input id="file-upload1" type="file"
+                                   (change)="onFileSelected($event)">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+            <div class="modal-footer btn col-lg">
+              <button type="submit" class="btn btn-success" (click)="onSubmit(); dialog2.close()">Save</button>
+              <button class="btn btn-danger" (click)="dialog2.close(); clearAddForm()">Close</button>
+            </div>
+          </dialog>
+
+          <button class="btn btn-inverse-success" style="width: 100px" (click)="dialog2.showModal()"><i class="fa fa-add">
+            </i> Add
+          </button>
+        </div>
+        <div class="col-lg-4">
+          <div class="input-group">
+            <div class="input-group-prepend bg-transparent">
+              <i class="input-group-text border-0 fa fa-search pr-3"></i>
+            </div>
+            <input type="text" class="form-control bg-transparent border-1" placeholder="Search">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-4 col-md-6 mt-4" *ngFor="let s of sandwiches | paginate: {itemsPerPage: 6, currentPage: p}">
+        <div class="single-article rounded-custom mb-4 mb-lg-0">
+          <a (click)="dialog3.showModal()" class="article-img">
+            <img
+              [src]="('data:image/*;base64,' + s.image)"
+              alt="article"
+              class="img-fluid"
+              style="max-height: 100px"
+            />
+          </a>
+          <div class="article-content p-4">
+            <a  style="cursor: pointer">
+              <h2 class="h3 menu-title limit-2-line-text text-center">
+                {{s.name}} </h2>
+            </a>
+            <ul style="list-style: none">
+              <li><i class="fa fa"></i> {{s.description}}</li>
+            </ul>
+            <div class="row">
+              <div class="col">
+                <h6 class="text-left">Price:</h6>
+              </div>
+              <div class="col">
+                <h6 class="text-right">{{s.price}} DT</h6>
+              </div>
+            </div>
+            <div class="row">
+              <div class="btn btn-group center">
+                <button class="btn btn-sm btn-inverse-success" (click)="dialog.showModal(); editSandwich(s)">
+                  <i class="fa fa-pen"></i>
+                </button>
+                <button class="btn btn-sm btn-inverse-danger ml-1" (click)="dialog4.showModal();">
+                  <i class="fa fa-trash"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <dialog #dialog class="col-lg-5 modal-xl flex-column">
+          <div class="modal-title text-center">
+            <button type="button" class="close mr-3" aria-label="Close" (click)="dialog.close()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4>Update {{s.name}}</h4>
+          </div>
+          <div class="modal-body">
+            <form [formGroup]="SandwichFormUpdate" enctype="multipart/form-data">
+              <div class="modal-body">
+                <div class="container-fluid">
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="card ml-5">
+                        <img class="edit-dish-photo" [src]="('data:image/*;base64,' + s.image)">
+                      </div>
+                    </div>
+                    <div class="col-md-5 ml-auto">
+                      <div class="row">
+                        <div class="form-row">
+                          <div class="form-group col-md-6">
+                            <label class="col-form-label">Name</label>
+                            <input type="text" class="form-control" formControlName="name">
+                          </div>
+                          <div class="form-group col-md-6">
+                            <label class="col-form-label">Price</label>
+                            <input type="number" class="form-control" formControlName="price">
+                          </div>
+                          <div class="form-group col">
+                            <label class="col-form-label">Description</label>
+                            <textarea class="form-control" formControlName="description"></textarea>
+                          </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="col">
+                            <label for="file-upload" class="custom-file-button">Select Photo</label>
+                            <input id="file-upload" type="file" accept=".png, .jpg, .jpeg"
+                                   (change)="onFileUpdate($event)">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+            <div class="modal-footer btn col-lg">
+              <button type="submit" class="btn btn-success" (click)="Update()">Save</button>
+              <button class="btn btn-danger" (click)="dialog.close()">Close</button>
+            </div>
+          </div>
+        </dialog>
+        <dialog #dialog3 class="col-lg-5 flex-column">
+          <div class="modal-title text-center">
+            <button type="button" class="close mr-3" aria-label="Close" (click)="dialog3.close()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4>{{s.name}}</h4>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <img [src]="('data:image/*;base64,' + s.image)" class="img-fluid center">
+            </div>
+          </div>
+        </dialog>
+        <dialog #dialog4 class="col-lg-5 flex-column">
+          <div class="modal-title text-center">
+            <h4> Delete {{s.name}} </h4>
+          </div>
+          <div class="modal-body">
+            <div class="text-center">
+              <span>Do you really want to delete {{s.name}} ?</span>
+            </div>
+          </div>
+          <div class="modal-footer btn col-lg">
+            <button class="btn btn-danger" (click)="Delete(s.id)">Delete</button>
+            <button class="btn btn-inverse-light" (click)="dialog4.close()">Close</button>
+          </div>
+        </dialog>
+      </div>
+    </div>
+    <div class="row">
+      <div class="mt-5 d-flex align-items-center justify-content-center text-success">
+        <pagination-controls [responsive]=true (pageChange)="p = $event"></pagination-controls>
+      </div>
+    </div>
+  </div>
+
+</app-sidebar>
