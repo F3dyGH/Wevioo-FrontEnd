@@ -1,0 +1,44 @@
+<app-headerAdmin></app-headerAdmin>
+<app-sidebar>
+  <div title>
+    <h3 class="page-title">Pending Reservations</h3>
+  </div>
+  <div content>
+    <table class="table table-hover table-responsive-sm">
+      <thead>
+      <tr>
+        <th class="text-center">Menu</th>
+        <th class="text-center"> User</th>
+        <th class="text-center"> Date</th>
+        <th class="text-center"> Status</th>
+        <th class="text-center"> Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <ng-container *ngIf="reservations && reservations.length > 0; else noReservations">
+        <tr *ngFor="let d of reservations">
+          <td class="text-center">{{ d.menu.name }}</td>
+          <td class="text-center">{{ d.user.firstname }} {{ d.user.lastname }}</td>
+          <td class="text-center">{{ d.date | ago }}</td>
+          <td class="text-center" [ngSwitch]="d.reservationStatus">
+            <label class="badge danger-bg-gradient" *ngSwitchCase="'IN_PROCESS'">Pending</label>
+          </td>
+          <td class="p-0 align-items-center justify-content-center text-center" style="vertical-align: middle;">
+            <button class="btn btn-icon btn-inverse-success">
+              <i class="fa fa-check"></i>
+            </button>
+            <button class="btn btn-icon btn-inverse-danger ml-1">
+              <i class="fa fa-x"></i>
+            </button>
+          </td>
+        </tr>
+      </ng-container>
+      <ng-template #noReservations>
+        <tr>
+          <td colspan="5" class="text-center">No reservations available</td>
+        </tr>
+      </ng-template>
+      </tbody>
+    </table>
+  </div>
+</app-sidebar>
