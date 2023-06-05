@@ -1,0 +1,18 @@
+<div class="countdown-timer">
+  <div class="countdown-container">
+    <div class="countdown-item">
+      <div class="countdown-value" id="hours" [ngClass]="{ 'expired': isExpired }">{{hours}}</div>
+      <div class="countdown-label" [ngClass]="{ 'expired': isExpired }">Hours</div>
+    </div>
+    <div class="countdown-separator" [ngClass]="{ 'expired': isExpired }">:</div>
+    <div class="countdown-item">
+      <div class="countdown-value" id="minutes" [ngClass]="{ 'expired': isExpired }">{{minutes}}</div>
+      <div class="countdown-label" [ngClass]="{ 'expired': isExpired }">Minutes</div>
+    </div>
+    <div class="countdown-separator" [ngClass]="{ 'expired': isExpired }">:</div>
+    <div class="countdown-item">
+      <div class="countdown-value" id="seconds" [ngClass]="{ 'expired': isExpired }">{{seconds}}</div>
+      <div class="countdown-label" [ngClass]="{ 'expired': isExpired }">Seconds</div>
+    </div>
+  </div>
+</div>

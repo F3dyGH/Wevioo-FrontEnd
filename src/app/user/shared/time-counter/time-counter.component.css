@@ -1,0 +1,43 @@
+.countdown-timer {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  font-size: 24px;
+}
+
+.countdown-container {
+  display: flex;
+}
+
+.countdown-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 10px;
+}
+
+.countdown-value {
+  font-weight: bold;
+  color: black;
+}
+
+.countdown-value.expired {
+  color: red;
+}
+
+.countdown-label {
+  color: black;
+  font-size: 12px;
+}
+.countdown-label.expired {
+  color: red;
+  font-size: 12px;
+}
+
+.countdown-separator {
+  margin: 0 5px;
+}
+.countdown-separator.expired {
+  color: red;
+  margin: 0 5px;
+}
