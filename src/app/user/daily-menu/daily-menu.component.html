@@ -1,42 +1,4 @@
 <app-header></app-header>
-<!--  <div class="container center">-->
-<!--    <div class="row justify-content-center">-->
-<!--          <div class="col-lg-4 col-md-6 mt-4" *ngFor="let m of menus">-->
-<!--            <div class="single-article rounded-custom mb-4 mb-lg-0">-->
-<!--              <a class="article-img">-->
-<!--                <img-->
-<!--                  [src]="('data:image/*;base64,' + m.image)"-->
-<!--                  alt="article"-->
-<!--                  class="img-fluid"-->
-<!--                  style="max-height: 100px"-->
-<!--                />-->
-<!--              </a>-->
-<!--              <div class="article-content p-4">-->
-<!--                <div class="article-category mb-4 d-block text-center">-->
-<!--                  <a class="d-inline-block text-white badge badge-gradient-success">{{m.date | date:'fullDate'}}</a>-->
-<!--                </div>-->
-<!--                <a style="cursor: pointer">-->
-<!--                  <h2 class="h3 menu-title limit-2-line-text text-center">-->
-<!--                    {{m.name}} </h2>-->
-<!--                </a>-->
-<!--                <ul style="list-style: none">-->
-<!--                  <li><i class="fa fa-check"></i> Starter dish of your choice</li>-->
-<!--                  <li><i class="fa fa-check"></i> {{m.name}}</li>-->
-<!--                  <li><i class="fa fa-check"></i> {{m.dessert.name}}</li>-->
-<!--                </ul>-->
-<!--                <div class="row mt-2">-->
-<!--                  <div class="col">-->
-<!--                    <h6 class="text-left ml-3">Price:</h6>-->
-<!--                  </div>-->
-<!--                  <div class="col">-->
-<!--                    <h6 class="text-right">{{m.price}} DT</h6>-->
-<!--                  </div>-->
-<!--                </div>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
 <section id="open-positions" class="open-jobs ptb-60">
   <div class="container">
     <div class="row">
@@ -46,16 +8,14 @@
         </div>
       </div>
       <div class="col">
-        <span>
-          Counter here
-        </span>
+<app-time-counter></app-time-counter>
       </div>
     </div>
     <div class="row justify-content-center custom-shadow">
-      <div class="col-lg-4 col-md-6 mt-5 mb-5" *ngFor="let m of menus">
+      <div class="col-lg-4 col-md-6 mt-5 mb-5 mr-3" *ngFor="let m of menus">
         <a
           [routerLink]="['/menu', m.name ]"
-          class="text-decoration-none mt-3 mt-xl-0 mt-lg-0 p-5 text-white rounded-custom">
+          class="text-decoration-none mt-3 mt-xl-0 mt-lg-0 p-5 mr-2 text-white rounded-custom">
           <div class="blur-image ml-3" [style.background-image]="'url(data:image/*;base64,' + m.image + ')'"
                style="background-size: cover;
                       background-position: center;">

@@ -12,17 +12,17 @@ export class DailyMenuComponent implements OnInit {
   menus: any[] = []
 
   constructor(private dailyMenuService: DailyMenuService) {
-    const currentDate = new Date();
-    this.localDate = currentDate.toISOString().substring(0,10)
+  /*  const currentDate = new Date();
+    this.localDate = currentDate.toISOString().substring(0,10)*/
   }
 
   ngOnInit(): void {
     this.getDailyMenu()
-    console.log(this.localDate)
+    //console.log(this.localDate)
   }
 
   getDailyMenu() {
-    this.dailyMenuService.getDailyMenu(this.localDate).subscribe((data:any)=>{
+    this.dailyMenuService.getDailyMenu().subscribe((data:any)=>{
       this.menus = data;
     })
   }

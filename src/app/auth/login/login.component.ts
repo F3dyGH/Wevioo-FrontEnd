@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit{
         this.router.navigate(['/admin']);
       }
       if(user.roles == "ROLE_STAFF"){
-        this.router.navigate(['/staff'])
+        this.router.navigate(['/staff/reservations'])
       }
     }
   }
@@ -54,7 +54,7 @@ console.log(this.form.password)
           this.router.navigate(['/admin']);
         }
         else if (user.roles == "ROLE_STAFF"){
-          this.router.navigate(['/staff']);
+          this.router.navigate(['/staff/reservations']);
         } else{
           this.router.navigate(["/home"]);
         }

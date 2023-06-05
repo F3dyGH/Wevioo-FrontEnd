@@ -1,32 +1,44 @@
 <app-header></app-header>
-<section id="open-positions" class="open-jobs ptb-60">
+<section id="open-positions" class="open-jobs">
   <div class="container">
+    <div class="mt-4 mb-4">
+    <app-time-counter></app-time-counter>
+    </div>
     <div class="row custom-shadow">
       <div class="col-lg-6 ptb-60 pl-4">
-        <img [src]="('data:image/*;base64,' + menu.image)" class="img-fluid rounded-custom" alt="Item Photo">
+        <img [src]="('data:image/*;base64,' + menu.image)" class="img-fluid rounded-custom" alt="Item Photo" style="height: 355px;
+                      width:474px">
       </div>
       <div class="col-lg-6 ptb-60 pr-5">
         <h2>{{menu.name}}</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer commodo ligula at libero porta, id laoreet
-          urna finibus. Aliquam quis nisl at turpis lacinia ultricies. Sed in ex ultrices, venenatis urna vel, convallis
-          sapien.</p>
+        <p>Menu Description.</p>
       </div>
     </div>
     <div class="row mt-4">
       <div class="col text-center mt-3">
         <h3>Menu Content</h3>
         <div class="row mt-5 custom-shadow">
-          <div class="col-md-3 center">
-            <div class="row mb-3 center">
+          <div class="col-md-3 center menu-items">
+            <div class="row mb-3 center ml-lg-5">
               <h6>Starter Dish</h6>
             </div>
             <div class="row">
-              <img [src]="('data:image/*;base64,' + menu.dessert.image)" class="img-fluid rounded-custom"
-                   alt="Starter Dish Photo">
+              <a class="text-decoration-none text-white rounded-custom">
+                <div class="blur-image ml-3">
+                  <div class="overlay rounded-custom"></div>
+                </div>
+                <div class="container-content ml-3 rounded-custom position-relative p-4 d-flex flex-column justify-content-center align-items-center">
+                  <div class="d-flex mb-3 justify-content-between align-items-center">
+                    <div class="btn btn-outline-light btn-sm d-inline-block bg-dark-dark mt-60 ml-5 mr-1">
+                      Select Starter Dish
+                    </div>
+                  </div>
+                </div>
+              </a>
             </div>
           </div>
-          <div class="col-md-3 center ptb-60">
-            <div class="row mb-3 center">
+          <div class="col-md-3 center ptb-60 menu-items mr-0">
+            <div class="row mb-3">
               <h6>Main Dish</h6>
             </div>
             <div class="row">
@@ -34,8 +46,8 @@
                    alt="Main Dish Photo">
             </div>
           </div>
-          <div class="col-md-3 center">
-            <div class="row mb-3 center">
+          <div class="col-md-3 center menu-items">
+            <div class="row mb-3">
               <h6>Dessert</h6>
             </div>
             <div class="row">

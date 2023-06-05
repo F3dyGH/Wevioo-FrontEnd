@@ -2,15 +2,18 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {AuthService} from "../../../auth/services/auth/auth.service";
 import {Observable} from "rxjs";
+import {environment} from "../../../../environments/environment.development";
 
 @Injectable({
   providedIn: 'root'
 })
 export class DailyMenuService {
-  baseUrl = "http://localhost:8082/api/user/menus/"
-  menusDetailsUrl = "http://localhost:8082/api/user/menu/"
+  baseUrl:string
+  menusDetailsUrl:string
 
   constructor(private http: HttpClient, private authService: AuthService) {
+    this.baseUrl = environment.apiUrl + 'user/menus/'
+    this.menusDetailsUrl = environment.apiUrl + 'user/menu/'
   }
 
   getHeaders() {
@@ -22,9 +25,9 @@ export class DailyMenuService {
     return headers;
   }
 
-  getDailyMenu(date: any): Observable<any> {
+  getDailyMenu(): Observable<any> {
     const headers = this.getHeaders();
-    return this.http.get(this.baseUrl + date, {headers});
+    return this.http.get(this.baseUrl + "daily", {headers});
   }
 
   getMenuByName(name: any) : Observable<any>{

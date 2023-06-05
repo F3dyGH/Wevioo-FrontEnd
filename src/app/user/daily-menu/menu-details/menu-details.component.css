@@ -1,5 +1,4 @@
 .center {
-
   position: center;
   top: 51%;
   right: 0px;
@@ -7,3 +6,44 @@
   margin: auto;
   display: block;
 }
+
+.menu-items img{
+  height: 218px;
+  width:515px;
+  border-radius: 1.9rem !important;
+}
+
+.menu-items a {
+  height: 218px;
+  width:315px;
+}
+
+.blur-image {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 218px;
+  width:315px;
+  border-radius: 1rem !important;
+  filter: blur(1.5px);
+  z-index: -1;
+  background-color: #0b163f;
+}
+.container-content {
+  z-index: 1;
+}
+.container-content .btn {
+  font-size: 12px;
+}
+.light-background {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+.overlay{
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width:100%;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+}
+

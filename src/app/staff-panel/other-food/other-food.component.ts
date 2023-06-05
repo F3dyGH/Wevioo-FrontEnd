@@ -21,18 +21,4 @@ export class OtherFoodComponent implements OnInit {
     });
   }
 
-  /*loadComponent(category: string) {
-    switch (category) {
-      case 'sandwiches':
-        this.selectedComponent = SandwichesManagementComponent;
-        break;
-      case 'pizzas':
-        this.selectedComponent = PizzasManagementComponent;
-        break;
-      default:
-        this.selectedComponent = null;
-        break;
-    }
-  }*/
-
 }

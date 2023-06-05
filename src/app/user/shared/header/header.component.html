@@ -27,7 +27,7 @@
           data-bs-toggle="offcanvas"
           data-bs-target="#offcanvasWithBackdrop"
           aria-controls="offcanvasWithBackdrop"
-        ></span>
+        ></span> <!-- maybe replace it with this form actual_route/#offcanvasWithBackdrop instead-->
       </a>
       <div class="collapse navbar-collapse justify-content-center">
         <ul class="nav col-12 col-md-auto justify-content-center main-menu">
@@ -61,7 +61,7 @@
         class="action-btns text-end me-5 me-lg-0 d-none d-md-block d-lg-block"
         *ngIf="isLoggedIn == true && getUserRole() == 'ROLE_STAFF'"
       >
-        <a routerLink="/staff" class="btn text-light bg-dark text-decoration-none me-2"
+        <a routerLink="/staff/reservations" class="btn text-light bg-dark text-decoration-none me-2"
         >Staff Dashboard</a>
         <a class="btn bg-danger-light right--10" (click)="logout()">Logout</a>
       </div>

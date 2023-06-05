@@ -32,4 +32,14 @@ export class SidebarComponent {
     this.storageService.clean();
     this.route.navigate(['/login']);
   }
+
+  dropdownStates: { [key: string]: boolean } = {};
+
+  toggleDropdown(key: string): void {
+    this.dropdownStates[key] = !this.dropdownStates[key];
+  }
+
+  isDropdownOpen(key: string): boolean {
+    return this.dropdownStates[key];
+  }
 }

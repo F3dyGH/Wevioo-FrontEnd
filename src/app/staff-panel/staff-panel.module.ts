@@ -15,6 +15,11 @@ import {NgxPaginationModule} from "ngx-pagination";
 import { SandwichesManagementComponent } from './sandwiches-management/sandwiches-management.component';
 import { PizzasManagementComponent } from './pizzas-management/pizzas-management.component';
 import { OtherFoodComponent } from './other-food/other-food.component';
+import { TodayReservationsComponent } from './reservations/today-reservations/today-reservations.component';
+import {AgoPipe} from "../pipes/ago.pipe";
+import { TreatedReservationsComponent } from './reservations/treated-reservations/treated-reservations.component';
+import { PendingReservationsComponent } from './reservations/pending-reservations/pending-reservations.component';
+import { CancelledReservationsComponent } from './reservations/cancelled-reservations/cancelled-reservations.component';
 
 
 @NgModule({
@@ -27,6 +32,11 @@ import { OtherFoodComponent } from './other-food/other-food.component';
     SandwichesManagementComponent,
     PizzasManagementComponent,
     OtherFoodComponent,
+    TodayReservationsComponent,
+    AgoPipe,
+    TreatedReservationsComponent,
+    PendingReservationsComponent,
+    CancelledReservationsComponent
 
   ],
     imports: [

@@ -66,11 +66,29 @@
     <ul class="nav">
       <li class="nav-item nav-category">Main</li>
       <li class="nav-item">
-        <a class="nav-link mt-5" routerLink="/staff">
-          <span class="icon-bg"><i class="fa fa-dashboard menu-icon"></i></span>
-          <span class="menu-title">Dashboard</span>
+        <a class="nav-link mt-5" (click)="toggleDropdown('Reservations')">
+          <span class="icon-bg"><i class="fa fa-check-double menu-icon"></i></span>
+          <span class="menu-title">Reservations</span>
+          <i class="fa fa-chevron-down arrow"></i>
         </a>
+
+          <ul class="nav flex-column sub-arrow sub-menu" *ngIf="isDropdownOpen('Reservations')">
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/staff/reservations/today">Today's Reservations</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/staff/reservations/treated">Treated Reservations</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/staff/reservations/pending">Pending Reservations</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/staff/reservations/cancelled">Cancelled Reservations</a>
+            </li>
+          </ul>
+
       </li>
+
       <li class="nav-item">
         <a class="nav-link" routerLink="/staff/dishes">
           <span class="icon-bg"><i class="fa fa-salad menu-icon"></i></span>
