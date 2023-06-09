@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {environment} from "../../../../environments/environment.development";
 import {ReservationsService} from "../../services/reservations/reservations.service";
 import {AuthService} from "../../../auth/services/auth/auth.service";
-import {WebSocketService} from "../../../websocket/web-socket.service";
 
 @Component({
   selector: 'app-reservations',
@@ -15,7 +13,7 @@ export class TodayReservationsComponent implements OnInit {
   selectedReservation: any;
   staffId = this.authService.getUserId();
 
-  constructor(private reservationService: ReservationsService, private authService:AuthService, private webSocketService: WebSocketService) {
+  constructor(private reservationService: ReservationsService, private authService:AuthService) {
   }
 
   ngOnInit(): void {
@@ -32,12 +30,6 @@ export class TodayReservationsComponent implements OnInit {
     this.selectedReservation = reservation
     this.reservationService.treatReservation(this.selectedReservation.id, this.staffId).subscribe(res =>{
       this.getTodayReservations()
-      this.webSocketService.connect().subscribe((message: any) => {
-        // Handle incoming WebSocket message
-        message = "tozz"
-        console.log('Received WebSocket message:', message);
-        // Perform actions based on the received message
-      });
     })
   }
 
