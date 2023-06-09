@@ -8,12 +8,14 @@ import {environment} from "../../../../environments/environment.development";
   providedIn: 'root'
 })
 export class DailyMenuService {
-  baseUrl:string
-  menusDetailsUrl:string
+  baseUrl: string
+  menusDetailsUrl: string
+  userUrl: string
 
   constructor(private http: HttpClient, private authService: AuthService) {
     this.baseUrl = environment.apiUrl + 'user/menus/'
     this.menusDetailsUrl = environment.apiUrl + 'user/menu/'
+    this.userUrl = environment.apiUrl + 'user/'
   }
 
   getHeaders() {
@@ -30,8 +32,13 @@ export class DailyMenuService {
     return this.http.get(this.baseUrl + "daily", {headers});
   }
 
-  getMenuByName(name: any) : Observable<any>{
+  getMenuByName(name: any): Observable<any> {
     const headers = this.getHeaders();
     return this.http.get(this.menusDetailsUrl + name, {headers});
+  }
+
+  getAllStarters(): Observable<any> {
+    const headers = this.getHeaders();
+    return this.http.get(this.userUrl + "starters/all", {headers})
   }
 }

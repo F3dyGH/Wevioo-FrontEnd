@@ -10,7 +10,6 @@ export class AgoPipe implements PipeTransform {
     const currentDate = new Date();
     const diffInMilliseconds = currentDate.getTime() - date.getTime();
     const diffInSeconds = Math.floor(diffInMilliseconds / 1000);
-    console.log(diffInSeconds)
 
     if (diffInSeconds < 60) {
       return 'Just now';

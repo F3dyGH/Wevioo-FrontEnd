@@ -11,7 +11,7 @@
         <th class="text-center"> User</th>
         <th class="text-center"> Date</th>
         <th class="text-center"> Status</th>
-        <th class="text-center"> Actions</th>
+        <th class="text-center"> Cancelled by</th>
       </tr>
       </thead>
       <tbody *ngIf="reservations != null && reservations.length > 0; else noReservations">
@@ -20,15 +20,11 @@
         <td class="text-center">{{ d.user.firstname }} {{ d.user.lastname }}</td>
         <td class="text-center">{{ d.date | ago }}</td>
         <td class="text-center" [ngSwitch]="d.reservationStatus">
-          <label class="badge danger-bg-gradient" *ngSwitchCase="'CANCELLED'">Pending</label>
+          <label class="badge danger-bg-gradient" *ngSwitchCase="'CANCELLED'">Cancelled</label>
         </td>
-        <td class="p-0 align-items-center justify-content-center text-center" style="vertical-align: middle;">
-          <button class="btn btn-icon btn-inverse-success">
-            <i class="fa fa-pen"></i>
-          </button>
-          <button class="btn btn-icon btn-inverse-danger ml-1">
-            <i class="fa fa-trash"></i>
-          </button>
+        <td class="text-center" [ngSwitch]="d.staff">
+          <label *ngSwitchCase="null">{{ d.user.firstname }} {{ d.user.lastname}}</label>
+          <label *ngSwitchDefault>{{ d.staff.firstname }} {{ d.staff.lastname}}</label>
         </td>
       </tr>
       </tbody>

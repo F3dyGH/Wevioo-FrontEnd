@@ -33,16 +33,35 @@ export class ReservationsService {
     return this.http.get(this.apiUrl + "/today", {headers})
   }
 
-  getTreatedReservations():Observable<any>{
+  getTreatedReservations(): Observable<any> {
     const headers = this.getHeaders();
     return this.http.get(this.apiUrl + "/TREATED", {headers})
   }
-  getInProcessReservations():Observable<any>{
+
+  getInProcessReservations(): Observable<any> {
     const headers = this.getHeaders();
     return this.http.get(this.apiUrl + "/IN_PROCESS", {headers})
   }
-  getCancelledReservations():Observable<any>{
+
+  getCancelledReservations(): Observable<any> {
     const headers = this.getHeaders();
     return this.http.get(this.apiUrl + "/CANCELLED", {headers})
+  }
+
+  treatReservation(reservation: number, staff: number): Observable<any> {
+    const headers = this.getHeaders();
+    return this.http.put(this.apiUrl + "/treat/" + reservation + "/" + staff, null, {headers})
+  }
+
+  cancelReservation(reservation: number, staff: number): Observable<any> {
+    const headers = this.getHeaders();
+    return this.http.put(this.apiUrl + "/cancel/" + reservation + "/" + staff, null, {headers})
+  }
+
+  addReservation(userId:any, menuId:any, starterId:any):Observable<any>{
+    const params = {
+      userId, menuId, starterId
+    }
+    return this.http.post(this.apiUrl + "/create", null, {params});
   }
 }

@@ -1,12 +1,8 @@
 import {NgModule} from '@angular/core';
-import {CommonModule, DatePipe} from '@angular/common';
-
+import {CommonModule} from '@angular/common';
 import {UserRoutingModule} from './user-routing.module';
-import {LoginComponent} from "../auth/login/login.component";
-import {SignupComponent} from "../auth/signup/signup.component";
 import {UserAccountComponent} from "./user-account/user-account.component";
 import {HomeComponent} from "./home/home.component";
-import {RouterOutlet} from "@angular/router";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {JwtInterceptorProviders} from "../auth/helpers/jwt.interceptor";
@@ -35,7 +31,7 @@ import {TimeCounterComponent} from './shared/time-counter/time-counter.component
     SandwichesComponent,
     PizzaComponent,
     FoodCategoriesComponent,
-    TimeCounterComponent
+    TimeCounterComponent,
   ],
   imports: [
     CommonModule,

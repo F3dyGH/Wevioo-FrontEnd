@@ -1,48 +1,92 @@
 <app-header></app-header>
+
 <section id="open-positions" class="open-jobs">
   <div class="container">
     <div class="mt-4 mb-4">
-    <app-time-counter></app-time-counter>
+      <app-time-counter></app-time-counter>
     </div>
     <div class="row custom-shadow">
-      <div class="col-lg-6 ptb-60 pl-4">
-        <img [src]="('data:image/*;base64,' + menu.image)" class="img-fluid rounded-custom" alt="Item Photo" style="height: 355px;
-                      width:474px">
+      <div class="col-lg-6 pt-5 pb-5 pl-4">
+        <img [src]="('data:image/*;base64, ' + menu.image)" class="img-fluid rounded-custom" alt="Item Photo">
       </div>
-      <div class="col-lg-6 ptb-60 pr-5">
-        <h2>{{menu.name}}</h2>
-        <p>Menu Description.</p>
+      <div class="col-lg-6 pt-5 pb-5 pr-5 pl-5 d-flex flex-column justify-content-between">
+        <div>
+          <h2>{{ menu.name }}</h2>
+          <p>Menu Description.</p>
+        </div>
+        <div class="text-center">
+          <span *ngIf="successMsg" class="alert alert-success">{{successMsg}}</span>
+          <span *ngIf="errorMsg" class="alert alert-danger" style="font-size: 12px">{{errorMsg}}</span>
+        </div>
+        <div class="text-center">
+          <button class="btn btn-primary" (click)="createReservation()">Order Now</button>
+        </div>
       </div>
     </div>
     <div class="row mt-4">
       <div class="col text-center mt-3">
         <h3>Menu Content</h3>
-        <div class="row mt-5 custom-shadow">
+        <div class="row mt-5 custom-shadow pt-3 pb-2">
           <div class="col-md-3 center menu-items">
             <div class="row mb-3 center ml-lg-5">
               <h6>Starter Dish</h6>
             </div>
             <div class="row">
-              <a class="text-decoration-none text-white rounded-custom">
+              <a class="text-decoration-none text-white rounded-custom justify-content-center"
+                 (click)="dialog.showModal()">
                 <div class="blur-image ml-3">
                   <div class="overlay rounded-custom"></div>
                 </div>
-                <div class="container-content ml-3 rounded-custom position-relative p-4 d-flex flex-column justify-content-center align-items-center">
+                <div *ngIf="selectedStarter == null"
+                     class="container-content ml-3 rounded-custom position-relative p-4 d-flex flex-column justify-content-center align-items-center">
                   <div class="d-flex mb-3 justify-content-between align-items-center">
                     <div class="btn btn-outline-light btn-sm d-inline-block bg-dark-dark mt-60 ml-5 mr-1">
                       Select Starter Dish
                     </div>
                   </div>
                 </div>
+                <div class="starter-image ml-3"
+                     *ngIf="selectedStarter"
+                     [style.background-image]="'url(data:image/*;base64,' + selectedStarter.image + ')'"
+                     style="background-size: cover; background-position: center;">
+                  <div class="overlay rounded-custom"></div>
+                </div>
               </a>
+              <dialog #dialog class="col-lg-5 dialog-container">
+                <div class="modal-title text-center">
+                  <button type="button" class="close mr-3" aria-label="Close" (click)="dialog.close()">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                  <h4> Select Starter Dish </h4>
+                </div>
+                <div class="modal-body">
+                  <div class="row justify-content-center">
+                    <div class="col-lg-4 col-md-6 mr-3 hover" *ngFor="let s of starters">
+                      <div class="grid-container">
+                        <a class="text-decoration-none mt-3 mt-xl-0 mt-lg-0 p-5 mr-2 text-white rounded-custom"
+                           (click)="selectStarter(s);dialog.close()">
+                          <div class="starter-image ml-3"
+                               [style.background-image]="'url(data:image/*;base64,' + s.image + ')'"
+                               style="background-size: cover; background-position: center;">
+                            <div class="overlay rounded-custom"></div>
+                          </div>
+                        </a>
+                        <div class="row">
+                          <span class="starter-name">{{ s.name }}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </dialog>
             </div>
           </div>
-          <div class="col-md-3 center ptb-60 menu-items mr-0">
+          <div class="col-md-3 center ptb-60 menu-items">
             <div class="row mb-3">
               <h6>Main Dish</h6>
             </div>
             <div class="row">
-              <img [src]="('data:image/*; base64, ' + menu.image )" class="img-fluid rounded-custom"
+              <img [src]="('data:image/*; base64, ' + menu.image)" class="img-fluid rounded-custom"
                    alt="Main Dish Photo">
             </div>
           </div>

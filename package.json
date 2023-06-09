@@ -21,6 +21,7 @@
     "@angular/router": "^15.1.0",
     "@auth0/angular-jwt": "^5.1.2",
     "@mdi/angular-material": "^7.1.96",
+    "@ng-bootstrap/ng-bootstrap": "^15.0.0",
     "bootstrap": "^4.6.2",
     "magnific-popup": "^1.1.0",
     "ngx-pagination": "^6.0.3",
