@@ -8,7 +8,6 @@ import {HttpClientModule} from "@angular/common/http";
 import {AuthModule} from "./auth/auth.module";
 import {AdminPanelModule} from "./admin-panel/admin-panel.module";
 import {NgxPaginationModule} from "ngx-pagination";
-import {WebSocketService} from "./websocket/web-socket.service";
 
 @NgModule({
   declarations: [
@@ -25,7 +24,7 @@ import {WebSocketService} from "./websocket/web-socket.service";
     NgxPaginationModule,
 
   ],
-  providers: [WebSocketService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {

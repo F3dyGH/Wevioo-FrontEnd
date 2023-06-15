@@ -49,25 +49,16 @@ export class TimeCounterComponent implements OnDestroy {
     this.counterSubscription = interval(1000).subscribe(() => {
       const currentDate = new Date();
       const currentHour = currentDate.getHours();
-      // const currentMinutes = currentDate.getMinutes();
       const currentDay = currentDate.getDate();
-      // const next6pm = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDay + 1, 18, 0, 0);
-      const next10am = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDay + 1 , 10, 0, 0);
-      // const current11 = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDay , 11, 33, 0);
+      const next10am = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDay + 1, 10, 0, 0);
 
-      if (currentHour <= 18 && currentHour >= 10) {
+      if (currentHour < 18 && currentHour >= 10) {
         this.timeRemaining = 0;
-
         this.formatRemainingTime(this.timeRemaining)
-      } /*else if (currentHour >= 0 && currentHour < 18) {
-        const timeDiff = next6pm.getTime() - currentDate.getTime();
-        const remainingTime = timeDiff > 0 ? timeDiff : 0;
-
-        this.timeRemaining = this.formatRemainingTime(remainingTime);
-      }*/ else {
+      } else {
         const timeDiff = next10am.getTime() - currentDate.getTime();
-        const remainingTime = timeDiff > 0 ? timeDiff : 0;this.timeRemaining = this.formatRemainingTime(remainingTime);
-
+        const remainingTime = timeDiff > 0 ? timeDiff : 0;
+        this.timeRemaining = this.formatRemainingTime(remainingTime);
       }
     });
   }

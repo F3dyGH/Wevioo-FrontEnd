@@ -19,7 +19,6 @@
       </a>
       <a
         class="navbar-toggler position-absolute right-0 border-0"
-        href="#offcanvasWithBackdrop"
         role="button"
       >
         <span
@@ -27,7 +26,7 @@
           data-bs-toggle="offcanvas"
           data-bs-target="#offcanvasWithBackdrop"
           aria-controls="offcanvasWithBackdrop"
-        ></span> <!-- maybe replace it with this form actual_route/#offcanvasWithBackdrop instead-->
+        ></span>
       </a>
       <div class="collapse navbar-collapse justify-content-center">
         <ul class="nav col-12 col-md-auto justify-content-center main-menu">
@@ -50,12 +49,42 @@
         <a routerLink="/signup" class="btn bg-primary-light right--10">Get Started</a>
       </div>
       <div
-        class="action-btns text-end me-5 me-lg-0 d-none d-md-block d-lg-block"
         *ngIf="isLoggedIn == true && getUserRole() == 'ROLE_USER'"
       >
-        <a routerLink="/profile" class="btn text-light bg-dark text-decoration-none me-2"
-        >My Account</a>
-        <a class="btn bg-danger-light right--10" (click)="logout()">Logout</a>
+        <ul class="list-unstyled d-inline-flex">
+          <li class="nav-item dropdown mt-1">
+            <a class="nav-link" href="#" (click)="clearNotification()" id="notificationsDropdown" role="button"
+               data-bs-toggle="dropdown" aria-expanded="false">
+              <span class="notification-dot" [ngClass]="{'active': hasNewNotifications}"></span> <i
+              class="fa fa-bell"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="notificationsDropdown">
+              <li><a class="dropdown-item" href="#">Notification 1</a></li>
+              <li><a class="dropdown-item" href="#">Notification 2</a></li>
+              <li><a class="dropdown-item" href="#">Notification 3</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link" href="#" id="userProfileDropdown" role="button" data-bs-toggle="dropdown"
+               aria-expanded="false">
+              <img [src]="('data:image/*;base64,' + currentUser.image)" alt="Profile Image" class="profile-image">
+              <span class="profile-name">{{currentUser.firstname}}</span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" style="width: 250px" aria-labelledby="userProfileDropdown">
+              <li><a class="dropdown-item" routerLink="/profile"><i class="fa fa-user me-3"></i> Profile</a></li>
+              <li><a class="dropdown-item" routerLink="/profile/history"><i class="fa fa-history me-3"></i> My
+                reservations history
+              </a></li>
+              <li><a class="dropdown-item" routerLink="/profile/edit"><i class="fa fa-pencil-alt me-3"></i> Update Infos</a>
+              </li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item" style="cursor: pointer" (click)="logout()"><i
+                class="fa fa-power-off me-3"></i> Logout</a></li>
+            </ul>
+          </li>
+        </ul>
       </div>
       <div
         class="action-btns text-end me-5 me-lg-0 d-none d-md-block d-lg-block"
@@ -74,7 +103,7 @@
         <a class="btn bg-danger-light right--10" (click)="logout()">Logout</a>
       </div>
       <div
-        class="offcanvas offcanvas-end"
+        class="offcanvas text-left"
         tabindex="-1"
         id="offcanvasWithBackdrop"
       >
@@ -317,7 +346,7 @@
           <ul class="nav col-12 col-md-auto justify-content-center main-menu">
             <li class="nav-item">
               <a routerLink="/" class="nav-link text-dark-menu ">Home</a></li>
-            <li><a routerLink="/menu" class="nav-link text-dark-menu">Daily Menu</a></li>
+            <li><a routerLink="menu" class="nav-link text-dark-menu">Daily Menu</a></li>
             <li><a routerLink="/#" class="nav-link text-dark-menu">link 3</a></li>
             <li><a routerLink="/#" class="nav-link text-dark-menu">link 4</a></li>
             <li><a class="nav-link text-dark-menu">link 5</a></li>

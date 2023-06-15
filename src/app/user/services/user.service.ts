@@ -2,14 +2,18 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {AuthService} from "../../auth/services/auth/auth.service";
 import {Observable} from "rxjs";
+import {environment} from "../../../environments/environment.development";
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  baseURL = 'http://localhost:8082/api/user/'
+  baseURL: string;
+  reservationsURL: string;
 
   constructor(private http: HttpClient, private authService: AuthService) {
+    this.baseURL = environment.apiUrl + 'user/'
+    this.reservationsURL = environment.apiUrl + 'menuReservation/user/'
   }
 
   getHeader(): any {
@@ -20,7 +24,7 @@ export class UserService {
     return headers;
   }
 
-  updateUser(id: any, formData: FormData) : Observable<any>{
+  updateUser(id: any, formData: FormData): Observable<any> {
     const headers = this.getHeader();
     headers.append('Content-Type', 'multipart/form-data');
     headers.append('Accept', 'application/json');
@@ -37,9 +41,15 @@ export class UserService {
     };
     return this.http.get(this.baseURL + "photo/" + photoName, httpOptions);
   }
-  updatePassword(id:any, password:any): Observable<any>{
+
+  updatePassword(id: any, password: any): Observable<any> {
     const headers = this.getHeader();
     const params = {password}
-    return this.http.put(this.baseURL + 'changePassword/' + id, {},{headers, params})
+    return this.http.put(this.baseURL + 'changePassword/' + id, {}, {headers, params})
+  }
+
+  getReservationsHistory(id: any): Observable<any> {
+    const headers = this.getHeader();
+    return this.http.get(this.reservationsURL + 'history/' + id, {headers})
   }
 }

@@ -1,53 +1,16 @@
-<!--
 <app-userAccount>
   <div content>
-    <h2>Edit my personal infos</h2>
-    <div class="text-center bg-light p-5 rounded-custom">
+    <div class="text-center bg-light p-3 rounded-custom">
+      <h2 class="mt-2">Edit my personal infos</h2>
       <div class="modal-body">
         <div class="container-fluid">
           <div class="row">
-            <div class="col-md-4">
-              <div class="card">
-                <div *ngIf="currentUser.photoUrl">
-                <img style="height: 180px; width: 200px" [src]="currentUser.photoUrl">
-                </div>
-              </div>
-              <label for="file-upload"><i class="col-md-1 fa fa-pen upload-photo"></i></label>
-              <input #fileInput type="file" id="file-upload" (change)="addChecklist($any($event.target).files)" [(ngModel)]="user.photo" accept="image/*">
-            </div>
-            <div class="col-md-5 ml-auto" style="margin-top: -20px;">
-              <div class="row">
-                <form #userForm="ngForm" enctype="multipart/form-data">
-                <label class="col-form-label" for="name">Name</label>
-                <input type="text" class="form-control" id="name" name="name" [(ngModel)]="user.firstname">
-                <label class="col-form-label" for="lastname">Last Name</label>
-                <input type="text" class="form-control" id="lastname" name="lastname" [(ngModel)]="user.lastname">
-                <label class="col-form-label" for="email">Email</label>
-                <input type="email" class="form-control" id="email" name="email" [(ngModel)]="user.email">
-                </form>
-              </div>
-            </div>
-          </div>
-          <button class="justify-content-center mt-5 btn btn-primary text-white" (click)="onSubmit()">Save</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</app-userAccount>
--->
-<app-userAccount>
-  <div content>
-    <h2>Edit my personal infos</h2>
-    <div class="text-center bg-light p-5 rounded-custom">
-      <div class="modal-body">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-md-4">
-              <div class="card">
-                <div *ngIf="currentUser.image;">
-                  <img style="height: 180px; width: 200px" [src]="('data:image/*;base64,' + currentUser.image)"
-                       alt="{{currentUser.firstname}}">
-                </div>
+            <div class="col-md-4 ml-auto mr-auto mt-4 text-center">
+
+              <div *ngIf="currentUser.image;">
+                <img style="height: 180px; width: 200px; object-fit: fill"
+                     [src]="('data:image/*;base64,' + currentUser.image)"
+                     alt="{{currentUser.firstname}}">
               </div>
               <label for="file-upload"><i class="col-md-1 fa fa-pen upload-photo"></i></label>
               <input type="file" id="file-upload" (change)="onFileSelected($event)">
@@ -61,7 +24,9 @@
                   <input type="text" class="form-control" id="lastname" formControlName="lastname">
                   <label class="col-form-label" for="email">Email</label>
                   <input type="email" class="form-control" id="email" formControlName="username">
-                  <button class="justify-content-center mt-5 btn btn-primary text-white" type="submit" [disabled]="userForm.invalid">Save</button>
+                  <button class="justify-content-center mt-5 btn btn-primary text-white" type="submit"
+                          [disabled]="userForm.invalid">Save
+                  </button>
                 </form>
               </div>
             </div>

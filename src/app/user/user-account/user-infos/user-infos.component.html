@@ -1,16 +1,15 @@
   <app-userAccount>
     <div content>
-      <div class="text-center bg-light p-5 rounded-custom">
+      <div class="text-center bg-light p-3 rounded-custom">
         <img
           [src]="('data:image/*;base64,' + currentUser.image)"
           alt="{{currentUser.firstname}}"
           width="200"
-          class="shadow profile-picture "
+          class="shadow profile-picture mt-5"
         />
         <div class="author-info my-4 pb-120">
           <h5 class="mb-0">{{currentUser.firstname}} {{currentUser.lastname}}</h5>
           <span class="small">{{currentUser.username}}</span>
-        </div>
-      </div>
+        </div></div>
     </div>
   </app-userAccount>
