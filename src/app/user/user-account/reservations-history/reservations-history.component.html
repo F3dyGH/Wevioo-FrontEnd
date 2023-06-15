@@ -1,0 +1,62 @@
+<app-userAccount>
+  <div content>
+    <div class="text-center bg-light p-2 rounded-custom mb-5 mb-lg-5" >  <!-- class="col-md-12 ml-3"  to seperate it from the side menu bar-->
+      <h2 class="mt-2">My Reservations History</h2>
+      <div class="modal-body">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="timeline">
+              <div class="timeline-item" *ngFor="let h of history | keyvalue">
+                <div class="timeline-icon"><i class="fa fa-calendar-check"></i></div>
+                <div class="timeline-date ml-3">{{h.key | date}}</div>
+                <div class="timeline-content-container">
+                  <ng-container *ngIf="h.value as data">
+                    <div class="timeline-content custom-shadow mt-4 p-4 rounded-custom"
+                         *ngFor="let reservation of data">
+                      <div class="row">
+                        <div class="col-md-4">
+                          <img [src]="('data:image/*;base64,' + reservation.menu.image)" alt="Menu Photo"
+                               class="img-fluid mb-2">
+                        </div>
+                        <div class="col-md-8">
+                          <div class="d-flex flex-column justify-content-between h-100">
+                            <div class="text-left">
+                              <div class="text-left d-flex align-items-center">
+                                <h3>{{ reservation.menu.name }}</h3>
+                                <div [ngSwitch]="reservation.reservationStatus" class="ms-auto">
+                                  <span *ngSwitchCase="'TREATED'" class="fa fa-check-circle text-success"></span>
+                                  <span *ngSwitchCase="'IN_PROCESS'" class="fa fa-clock text-warning"></span>
+                                  <span *ngSwitchCase="'CANCELLED'" class="fa fa-xmark-circle  text-danger"></span>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="text-left ">
+                              <ul class="list-unstyled mb-4">
+                                <li style="display: inline" class="me-2">
+                                  <span class="far fa-salad me-1"></span> {{reservation.starter.name}}  .
+                                </li>
+                                <li style="display: inline" class="me-2">
+                                  <span class="far fa-folder me-1"></span> {{reservation.menu.name}}  .
+                                </li>
+                                <li style="display: inline" class="me-2">
+                                  <span class="far fa-candy-cane me-1"></span> {{reservation.menu.dessert.name}}
+                                </li>
+                              </ul>
+                            </div>
+                            <div class="text-right ">
+                              <span class="badge px-3 py-2 bg-primary text-dark rounded-pill small ml-3">{{ reservation.menu.price }} DT</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-userAccount>

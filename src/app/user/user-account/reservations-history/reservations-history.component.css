@@ -1,0 +1,60 @@
+.timeline {
+  position: relative;
+}
+
+.timeline-item {
+  position: relative;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.timeline-date {
+  position: absolute;
+  top: 0;
+  left: 7%;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.timeline-content {
+  padding-left: 30px;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 12px;
+  width: 4px;
+  height: 105%;
+  background-color: greenyellow;
+}
+
+.timeline-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 30px;
+  height: 30px;
+  background-color: green;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 30px;
+}
+
+.timeline-icon i {
+  color: #fff;
+}
+
+.timeline-content-container {
+  margin-top: 40px;
+  margin-left: 40px;
+}
+
+.timeline-content h3 {
+  margin-top: 0;
+}
+
+.timeline-content p {
+  margin-bottom: 0;
+}
