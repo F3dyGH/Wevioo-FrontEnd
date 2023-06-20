@@ -13,6 +13,7 @@ import {DailyMenuComponent} from "./daily-menu/daily-menu.component";
 import {MenuDetailsComponent} from "./daily-menu/menu-details/menu-details.component";
 import {FoodCategoriesComponent} from "./food-categories/food-categories.component";
 import {ReservationsHistoryComponent} from "./user-account/reservations-history/reservations-history.component";
+import {OrderTrackComponent} from "./user-account/order-track/order-track.component";
 
 const routes: Routes = [
   {path:'', component:HomeComponent},
@@ -26,6 +27,7 @@ const routes: Routes = [
   {path:'profile/change-password', component:ChangePasswordComponent, canActivate: [AuthGuardService]},
   {path:'profile/history', component:ReservationsHistoryComponent, canActivate: [AuthGuardService]},
   {path:'menu', component: DailyMenuComponent, canActivate: [AuthGuardService]},
+  {path:'order', component: OrderTrackComponent, canActivate: [AuthGuardService]},
   {path:'menu/:name', component: MenuDetailsComponent, canActivate:[AuthGuardService]},
   {path:':category',component:FoodCategoriesComponent, canActivate:[AuthGuardService]},
 ];

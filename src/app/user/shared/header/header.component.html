@@ -1,6 +1,6 @@
-<header class="main-header w-100" [ngClass]="dark ? 'position-absolute' : ''">
+<header class="main-header w-100">
   <nav
-    class="navbar navbar-expand-xl sticky-header bg-purple"
+    class="navbar navbar-expand-xl sticky-header bg-gradient"
     [ngClass]="[ sticky ? 'affix' : '']"
     (scroll)="onscroll()"
   >
@@ -12,48 +12,20 @@
         class="navbar-brand d-flex align-items-center mb-md-0 text-decoration-none"
       >
         <img
-          src="../../../../assets/img/logo_wevioo.png"
+          src="../../../../assets/img/logo_wevioo_white.png"
           alt="logo"
           class="img-fluid logo-white"
         />
       </a>
-      <a
-        class="navbar-toggler position-absolute right-0 border-0"
-        role="button"
-      >
-        <span
-          class="far fa-bars"
-          data-bs-toggle="offcanvas"
-          data-bs-target="#offcanvasWithBackdrop"
-          aria-controls="offcanvasWithBackdrop"
-        ></span>
-      </a>
-      <div class="collapse navbar-collapse justify-content-center">
-        <ul class="nav col-12 col-md-auto justify-content-center main-menu">
-          <li class="nav-item">
-            <a routerLink="/" class="nav-link text-dark-menu ">Home</a></li>
-          <li><a routerLink="/menu" class="nav-link text-dark-menu">Daily Menu</a></li>
-          <li><a routerLink="/sandwiches" class="nav-link text-dark-menu">Sandwiches</a></li>
-          <li><a routerLink="/pizza" class="nav-link text-dark-menu">Pizza</a></li>
-          <li><a class="nav-link text-dark-menu">link 5</a></li>
-        </ul>
-      </div>
-
-      <div
-        class="action-btns text-end me-5 me-lg-0 d-none d-md-block d-lg-block"
-        *ngIf="isLoggedIn == false"
-      >
-        <a routerLink="/login" class="btn text-light bg-dark text-decoration-none me-2"
-        >Sign In</a
-        >
-        <a routerLink="/signup" class="btn bg-primary-light right--10">Get Started</a>
-      </div>
       <div
         *ngIf="isLoggedIn == true && getUserRole() == 'ROLE_USER'"
       >
         <ul class="list-unstyled d-inline-flex">
+          <li class="nav-item mt-1 order-track">
+            <a class="nav-link text-light font-weight-bold" routerLink="/order"><i class="far fa-clock"></i> Order Track </a>
+          </li>
           <li class="nav-item dropdown mt-1">
-            <a class="nav-link" href="#" (click)="clearNotification()" id="notificationsDropdown" role="button"
+            <a class="nav-link text-light" href="#" (click)="clearNotification()" id="notificationsDropdown" role="button"
                data-bs-toggle="dropdown" aria-expanded="false">
               <span class="notification-dot" [ngClass]="{'active': hasNewNotifications}"></span> <i
               class="fa fa-bell"></i>
@@ -67,12 +39,12 @@
           <li class="nav-item dropdown">
             <a class="nav-link" href="#" id="userProfileDropdown" role="button" data-bs-toggle="dropdown"
                aria-expanded="false">
-              <img [src]="('data:image/*;base64,' + currentUser.image)" alt="Profile Image" class="profile-image">
-              <span class="profile-name">{{currentUser.firstname}}</span>
+              <img [src]="('data:image/*;base64,' + currentUser.image)" alt="" class="profile-image">
+              <span class="profile-name">{{currentUser.firstname}} </span>
             </a>
             <ul class="dropdown-menu dropdown-menu-end" style="width: 250px" aria-labelledby="userProfileDropdown">
               <li><a class="dropdown-item" routerLink="/profile"><i class="fa fa-user me-3"></i> Profile</a></li>
-              <li><a class="dropdown-item" routerLink="/profile/history"><i class="fa fa-history me-3"></i> My
+              <li><a class="dropdown-item history-responsive" routerLink="/profile/history"><i class="fa fa-history me-3"></i> My
                 reservations history
               </a></li>
               <li><a class="dropdown-item" routerLink="/profile/edit"><i class="fa fa-pencil-alt me-3"></i> Update Infos</a>
@@ -85,6 +57,35 @@
             </ul>
           </li>
         </ul>
+      </div>
+
+      <a class="navbar-toggler position-absolute end-0" role="button">
+        <span
+          class="far fa-bars"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasWithBackdrop"
+          aria-controls="offcanvasWithBackdrop"
+        ></span>
+      </a>
+      <div class="navbar-collapse collapse justify-content-center" style="position: absolute; left: 50%; transform: translateX(-50%);">
+        <ul class="nav col-12 col-md-auto justify-content-center main-menu">
+          <li class="nav-item">
+            <a routerLink="/" class="nav-link text-light-menu ">Home</a></li>
+          <li><a routerLink="/menu" class="nav-link text-light-menu">Daily Menu</a></li>
+          <li><a routerLink="/sandwiches" class="nav-link text-light-menu">Sandwiches</a></li>
+          <li><a routerLink="/pizza" class="nav-link text-light-menu">Pizza</a></li>
+          <li><a class="nav-link text-light-menu">link 5</a></li>
+        </ul>
+      </div>
+
+      <div
+        class="action-btns text-end me-5 me-lg-0 d-none d-md-block d-lg-block"
+        *ngIf="isLoggedIn == false"
+      >
+        <a routerLink="/login" class="btn text-light bg-dark text-decoration-none me-2"
+        >Sign In</a
+        >
+        <a routerLink="/signup" class="btn bg-primary-light right--10">Get Started</a>
       </div>
       <div
         class="action-btns text-end me-5 me-lg-0 d-none d-md-block d-lg-block"
@@ -103,7 +104,7 @@
         <a class="btn bg-danger-light right--10" (click)="logout()">Logout</a>
       </div>
       <div
-        class="offcanvas text-left"
+        class="offcanvas offcanvas-end text-left"
         tabindex="-1"
         id="offcanvasWithBackdrop"
       >
@@ -128,227 +129,13 @@
           </button>
         </div>
         <div class="offcanvas-body">
-          <!--
-                    <ul class="nav col-12 col-md-auto justify-content-center main-menu">
-                      <li class="nav-item dropdown">
-                        <a
-                          class="nav-link dropdown-toggle"
-                          href="#"
-                          role="button"
-                          data-bs-toggle="dropdown"
-                          aria-expanded="false"
-                        >
-                          Home
-                        </a>
-                        <div
-                          class="dropdown-menu border-0 rounded-custom shadow py-0 bg-white"
-                        >
-                          <div class="dropdown-grid rounded-custom width-half">
-                            <div class="dropdown-grid-item">
-                              <h6 class="drop-heading">Different Home</h6>
-                              <a routerLink="/" class="dropdown-link">
-                                <span
-                                  class="demo-list bg-primary rounded text-white fw-bold"
-                                >1</span
-                                >
-                                <div class="dropdown-info">
-                                  <div class="drop-title">Saas Company 1</div>
-                                  <p>It's for <strong>SaaS Software</strong> Company</p>
-                                </div>
-                              </a>
-                              <a routerLink="/home-two" class="dropdown-link">
-                                <span
-                                  class="demo-list bg-primary rounded text-white fw-bold"
-                                >2</span
-                                >
-                                <div class="dropdown-info">
-                                  <div class="drop-title">Saas Company 2</div>
-                                  <p>Modern <strong>Saas agency</strong></p>
-                                </div>
-                              </a>
-                              <a routerLink="/home-three" class="dropdown-link">
-                                <span
-                                  class="demo-list bg-primary rounded text-white fw-bold"
-                                >3</span
-                                >
-                                <div class="dropdown-info">
-                                  <div class="drop-title">Desktop App</div>
-                                  <p><strong>Web Software</strong> Company</p>
-                                </div>
-                              </a>
-                              <a routerLink="/home-four" class="dropdown-link">
-                                <span
-                                  class="demo-list bg-primary rounded text-white fw-bold"
-                                >4</span
-                                >
-                                <div class="dropdown-info">
-                                  <div class="drop-title">App Landing</div>
-                                  <p>App and <strong>Software</strong> Landing</p>
-                                </div>
-                              </a>
-                              <a routerLink="/home-five" class="dropdown-link">
-                                <span
-                                  class="demo-list bg-primary rounded text-white fw-bold"
-                                >5</span
-                                >
-                                <div class="dropdown-info">
-                                  <div class="drop-title">Software Application</div>
-                                  <p>
-                                    IT solutions and <strong>SaaS Application</strong>
-                                  </p>
-                                </div>
-                              </a>
-
-                              <a routerLink="/home-six" class="dropdown-link">
-                                <span
-                                  class="demo-list bg-primary rounded text-white fw-bold"
-                                >6</span
-                                >
-                                <div class="dropdown-info">
-                                  <div class="drop-title">Startup Agency</div>
-                                  <p>Different type of <strong>Agency</strong>&lrm;</p>
-                                </div>
-                              </a>
-                              <a routerLink="/home-seven" class="dropdown-link">
-                                <span
-                                  class="demo-list bg-primary rounded text-white fw-bold"
-                                >7</span
-                                >
-                                <div class="dropdown-info">
-                                  <div class="drop-title">Data Analysis</div>
-                                  <p>Software & <strong>Data Analysis</strong>&lrm;</p>
-                                </div>
-                              </a>
-                              <a routerLink="/home-eight" class="dropdown-link">
-                                <span
-                                  class="demo-list bg-primary rounded text-white fw-bold"
-                                >8</span
-                                >
-                                <div class="dropdown-info">
-                                  <div class="drop-title">App Landing Two</div>
-                                  <p>App and <strong>Software</strong> Landing</p>
-                                </div>
-                              </a>
-                            </div>
-                          </div>
-                        </div>
-                      </li>
-                      <li><a routerLink="/services" class="nav-link">Services</a></li>
-                      <li><a routerLink="/about" class="nav-link">About</a></li>
-                      <li><a routerLink="/pricing." class="nav-link">Pricing</a></li>
-                      <li class="nav-item dropdown">
-                        <a
-                          class="nav-link dropdown-toggle"
-                          href="#"
-                          role="button"
-                          data-bs-toggle="dropdown"
-                          aria-expanded="false"
-                        >Company</a
-                        >
-                        <div
-                          class="dropdown-menu border-0 rounded-custom shadow py-0 bg-white"
-                        >
-                          <div class="dropdown-grid rounded-custom width-full">
-                            <div class="dropdown-grid-item">
-                              <h6 class="drop-heading">Useful Links</h6>
-                              <a routerLink="/contact" class="dropdown-link px-0">
-                                <span class="me-2"
-                                ><i class="far fa-fingerprint"></i
-                                ></span>
-                                <div class="drop-title">Contact</div>
-                              </a>
-                              <a routerLink="/single-service" class="dropdown-link px-0">
-                                <span class="me-2"
-                                ><i class="far fa-address-book"></i
-                                ></span>
-                                <div class="drop-title">Contact Us</div>
-                              </a>
-                              <a routerLink="/news" class="dropdown-link">
-                                <span class="me-2"
-                                ><i class="far fa-code-branch"></i
-                                ></span>
-                                <div class="drop-title">Our Latest News</div>
-                              </a>
-                              <a routerLink="/news-details" class="dropdown-link px-0">
-                                <span class="me-2"><i class="far fa-server"></i></span>
-                                <div class="drop-title">News Details</div>
-                              </a>
-                              <a routerLink="/career" class="dropdown-link">
-                                <span class="me-2"><i class="far fa-th-large"></i></span>
-                                <div class="drop-title">Career</div>
-                              </a>
-                              <a routerLink="/single-career" class="dropdown-link">
-                                <span class="me-2"><i class="far fa-bars"></i></span>
-                                <div class="drop-title">News Details</div>
-                              </a>
-                              <a routerLink="/integrations" class="dropdown-link">
-                                <span cl ass="me-2"
-                                ><i class="far fa-rocket-launch"></i
-                                ></span>
-                                <div class="drop-title">Integrations</div>
-                              </a>
-                              <a
-                                routerLink="/-integration.html"
-                                class="dropdown-link px-0"
-                              >
-                                <span class="me-2"
-                                ><i class="far fa-paper-plane"></i
-                                ></span>
-                                <div class="drop-title">Integration Single</div>
-                              </a>
-                            </div>
-                            <div class="dropdown-grid-item radius-right-side bg-light">
-                              <h6 class="drop-heading">Utility Pages</h6>
-                              <a routerLink="/help-center" class="dropdown-link">
-                                <span class="me-2"><i class="far fa-life-ring"></i></span>
-                                <div class="drop-title">Help Center</div>
-                              </a>
-                              <a routerLink="/help-center-details" class="dropdown-link">
-                                <span class="me-2"><i class="far fa-headset"></i></span>
-                                <div class="drop-title">Help Details</div>
-                              </a>
-                              <a routerLink="request-for-demo" class="dropdown-link">
-                                <span class="me-2"
-                                ><i class="far fa-laptop-code"></i
-                                ></span>
-                                <div class="drop-title">Request for Demo</div>
-                              </a>
-                              <a routerLink="/login" class="dropdown-link">
-                                <span class="me-2"><i class="far fa-sign-in"></i></span>
-                                <div class="drop-title">User Login</div>
-                              </a>
-                              <a routerLink="/signup" class="dropdown-link">
-                                <span class="me-2"><i class="far fa-user-plus"></i></span>
-                                <div class="drop-title">User SignUp</div>
-                              </a>
-                              <a routerLink="/reset-password" class="dropdown-link">
-                                <span class="me-2"
-                                ><i class="far fa-trash-undo"></i
-                                ></span>
-                                <div class="drop-title">Recovery Account</div>
-                              </a>
-                              <a routerLink="/page-not-found" class="dropdown-link">
-                                <span class="me-2"
-                                ><i class="far fa-exclamation-triangle"></i
-                                ></span>
-                                <div class="drop-title">404 Page</div>
-                              </a>
-                              <a routerLink="/coming-soon" class="dropdown-link">
-                                <span class="me-2"><i class="far fa-clock"></i></span>
-                                <div class="drop-title">Coming Soon</div>
-                              </a>
-                            </div>
-                          </div>
-                        </div>
-                      </li>
-                    </ul>
-          -->
           <ul class="nav col-12 col-md-auto justify-content-center main-menu">
             <li class="nav-item">
               <a routerLink="/" class="nav-link text-dark-menu ">Home</a></li>
-            <li><a routerLink="menu" class="nav-link text-dark-menu">Daily Menu</a></li>
-            <li><a routerLink="/#" class="nav-link text-dark-menu">link 3</a></li>
-            <li><a routerLink="/#" class="nav-link text-dark-menu">link 4</a></li>
+            <li><a routerLink="/menu" class="nav-link text-dark-menu">Daily Menu</a></li>
+            <li><a routerLink="/sandwiches" class="nav-link text-dark-menu">Sandwiches</a></li>
+            <li><a routerLink="/pizza" class="nav-link text-dark-menu">Pizza</a></li>
+            <li><a class="nav-link text-dark" routerLink="/order">Order Track </a></li>
             <li><a class="nav-link text-dark-menu">link 5</a></li>
           </ul>
           <div
@@ -362,17 +149,9 @@
           </div>
           <div
             class="action-btns mt-4 ps-3"
-            *ngIf="isLoggedIn == true && getUserRole() == 'ROLE_USER'"
-          >
-            <a routerLink="/profile" class="btn text-light bg-dark text-decoration-none me-2"
-            >My Account</a>
-            <a class="btn bg-danger-light right--10" (click)="logout()">Logout</a>
-          </div>
-          <div
-            class="action-btns mt-4 ps-3"
             *ngIf="isLoggedIn == true && getUserRole() == 'ROLE_STAFF'"
           >
-            <a routerLink="/staff" class="btn text-light bg-dark text-decoration-none me-2"
+            <a routerLink="/staff/reservations/today" class="btn text-light bg-dark text-decoration-none me-2"
             >Staff Dashboard</a>
             <a class="btn bg-danger-light right--10" (click)="logout()">Logout</a>
           </div>

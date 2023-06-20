@@ -1,14 +1,18 @@
 <div class="main-wrapper">
   <section
-    class="sign-up-in-section bg-purple"
+    class="sign-up-in-section bg-gradient"
     style="
       background: url('../../../assets/img/page-header-bg.svg') no-repeat right bottom;
     "
   >
     <div class="container">
-      <a href="/" class="text-decoration-none " style="color: #1e2125; font-size: x-large; position: absolute"><i class="fa fa-arrow-left-long " ></i> Home</a>
+      <div class="home-link-container">
+        <a href="/" class="text-decoration-none home-link">
+          <i class="fa fa-arrow-left-long"></i> Home
+        </a>
+      </div>
       <div class="row align-items-center justify-content-center">
-        <div class="col-lg-5 col-md-6 col-12">
+        <div class="col-lg-5 col-md-6 col-12 form-login">
           <div class="register-wrap p-5 bg-light shadow rounded-custom">
             <h1 class="h4">Nice to See You Again</h1>
             <p class="text-muted">
@@ -48,16 +52,16 @@
                 </div>
               </div>
               <div class="col-md-12 ">
-                <a class="text-decoration-none text-center mt-3 pt-4 mb-0 fw-medium text-success" routerLink="/forgot-password">Forgot Password ?</a>
+                <a class="text-decoration-none text-center mt-3 pt-4 mb-0 fw-medium text-info" routerLink="/forgot-password">Forgot Password ?</a>
               </div>
               <div class="col-12 form-group">
-                <button class="btn btn-primary mt-3 d-block w-100 text-dark" type="submit">Login</button>
+                <button class="btn bg-gradient mt-3 d-block w-100 text-light font-weight-bold" type="submit">Login</button>
               </div>
               <p
-                class="font-monospace fw-medium text-center text-muted mt-3 pt-4 mb-0"
+                class="font-monospace fw-normal text-center text-muted mt-3 pt-4 mb-0"
               >
-                Don’t have an account?
-                <a routerLink="/signup" class="text-decoration-none text-success"
+                Don’t have an account ?
+                <a routerLink="/signup" class="text-decoration-none fw-medium text-info"
                 >Sign up Today</a
                 >
               </p>

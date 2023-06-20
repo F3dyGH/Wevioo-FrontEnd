@@ -17,6 +17,7 @@ import {PizzaComponent} from './pizza/pizza.component';
 import {FoodCategoriesComponent} from './food-categories/food-categories.component';
 import {TimeCounterComponent} from './shared/time-counter/time-counter.component';
 import { ReservationsHistoryComponent } from './user-account/reservations-history/reservations-history.component';
+import { OrderTrackComponent } from './user-account/order-track/order-track.component';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { ReservationsHistoryComponent } from './user-account/reservations-histor
     FoodCategoriesComponent,
     TimeCounterComponent,
     ReservationsHistoryComponent,
+    OrderTrackComponent,
   ],
   imports: [
     CommonModule,

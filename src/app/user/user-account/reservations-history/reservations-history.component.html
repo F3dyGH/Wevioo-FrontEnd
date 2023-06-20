@@ -1,7 +1,24 @@
 <app-userAccount>
   <div content>
-    <div class="text-center bg-light p-2 rounded-custom mb-5 mb-lg-5" >  <!-- class="col-md-12 ml-3"  to seperate it from the side menu bar-->
+    <div class="text-center bg-light p-2 rounded-custom mb-5 mb-lg-5 w-auto">
       <h2 class="mt-2">My Reservations History</h2>
+      <div class="mb-3 d-flex justify-content-end">
+        <div class="dropdown">
+          <button class="btn btn-light dropdown-toggle" type="button" id="filterDropdown" data-bs-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-filter"></i>
+          </button>
+          <div class="dropdown-menu text-center" aria-labelledby="filterDropdown">
+            <a class="dropdown-item" (click)="filterReservationsByStatus('')">All</a>
+            <a class="dropdown-item" (click)="filterReservationsByStatus('TREATED')"><i
+              class="fa fa-check-circle text-success"></i></a>
+            <a class="dropdown-item" (click)="filterReservationsByStatus('IN_PROCESS')"><i
+              class="fa fa-clock text-warning"></i></a>
+            <a class="dropdown-item" (click)="filterReservationsByStatus('CANCELLED')"><i
+              class="fa fa-xmark-circle text-danger"></i></a>
+          </div>
+        </div>
+      </div>
       <div class="modal-body">
         <div class="container-fluid">
           <div class="row">
@@ -14,37 +31,38 @@
                     <div class="timeline-content custom-shadow mt-4 p-4 rounded-custom"
                          *ngFor="let reservation of data">
                       <div class="row">
-                        <div class="col-md-4">
+                        <h3 class="text-center">{{ reservation.menu.name }}</h3>
+                        <div class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0">
                           <img [src]="('data:image/*;base64,' + reservation.menu.image)" alt="Menu Photo"
-                               class="img-fluid mb-2">
+                               class="img-fluid">
                         </div>
                         <div class="col-md-8">
                           <div class="d-flex flex-column justify-content-between h-100">
                             <div class="text-left">
                               <div class="text-left d-flex align-items-center">
-                                <h3>{{ reservation.menu.name }}</h3>
                                 <div [ngSwitch]="reservation.reservationStatus" class="ms-auto">
                                   <span *ngSwitchCase="'TREATED'" class="fa fa-check-circle text-success"></span>
                                   <span *ngSwitchCase="'IN_PROCESS'" class="fa fa-clock text-warning"></span>
-                                  <span *ngSwitchCase="'CANCELLED'" class="fa fa-xmark-circle  text-danger"></span>
+                                  <span *ngSwitchCase="'CANCELLED'" class="fa fa-xmark-circle text-danger"></span>
                                 </div>
                               </div>
                             </div>
-                            <div class="text-left ">
+                            <div class="text-left">
                               <ul class="list-unstyled mb-4">
-                                <li style="display: inline" class="me-2">
-                                  <span class="far fa-salad me-1"></span> {{reservation.starter.name}}  .
+                                <li>
+                                  <span class="far fa-salad me-1"></span> {{reservation.starter.name}}
                                 </li>
-                                <li style="display: inline" class="me-2">
-                                  <span class="far fa-folder me-1"></span> {{reservation.menu.name}}  .
+                                <li>
+                                  <span class="far fa-cutlery me-1"></span> {{reservation.menu.name}}
                                 </li>
-                                <li style="display: inline" class="me-2">
-                                  <span class="far fa-candy-cane me-1"></span> {{reservation.menu.dessert.name}}
+                                <li>
+                                  <span class="far fa-glass-citrus me-1"></span> {{reservation.menu.dessert.name}}
                                 </li>
                               </ul>
                             </div>
-                            <div class="text-right ">
-                              <span class="badge px-3 py-2 bg-primary text-dark rounded-pill small ml-3">{{ reservation.menu.price }} DT</span>
+                            <div class="text-right">
+                              <span
+                                class="badge px-3 py-2 bg-primary text-light rounded-pill">{{ reservation.menu.price }} DT</span>
                             </div>
                           </div>
                         </div>

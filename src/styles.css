@@ -7,7 +7,7 @@
 :root {
   --bs-primary-soft: #ceddff;
   --bs-primary-light: #fdd563;
-  --bs-primary: #FBBC04;
+  --bs-primary: #054aec;
   --bs-primary-dark: #c69702;
 
   --bs-purple: #442772;
@@ -471,7 +471,8 @@ ul {
   ) !important;
 }
 .bg-gradient {
-  background: linear-gradient(90deg, #021048, #1e38a3) !important;
+  background: linear-gradient(-90deg, #021048, #1e38a3) !important;
+  /* background: linear-gradient(-90deg, #2f0540, #620985) !important;*/
 }
 
 .text-primary {
@@ -488,6 +489,14 @@ ul {
 }
 .text-dark-menu:hover {
   color: var(--bs-light) !important;
+}
+.text-light-menu {
+  color: #c1d5f5 !important;
+}
+.text-light-menu:hover {
+  color: #dfe6f2 !important;
+  transition: transform 0.3s ease;
+  transform: scale(1.1);
 }
 .border-dark {
   border-color: var(--bs-dark) !important;
@@ -959,7 +968,7 @@ select:invalid {
 .custom-select:focus {
   color: var(--bs-dark);
   background-color: var(--bs-white);
-  border-color: var(--bs-primary-light);
+  border-color: var(--bs-primary);
   outline: 0;
   box-shadow: none;
 }

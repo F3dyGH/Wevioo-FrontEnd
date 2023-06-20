@@ -64,4 +64,9 @@ export class ReservationsService {
     }
     return this.http.post(this.apiUrl + "/create", null, {params});
   }
+
+  userReservationsFilter(id:any, status:any):Observable<any>{
+    const headers = this.getHeaders();
+    return this.http.get(this.apiUrl + "/filter/" + id + "/" + status, {headers});
+  }
 }

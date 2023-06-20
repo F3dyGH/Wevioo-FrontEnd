@@ -1,0 +1,66 @@
+<app-userAccount>
+  <div content>
+    <div class="text-center bg-light p-4 rounded-custom">
+      <h2 class="mt-2">Order Track</h2>
+      <div class="card mt-5 mb-4" *ngFor="let o of orders">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-lg-4 col-md-12 order-lg-1 order-md-2">
+              <img [src]="('data:image/*;base64,' + o.menu.image)" alt="Menu Image" class="menu-image">
+            </div>
+            <div class="col-lg-8 col-md-12 order-lg-2 order-md-1 mt-4 mt-lg-0">
+              <div class="d-flex justify-content-between align-items-center">
+                <h5 class="text-left mb-0">{{o.menu.name}}</h5>
+                <div [ngSwitch]="o.reservationStatus" class="text-right">
+                  <span *ngSwitchCase="'TREATED'" class="fa fa-check-circle text-success"></span>
+                  <span *ngSwitchCase="'IN_PROCESS'" class="fa fa-clock text-warning"></span>
+                  <span *ngSwitchCase="'CANCELLED'" class="fa fa-xmark-circle text-danger"></span>
+                </div>
+              </div>
+              <div class="menu-details mt-3">
+                <ul class="list-inline mb-5">
+                  <li class="list-inline-item">
+                    <span class="far fa-salad me-1"></span> {{o.starter.name}} .
+                  </li>
+                  <li class="list-inline-item">
+                    <span class="far fa-cutlery me-1"></span> {{o.menu.name}} .
+                  </li>
+                  <li class="list-inline-item">
+                    <span class="far fa-glass-citrus me-1"></span> {{o.menu.dessert.name}}
+                  </li>
+                </ul>
+              </div>
+
+            </div>
+          </div> <div class="row">
+          <p class="menu-price text-right badge rounded-pill bg-primary mb-2 px-3 py-2 small position-absolute bottom-0 right-0 mr-4 mb-4 mt-2" style="width: 65px">{{o.menu.price}} DT</p>
+        </div>
+          <div *ngIf="o.reservationStatus == 'IN_PROCESS'">
+            <hr class="my-3">
+            <div class="row">
+              <div class="col-12">
+                <a class="btn btn-danger float-end p-2 w-100 w-md-25" (click)="dialog2.showModal()">Cancel</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <dialog #dialog2 class="col-lg-5 dialog-container">
+          <div class="modal-title text-center">
+            <h4> Cancel {{o.menu.name}} Reservation </h4>
+          </div>
+          <div class="modal-body">
+            <div class="text-center">
+              <span>Do you really want to cancel this resrevation ?</span>
+            </div>
+          </div>
+          <div class="modal-footer btn col-lg">
+            <button class="btn btn-danger" (click)="CancelReservation(o.id, o.user.id)">Confirm</button>
+            <button class="btn btn-secondary" (click)="dialog2.close()">Close</button>
+          </div>
+        </dialog>
+
+      </div>
+    </div>
+  </div>
+</app-userAccount>
+

@@ -1,7 +1,5 @@
 import {Component, ContentChild, ElementRef, OnInit} from '@angular/core';
 import {StorageService} from "../../auth/services/storage/storage.service";
-/*import {StorageService} from "../../services/storage/storage.service";
-import {UserService} from "../../services/user/user.service";*/
 
 @Component({
   selector: 'app-userAccount',

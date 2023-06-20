@@ -1,0 +1,33 @@
+.card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.menu-image {
+  width: 160px;
+  height: 160px;
+  /*float: left;*/
+  /*margin-right: 10px;*/
+}
+
+.card-title {
+  margin-bottom: 10px;
+}
+
+.menu-details {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.menu-price {
+  font-weight: bold;
+  float: right;
+}
+.dialog-container {
+  position: fixed;
+  background-color: #fff;
+  border-radius: 8px;
+}

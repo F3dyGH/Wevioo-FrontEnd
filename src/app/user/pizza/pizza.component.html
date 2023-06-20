@@ -4,12 +4,12 @@
     <div class="row">
       <div class="col">
         <div class="section-heading">
-          <h2 class="text-primary">Sandwiches</h2>
+          <h2 class="text-primary">Pizza</h2>
         </div>
       </div>
     </div>
-    <div class="row justify-content-center custom-shadow">
-      <div class="col-lg-4 col-md-6 mt-5 mb-5" *ngFor="let p of pizzas">
+    <div class="row justify-content-center rounded-custom custom-shadow">
+      <div class="col-lg-4 col-md-6 mt-4 mb-5" *ngFor="let p of pizzas">
         <a
           [routerLink]="['/sandwiches', p.name ]"
           class="text-decoration-none mt-3 mt-xl-0 mt-lg-0 p-5 text-white rounded-custom">
