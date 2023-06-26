@@ -14,6 +14,7 @@ import {MenuDetailsComponent} from "./daily-menu/menu-details/menu-details.compo
 import {FoodCategoriesComponent} from "./food-categories/food-categories.component";
 import {ReservationsHistoryComponent} from "./user-account/reservations-history/reservations-history.component";
 import {OrderTrackComponent} from "./user-account/order-track/order-track.component";
+import {BreakfastDrinksComponent} from "./breakfast-drinks/breakfast-drinks.component";
 
 const routes: Routes = [
   {path:'', component:HomeComponent},
@@ -29,7 +30,7 @@ const routes: Routes = [
   {path:'menu', component: DailyMenuComponent, canActivate: [AuthGuardService]},
   {path:'order', component: OrderTrackComponent, canActivate: [AuthGuardService]},
   {path:'menu/:name', component: MenuDetailsComponent, canActivate:[AuthGuardService]},
-  {path:':category',component:FoodCategoriesComponent, canActivate:[AuthGuardService]},
+  {path:':category',component:FoodCategoriesComponent, canActivate:[AuthGuardService]}
 ];
 
 @NgModule({

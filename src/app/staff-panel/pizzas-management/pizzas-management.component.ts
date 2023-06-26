@@ -19,7 +19,6 @@ export class PizzasManagementComponent implements OnInit {
   fileUpdate: File[] = [];
   fileDataUpdate!: string;
   errorMessage?: string;
-  pizza!: any;
   selectedPizza!: any;
   page: number = 1;
 

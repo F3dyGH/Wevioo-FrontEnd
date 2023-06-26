@@ -23,11 +23,6 @@ export class ReservationsService {
     return headers;
   }
 
-  getReservations(): Observable<any> {
-    const headers = this.getHeaders();
-    return this.http.get(this.apiUrl + "/all", {headers});
-  }
-
   getTodayReservations(): Observable<any> {
     const headers = this.getHeaders();
     return this.http.get(this.apiUrl + "/today", {headers})
@@ -58,15 +53,23 @@ export class ReservationsService {
     return this.http.put(this.apiUrl + "/cancel/" + reservation + "/" + staff, null, {headers})
   }
 
-  addReservation(userId:any, menuId:any, starterId:any):Observable<any>{
+  addReservation(userId: any, menuId: any, starterId: any): Observable<any> {
     const params = {
       userId, menuId, starterId
     }
     return this.http.post(this.apiUrl + "/create", null, {params});
   }
 
-  userReservationsFilter(id:any, status:any):Observable<any>{
+  createReservation(userId: any, itemId: any): Observable<any> {
+    const params = {
+      userId, itemId
+    }
+    return this.http.post(this.apiUrl + "/add", null, {params});
+  }
+
+  userReservationsFilter(id: any, status: any): Observable<any> {
     const headers = this.getHeaders();
     return this.http.get(this.apiUrl + "/filter/" + id + "/" + status, {headers});
   }
+
 }

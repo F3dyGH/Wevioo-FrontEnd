@@ -1,6 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {SandwichesManagementComponent} from "../sandwiches-management/sandwiches-management.component";
-import {PizzasManagementComponent} from "../pizzas-management/pizzas-management.component";
 import {ActivatedRoute} from "@angular/router";
 
 @Component({
@@ -9,7 +7,6 @@ import {ActivatedRoute} from "@angular/router";
   styleUrls: ['./other-food.component.css']
 })
 export class OtherFoodComponent implements OnInit {
-  selectedComponent: any;
   category?: string;
 
 

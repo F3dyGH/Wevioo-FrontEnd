@@ -17,6 +17,7 @@
           class="img-fluid logo-white"
         />
       </a>
+      <div class="navbar-collapse collapse justify-content-end right-0 position-absolute">
       <div
         *ngIf="isLoggedIn == true && getUserRole() == 'ROLE_USER'"
       >
@@ -58,7 +59,7 @@
           </li>
         </ul>
       </div>
-
+    </div>
       <a class="navbar-toggler position-absolute end-0" role="button">
         <span
           class="far fa-bars"
@@ -74,7 +75,7 @@
           <li><a routerLink="/menu" class="nav-link text-light-menu">Daily Menu</a></li>
           <li><a routerLink="/sandwiches" class="nav-link text-light-menu">Sandwiches</a></li>
           <li><a routerLink="/pizza" class="nav-link text-light-menu">Pizza</a></li>
-          <li><a class="nav-link text-light-menu">link 5</a></li>
+          <li><a routerLink="/breakfast-drinks" class="nav-link text-light-menu">Breakfast & Drinks</a></li>
         </ul>
       </div>
 
@@ -135,8 +136,9 @@
             <li><a routerLink="/menu" class="nav-link text-dark-menu">Daily Menu</a></li>
             <li><a routerLink="/sandwiches" class="nav-link text-dark-menu">Sandwiches</a></li>
             <li><a routerLink="/pizza" class="nav-link text-dark-menu">Pizza</a></li>
+            <li><a routerLink="/breakfast-drinks" class="nav-link text-dark-menu">Breakfast & Drinks</a></li>
             <li><a class="nav-link text-dark" routerLink="/order">Order Track </a></li>
-            <li><a class="nav-link text-dark-menu">link 5</a></li>
+
           </ul>
           <div
             class="action-btns mt-4 ps-3"

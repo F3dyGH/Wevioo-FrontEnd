@@ -15,8 +15,8 @@
           <p>Menu Description.</p>
         </div>
         <div class="text-center">
-          <span *ngIf="successMsg" class="alert alert-success">{{successMsg}}</span>
-          <span *ngIf="errorMsg" class="alert alert-danger" style="font-size: 12px">{{errorMsg}}</span>
+          <span *ngIf="showMsg" class="alert alert-success">{{successMsg}}</span>
+          <span *ngIf="showErrorMsg" class="alert alert-danger" style="font-size: 12px">{{errorMsg}}</span>
         </div>
         <div class="text-center">
           <button class="btn bg-primary text-light" (click)="createReservation()">Order Now</button>

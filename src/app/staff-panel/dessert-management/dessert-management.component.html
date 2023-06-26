@@ -21,15 +21,16 @@
     </div>
     <dialog #dialog3 class="col-lg-5 modal-xl">
       <div class="modal-title text-center">
-        <h4> Add Dish </h4>
+        <h4> Add Dessert </h4>
       </div>
-      <form name="form" [formGroup]="dessertForm" (ngSubmit)="onSubmit(); dialog3.close()" enctype="multipart/form-data">
+      <form name="form" [formGroup]="dessertForm" enctype="multipart/form-data">
         <div class="modal-body">
           <div class="container-fluid">
             <div class="row">
               <div class="col-md-4">
-                <div class="card ml-5">
-                  <img src="assets/img/office-img-1.jpg">
+                <div class="card ml-5" >
+                  <img *ngIf="!fileData" class="image-preview" src = "assets/img/blank-preview.jpg">
+                  <img *ngIf="fileData" class="image-preview" [src] = "fileData">
                 </div>
               </div>
               <div class="col-md-5 ml-auto">
@@ -61,8 +62,8 @@
           </div>
         </div>
         <div class="modal-footer btn col-lg">
-          <button type="submit" class="btn btn-success">Save</button>
-          <button class="btn btn-danger" (click)="dialog3.close();">Close</button>
+          <button type="submit" class="btn btn-success" (click)="onSubmit(); dialog3.close()">Save</button>
+          <button class="btn btn-danger" (click)="dialog3.close()">Close</button>
         </div>
       </form>
     </dialog>

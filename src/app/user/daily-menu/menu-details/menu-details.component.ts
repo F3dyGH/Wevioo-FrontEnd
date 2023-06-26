@@ -20,6 +20,8 @@ export class MenuDetailsComponent implements OnInit {
   selectedStarter: any;
   userId = this.authService.getUserId();
   successMsg!: string;
+  showMsg!:boolean;
+  showErrorMsg!:boolean;
   errorMsg!: string;
 
   ngOnInit(): void {
@@ -48,25 +50,49 @@ export class MenuDetailsComponent implements OnInit {
     if(this.selectedStarter == null){
       this.errorMsg = "Please select a starter dish"
       this.successMsg = ""
+      this.showErrorMsg = true;
+      this.showMsg = false;
+      setTimeout(() => {
+        this.showErrorMsg = false;
+      }, 3000);
 
     }else {
       this.reservationService.addReservation(this.userId, this.menu.id, this.selectedStarter.id).subscribe({
         next: (data: any) => {
-          this.successMsg = data.menu.name + " Has been booked successfully"
+          this.successMsg = data.menu.name + " has been booked successfully"
           this.errorMsg = ""
-        },
+          this.showMsg = true;
+          this.showErrorMsg = false;
+          setTimeout(() => {
+            this.showMsg = false;
+          }, 3000);        },
         error: err => {
           if (err.status == 409) {
             this.errorMsg = "Reservation creation is only allowed between 6 pm and 10 am of the next day"
             this.successMsg = ""
+            this.showErrorMsg = true;
+            this.showMsg = false;
+            setTimeout(() => {
+              this.showErrorMsg = false;
+            }, 3000);
           }
           if (err.status == 400) {
             this.errorMsg = "You have only one reservation a day"
             this.successMsg = ""
+            this.showErrorMsg = true;
+            this.showMsg = false;
+            setTimeout(() => {
+              this.showErrorMsg = false;
+            }, 3000);
           }
           if (err.status == 403) {
             this.errorMsg = "This user is not allowed to make this action"
             this.successMsg = ""
+            this.showErrorMsg = true;
+            this.showMsg = false;
+            setTimeout(() => {
+              this.showErrorMsg = false;
+            }, 3000);
           }
         }
       })

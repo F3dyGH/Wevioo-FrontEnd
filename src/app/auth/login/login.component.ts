@@ -8,8 +8,8 @@ import {Router} from "@angular/router";
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit{
-  form : any = {
+export class LoginComponent implements OnInit {
+  form: any = {
     email: null,
     password: null
   };
@@ -22,8 +22,9 @@ export class LoginComponent implements OnInit{
 
   constructor(private authService: AuthService, private storageService: StorageService, private router: Router) {
   }
+
   ngOnInit(): void {
-    if(this.storageService.isLoggedIn()){
+    if (this.storageService.isLoggedIn()) {
       this.isLoggedIn = true;
       this.roles = this.storageService.getUser().roles;
       this.isEnabled = this.storageService.getUser().enabled;
@@ -31,43 +32,49 @@ export class LoginComponent implements OnInit{
       setTimeout(() => {
         window.alert('You are already logged in');
       }, 500);
-      if(user.roles == "ROLE_ADMIN"){
+      if (user.roles == "ROLE_ADMIN") {
         this.router.navigate(['/admin']);
       }
-      if(user.roles == "ROLE_STAFF"){
+      if (user.roles == "ROLE_STAFF") {
         this.router.navigate(['/staff/reservations'])
       }
     }
   }
-  onSubmit(): void{
+
+  onSubmit(): void {
     const {email, password} = this.form;
-console.log(this.form.password)
+    console.log(this.form.password)
     this.authService.login(email, password).subscribe({
-      next: data =>{
+      next: data => {
         console.log(data);
         this.storageService.saveUser(data);
         this.isNotLoggedIn = false;
         this.isLoggedIn = true;
         this.roles = this.storageService.getUser().roles;
         const user = this.storageService.getUser();
-        if(user.roles == "ROLE_ADMIN"){
+        if (user.roles == "ROLE_ADMIN") {
           this.router.navigate(['/admin']);
-        }
-        else if (user.roles == "ROLE_STAFF"){
+        } else if (user.roles == "ROLE_STAFF") {
           this.router.navigate(['/staff/reservations']);
-        } else{
+        } else {
           this.router.navigate(["/home"]);
         }
       },
       error: err => {
-        if (err.status == 401){
+        if (err.status == 401) {
           this.errorMessage = "Invalid Credentials";
           this.isNotLoggedIn = true;
+          setTimeout(() => {
+            this.errorMessage = '';
+          }, 3000);
         }
-        if(err.status==403){
+        if (err.status == 403) {
           this.errorMessage = "Your account is disabled, please contact the admin"
-        }
 
+          setTimeout(() => {
+            this.errorMessage = '';
+          }, 3000);
+        }
       }
     })
   }

@@ -82,6 +82,7 @@ export class DessertManagementComponent implements OnInit {
     this.dessertService.addDessert(formData).subscribe(res => {
         this.dessertForm.reset();
         this.file = [];
+        this.fileData = '';
         this.dessertService.getAllDesserts().subscribe((data: any[]) => {
           this.desserts = data;
         });
@@ -133,15 +134,15 @@ export class DessertManagementComponent implements OnInit {
   AllDesserts() {
     this.dessertService.getAllDesserts().subscribe((response: any) => {
       this.desserts = response;
-      this.desserts.forEach((dish: any) => {
-        if (dish.image && dish.image.data) {
+      this.desserts.forEach((dessert: any) => {
+        if (dessert.image && dessert.image.data) {
 
-          dish.imageData = 'data:image/jpeg;base64,' + this.arrayBufferToBase64(dish.photo.data);
+          dessert.imageData = 'data:image/jpeg;base64,' + this.arrayBufferToBase64(dessert.photo.data);
         }
       });
     })
-
   }
+
   arrayBufferToBase64(buffer: ArrayBuffer) {
     let binary = '';
     const bytes = new Uint8Array(buffer);

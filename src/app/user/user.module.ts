@@ -18,6 +18,7 @@ import {FoodCategoriesComponent} from './food-categories/food-categories.compone
 import {TimeCounterComponent} from './shared/time-counter/time-counter.component';
 import { ReservationsHistoryComponent } from './user-account/reservations-history/reservations-history.component';
 import { OrderTrackComponent } from './user-account/order-track/order-track.component';
+import { BreakfastDrinksComponent } from './breakfast-drinks/breakfast-drinks.component';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { OrderTrackComponent } from './user-account/order-track/order-track.comp
     TimeCounterComponent,
     ReservationsHistoryComponent,
     OrderTrackComponent,
+    BreakfastDrinksComponent,
   ],
   imports: [
     CommonModule,

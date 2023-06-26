@@ -11,9 +11,10 @@ export class TodayReservationsComponent implements OnInit {
 
   reservations: any[] = [];
   selectedReservation: any;
-  staffId = this.authService.getUserId();
+  staffId: any;
 
   constructor(private reservationService: ReservationsService, private authService:AuthService) {
+    this.staffId = this.authService.getUserId();
   }
 
   ngOnInit(): void {

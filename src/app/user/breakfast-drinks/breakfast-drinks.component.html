@@ -1,0 +1,257 @@
+<app-header></app-header>
+<section class="pt-60">
+  <div class="container">
+    <div class="row">
+      <div class="col-8">
+        <div class="section-heading">
+          <h2 class="text-primary">Breakfast & Drinks</h2>
+        </div>
+      </div>
+      <div class="col-lg-4 text-center">
+        <div *ngIf="responseMsg" class="alert alert-success"><span>{{responseMsg}}</span></div>
+      </div>
+    </div>
+    <div class="row mb-5">
+      <div class="col-12">
+        <div class="row">
+          <div class="col-12">
+            <ul
+              class="nav nav-pills testimonial-tab-menu"
+              id="testimonial"
+              role="tablist"
+            >
+              <li class="nav-item" role="presentation">
+                <div
+                  class="nav-link d-flex align-items-center rounded-custom border border-light border-2"
+                  (click)="selectCategory('breakfast')"
+                  [ngClass]="{ active: selectedCategory === 'breakfast' }"
+                  role="tab"
+                  aria-selected="false"
+                >
+                  <div class="me-3">
+                    <img
+                      src="assets/img/testimonial/1.jpg"
+                      width="50"
+                      class="rounded-circle"
+                      alt="category"
+                    />
+                  </div>
+                  <h6 class="mb-0">Breakfast</h6>
+                </div>
+              </li>
+              <li class="nav-item">
+                <div
+                  class="nav-link d-flex align-items-center rounded-custom border border-light border-2"
+                  (click)="selectCategory('drinks')"
+                  [ngClass]="{ active: selectedCategory === 'drinks' }"
+                  role="tab"
+                  aria-selected="false"
+                >
+                  <div class="me-3">
+                    <img
+                      src="assets/img/testimonial/2.jpg"
+                      width="50"
+                      class="rounded-circle"
+                      alt="category"
+                    />
+                  </div>
+                  <h6 class="mb-0">Drinks</h6>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tab-content">
+      <div
+        class="tab-pane fade"
+        [ngClass]="{ 'active show': selectedCategory === 'breakfast' }"
+        id="testimonial-tab-1"
+        role="tabpanel"
+      >
+        <div class="row align-items-center justify-content-between">
+          <div class="col-lg-4 col-md-6 mt-4 mb-5" *ngFor="let b of breakfast">
+            <div *ngIf="b.quantity !== null && b.quantity !== 0" class="hover">
+              <a (click)="select(b.id); dialog.showModal()"
+                 class="text-decoration-none mt-3 mt-xl-0 mt-lg-0 p-5 text-white rounded-custom">
+                <div class="blur-image ml-3" [style.background-image]="'url(data:image/*;base64,' + b.image + ')'"
+                     style="background-size: cover;
+                      background-position: center;
+                      height: 240px;">
+                  <div class="overlay rounded-custom"></div>
+                </div>
+                <div class="container-content ml-3 rounded-custom position-relative p-4">
+                  <div class="d-flex mb-3 justify-content-between align-items-center">
+                    <span class="mb-2 mr-3 h5 text-light">{{b.name}}</span>
+                    <span class="badge px-3 py-2 bg-light text-dark rounded-pill small ml-3"
+                    >{{b.price}} DT</span
+                    >
+                  </div>
+                </div>
+                <div
+                  class="badge px-3 py-2 bg-warning-dark text-light rounded-pill ml-3 end-0 justify-content-center mt-60">
+                  <span>{{b.quantity}} available</span>
+                </div>
+              </a>
+            </div>
+            <div *ngIf="b.quantity === null">
+              <a
+                class="text-decoration-none mt-3 mt-xl-0 mt-lg-0 p-5 text-white rounded-custom">
+                <div class="blur-image ml-3" [style.background-image]="'url(data:image/*;base64,' + b.image + ')'"
+                     style="background-size: cover;
+                      background-position: center;
+                      height: 240px;">
+                  <div class="overlay rounded-custom"></div>
+                </div>
+                <div class="container-content ml-3 rounded-custom position-relative p-4">
+                  <div class="d-flex mb-3 justify-content-between align-items-center">
+                    <span class="mb-2 mr-3 h5 text-light">{{b.name}}</span>
+                    <span class="badge px-3 py-2 bg-light text-dark rounded-pill small ml-3"
+                    >{{b.price}} DT</span
+                    >
+                  </div>
+                </div>
+                <div
+                  class="badge px-3 py-2 bg-gradient text-light rounded-pill ml-3 end-0 justify-content-center mt-60">
+                  <span>Order onsite</span>
+                </div>
+              </a>
+            </div>
+            <div *ngIf="b.quantity !== null && b.quantity === 0">
+              <a
+                class="text-decoration-none mt-3 mt-xl-0 mt-lg-0 p-5 text-white rounded-custom">
+                <div class="blur-image ml-3" [style.background-image]="'url(data:image/*;base64,' + b.image + ')'"
+                     style="background-size: cover;
+                      background-position: center;
+                      height: 240px;">
+                  <div class="overlay rounded-custom"></div>
+                </div>
+                <div class="container-content ml-3 rounded-custom position-relative p-4">
+                  <div class="d-flex mb-3 justify-content-between align-items-center">
+                    <span class="mb-2 mr-3 h5 text-light">{{b.name}}</span>
+                    <span class="badge px-3 py-2 bg-light text-dark rounded-pill small ml-3"
+                    >{{b.price}} DT</span
+                    >
+                  </div>
+                </div>
+                <div
+                  class="badge px-3 py-2 bg-danger-dark text-light rounded-pill ml-3 end-0 justify-content-center mt-60">
+                  <span>Unavailable</span>
+                </div>
+              </a>
+            </div>
+            <dialog #dialog class="col-lg-5">
+              <div class="modal-title text-center">
+                <h4> Order {{b.name}} </h4>
+              </div>
+              <div class="modal-body">
+                <div class="text-center">
+                  <span>Do you really want to make a reservation for {{b.name}} ?</span>
+                </div>
+              </div>
+              <div class="modal-footer btn col-lg">
+                <button class="btn btn-danger" (click)="createReservation()">Confirm</button>
+                <button class="btn btn-inverse-light" (click)="dialog.close()">Close</button>
+              </div>
+            </dialog>
+          </div>
+        </div>
+      </div>
+      <div
+        class="tab-pane fade"
+        [ngClass]="{ 'active show': selectedCategory === 'drinks' }"
+        id="testimonial-tab-2"
+        role="tabpanel"
+      >
+        <div class="row align-items-center justify-content-between">
+          <div class="col-lg-4 col-md-6 mt-4 mb-5" *ngFor="let d of drinks">
+            <div *ngIf="d.quantity !== null && d.quantity !== 0" class="hover">
+              <a (click)="select(d.id); dialog2.showModal()"
+                 class="text-decoration-none mt-3 mt-xl-0 mt-lg-0 p-5 text-white rounded-custom">
+                <div class="blur-image ml-3" [style.background-image]="'url(data:image/*;base64,' + d.image + ')'"
+                     style="background-size: cover;
+                      background-position: center;
+                      height: 240px;">
+                  <div class="overlay rounded-custom"></div>
+                </div>
+                <div class="container-content ml-3 rounded-custom position-relative p-4">
+                  <div class="d-flex mb-3 justify-content-between align-items-center">
+                    <span class="mb-2 mr-3 h5 text-light">{{d.name}}</span>
+                    <span class="badge px-3 py-2 bg-light text-dark rounded-pill small ml-3"
+                    >{{d.price}} DT</span
+                    >
+                  </div>
+                </div>
+                <div
+                  class="badge px-3 py-2 bg-warning-dark text-light rounded-pill ml-3 end-0 justify-content-center mt-60">
+                  <span>{{d.quantity}} available</span>
+                </div>
+              </a>
+            </div>
+            <div *ngIf="d.quantity === null">
+              <a
+                class="text-decoration-none mt-3 mt-xl-0 mt-lg-0 p-5 text-white rounded-custom">
+                <div class="blur-image ml-3" [style.background-image]="'url(data:image/*;base64,' + d.image + ')'"
+                     style="background-size: cover;
+                      background-position: center;
+                      height: 240px;">
+                  <div class="overlay rounded-custom"></div>
+                </div>
+                <div class="container-content ml-3 rounded-custom position-relative p-4">
+                  <div class="d-flex mb-3 justify-content-between align-items-center">
+                    <span class="mb-2 mr-3 h5 text-light">{{d.name}}</span>
+                    <span class="badge px-3 py-2 bg-light text-dark rounded-pill small ml-3"
+                    >{{d.price}} DT</span
+                    >
+                  </div>
+                </div>
+                <div
+                  class="badge px-3 py-2 bg-gradient text-light rounded-pill ml-3 end-0 justify-content-center mt-60">
+                  <span>Order onsite</span>
+                </div>
+              </a>
+            </div>
+            <div *ngIf="d.quantity !== null && d.quantity === 0">
+              <a
+                class="text-decoration-none mt-3 mt-xl-0 mt-lg-0 p-5 text-white rounded-custom">
+                <div class="blur-image ml-3" [style.background-image]="'url(data:image/*;base64,' + d.image + ')'"
+                     style="background-size: cover;
+                      background-position: center;
+                      height: 240px;">
+                  <div class="overlay rounded-custom"></div>
+                </div>
+                <div class="container-content ml-3 rounded-custom position-relative p-4">
+                  <div class="d-flex mb-3 justify-content-between align-items-center">
+                    <span class="mb-2 mr-3 h5 text-light">{{d.name}}</span>
+                    <span class="badge px-3 py-2 bg-light text-dark rounded-pill small ml-3"
+                    >{{d.price}} DT</span
+                    >
+                  </div>
+                </div>
+                <div
+                  class="badge px-3 py-2 bg-danger-dark text-light rounded-pill ml-3 end-0 justify-content-center mt-60">
+                  <span>Unavailable</span>
+                </div>
+              </a>
+            </div>
+            <dialog #dialog2 class="col-lg-5">
+              <div class="modal-title text-center">
+                <h4> Order {{d.name}} </h4>
+              </div>
+              <div class="modal-body">
+                <div class="text-center">
+                  <span>Do you really want to make a reservation for {{d.name}} ?</span>
+                </div>
+              </div>
+              <div class="modal-footer btn col-lg">
+                <button class="btn btn-danger" (click)="createReservation()">Confirm</button>
+                <button class="btn btn-inverse-light" (click)="dialog2.close()">Close</button>
+              </div>
+            </dialog>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -20,6 +20,8 @@ import {AgoPipe} from "../pipes/ago.pipe";
 import { TreatedReservationsComponent } from './reservations/treated-reservations/treated-reservations.component';
 import { PendingReservationsComponent } from './reservations/pending-reservations/pending-reservations.component';
 import { CancelledReservationsComponent } from './reservations/cancelled-reservations/cancelled-reservations.component';
+import { BreakfastManagementComponent } from './breakfast-management/breakfast-management.component';
+import { DrinksManagementComponent } from './drinks-management/drinks-management.component';
 
 
 @NgModule({
@@ -36,7 +38,9 @@ import { CancelledReservationsComponent } from './reservations/cancelled-reserva
     AgoPipe,
     TreatedReservationsComponent,
     PendingReservationsComponent,
-    CancelledReservationsComponent
+    CancelledReservationsComponent,
+    BreakfastManagementComponent,
+    DrinksManagementComponent
 
   ],
     imports: [
