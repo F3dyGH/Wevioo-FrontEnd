@@ -184,7 +184,7 @@ export class TimeCounterComponent implements OnInit {
         const remainingTime = targetTime.getTime() - currentTime.getTime();
         const currentHour = currentTime.getHours();
 
-        if (currentHour >= 4 && currentHour < 5) {
+        if (currentHour >= 10 && currentHour < 18) {
           // Pause the countdown between 10 am and 6 pm
           this.hours = '00';
           this.minutes = '00';
