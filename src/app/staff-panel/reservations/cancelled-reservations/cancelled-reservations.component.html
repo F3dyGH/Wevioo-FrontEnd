@@ -7,32 +7,39 @@
     <table class="table table-hover table-responsive-sm">
       <thead>
       <tr>
-        <th class="text-center">Menu</th>
+        <th class="text-center">Item</th>
         <th class="text-center"> User</th>
         <th class="text-center"> Date</th>
         <th class="text-center"> Status</th>
         <th class="text-center"> Cancelled by</th>
       </tr>
       </thead>
-      <tbody *ngIf="reservations != null && reservations.length > 0; else noReservations">
-      <tr *ngFor="let d of reservations">
-        <td class="text-center">{{ d.menu.name }}</td>
-        <td class="text-center">{{ d.user.firstname }} {{ d.user.lastname }}</td>
-        <td class="text-center">{{ d.date | ago }}</td>
-        <td class="text-center" [ngSwitch]="d.reservationStatus">
-          <label class="badge danger-bg-gradient" *ngSwitchCase="'CANCELLED'">Cancelled</label>
-        </td>
-        <td class="text-center" [ngSwitch]="d.staff">
-          <label *ngSwitchCase="null">{{ d.user.firstname }} {{ d.user.lastname}}</label>
-          <label *ngSwitchDefault>{{ d.staff.firstname }} {{ d.staff.lastname}}</label>
-        </td>
-      </tr>
-      </tbody>
+      <tbody>
+      <ng-container *ngIf="reservations && reservations.length > 0; else noReservations">
+        <tr *ngFor="let d of reservations">
+          <ng-container *ngIf="d.foodAndDrinks == null; else foodRow">
+            <td class="text-center">{{ d.menu.name }}</td>
+          </ng-container>
+          <ng-template #foodRow>
+            <td class="text-center">{{ d.foodAndDrinks.name }}</td>
+          </ng-template>
+          <td class="text-center">{{ d.user.firstname }} {{ d.user.lastname }}</td>
+          <td class="text-center">{{ d.date | ago }}</td>
+          <td class="text-center" [ngSwitch]="d.reservationStatus">
+            <label class="badge danger-bg-gradient" *ngSwitchCase="'CANCELLED'">Cancelled</label>
+          </td>
+          <td class="text-center" [ngSwitch]="d.staff">
+            <label *ngSwitchCase="null">{{ d.user.firstname }} {{ d.user.lastname}}</label>
+            <label *ngSwitchDefault>{{ d.staff.firstname }} {{ d.staff.lastname}}</label>
+          </td>
+        </tr>
+      </ng-container>
       <ng-template #noReservations>
         <tr>
-          <td class="text-center" colspan="5">No reservations available</td>
+          <td colspan="6" class="text-center">No reservations available</td>
         </tr>
       </ng-template>
+      </tbody>
     </table>
 
   </div>
