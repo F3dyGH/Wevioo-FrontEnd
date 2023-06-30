@@ -53,8 +53,8 @@ export class UserService {
     return this.http.get(this.reservationsURL + 'history/' + id, {headers})
   }
 
-  orderTrack(id:any):Observable<any>{
+  orderTrack(id: any): Observable<any> {
     const headers = this.getHeader();
-    return this.http.get(this.reservationsURL+'today/'+id, {headers})
+    return this.http.get(this.reservationsURL + 'today/' + id, {headers})
   }
 }

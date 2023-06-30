@@ -26,14 +26,16 @@
   font-family: Calibri;
   font-size: 18px;
 }
-@media (max-width: 1200px) {
+
+@media ( max-width : 1200px) {
   .d-flex {
     display: flex;
   }
   .profile-image{
+    max-width: 50px;
     margin-right: 50px;
   }
-  .profile-name {
+  .profile-name{
     display: none;
   }
   .order-track{
@@ -44,4 +46,34 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
+
+}
+.notification-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.notification-date {
+  color: #0b163f;
+  font-size: 14px;
+}
+
+.notification-message {
+  margin-top: 5px;
+  color: #000000;
+  word-wrap: break-word;
+}
+.dropdown-item-separator {
+  border: none;
+  border-top: 1px solid #ccc;
+  margin: 0.5rem 0;
+}
+.notification-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  margin-top: 5px;
+  margin-left: 5px;
 }

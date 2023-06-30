@@ -19,6 +19,7 @@ import {TimeCounterComponent} from './shared/time-counter/time-counter.component
 import { ReservationsHistoryComponent } from './user-account/reservations-history/reservations-history.component';
 import { OrderTrackComponent } from './user-account/order-track/order-track.component';
 import { BreakfastDrinksComponent } from './breakfast-drinks/breakfast-drinks.component';
+import {AgoModule} from "../pipes/ago/ago.module";
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import { BreakfastDrinksComponent } from './breakfast-drinks/breakfast-drinks.co
     UserRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AgoModule
   ],
   providers: [
     JwtInterceptorProviders,

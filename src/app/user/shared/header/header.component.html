@@ -17,24 +17,47 @@
           class="img-fluid logo-white"
         />
       </a>
-      <div class="navbar-collapse collapse justify-content-end right-0 position-absolute">
       <div
-        *ngIf="isLoggedIn == true && getUserRole() == 'ROLE_USER'"
-      >
+        *ngIf="isLoggedIn == true && getUserRole() == 'ROLE_USER'">
         <ul class="list-unstyled d-inline-flex">
           <li class="nav-item mt-1 order-track">
-            <a class="nav-link text-light font-weight-bold" routerLink="/order"><i class="far fa-clock"></i> Order Track </a>
+            <a class="nav-link text-light font-weight-bold" routerLink="/order"><i class="far fa-clock"></i> Order
+              Track </a>
           </li>
           <li class="nav-item dropdown mt-1">
-            <a class="nav-link text-light" href="#" (click)="clearNotification()" id="notificationsDropdown" role="button"
+            <a class="nav-link text-light" href="#" (click)="clearNotification(currentUser.id)"
+               id="notificationsDropdown"
+               role="button"
                data-bs-toggle="dropdown" aria-expanded="false">
               <span class="notification-dot" [ngClass]="{'active': hasNewNotifications}"></span> <i
               class="fa fa-bell"></i>
             </a>
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="notificationsDropdown">
-              <li><a class="dropdown-item" href="#">Notification 1</a></li>
-              <li><a class="dropdown-item" href="#">Notification 2</a></li>
-              <li><a class="dropdown-item" href="#">Notification 3</a></li>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="notificationsDropdown" style="width: 250px">
+              <ng-container *ngIf="notifications && notifications.length > 0; else noNotifications">
+                <li *ngFor="let notification of notifications" [class.seen]="notification.seen">
+                  <div class="row">
+                    <div class="col-2" [ngSwitch]="notification.reservationStatus">
+                        <span class="notification-icon">
+                          <i *ngSwitchCase="'TREATED'" class="fa fa-check-circle text-success"></i>
+                          <i *ngSwitchCase="'CANCELLED'" class="fa fa-xmark-circle text-danger"></i>
+                        </span>
+                    </div>
+                    <div class="col">
+                      <div class="row">
+                        <span class="notification-message"
+                              style="white-space: normal;">{{ notification.message }}</span>
+                      </div>
+                      <div class="row">
+                        <span class="notification-date">{{ notification.dateTime | ago}}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <hr class="dropdown-item-separator">
+                </li>
+              </ng-container>
+              <ng-template #noNotifications>
+                <li *ngIf="notifications.length === 0" class="text-dark text-center mt-2 mb-2">No notifications.</li>
+              </ng-template>
             </ul>
           </li>
           <li class="nav-item dropdown">
@@ -45,10 +68,12 @@
             </a>
             <ul class="dropdown-menu dropdown-menu-end" style="width: 250px" aria-labelledby="userProfileDropdown">
               <li><a class="dropdown-item" routerLink="/profile"><i class="fa fa-user me-3"></i> Profile</a></li>
-              <li><a class="dropdown-item history-responsive" routerLink="/profile/history"><i class="fa fa-history me-3"></i> My
+              <li><a class="dropdown-item history-responsive" routerLink="/profile/history"><i
+                class="fa fa-history me-3"></i> My
                 reservations history
               </a></li>
-              <li><a class="dropdown-item" routerLink="/profile/edit"><i class="fa fa-pencil-alt me-3"></i> Update Infos</a>
+              <li><a class="dropdown-item" routerLink="/profile/edit"><i class="fa fa-pencil-alt me-3"></i> Update
+                Infos</a>
               </li>
               <li>
                 <hr class="dropdown-divider">
@@ -59,7 +84,7 @@
           </li>
         </ul>
       </div>
-    </div>
+
       <a class="navbar-toggler position-absolute end-0" role="button">
         <span
           class="far fa-bars"
@@ -68,7 +93,8 @@
           aria-controls="offcanvasWithBackdrop"
         ></span>
       </a>
-      <div class="navbar-collapse collapse justify-content-center" style="position: absolute; left: 50%; transform: translateX(-50%);">
+      <div class="navbar-collapse collapse justify-content-center"
+           style="position: absolute; left: 50%; transform: translateX(-50%);">
         <ul class="nav col-12 col-md-auto justify-content-center main-menu">
           <li class="nav-item">
             <a routerLink="/" class="nav-link text-light-menu ">Home</a></li>
@@ -78,7 +104,6 @@
           <li><a routerLink="/breakfast-drinks" class="nav-link text-light-menu">Breakfast & Drinks</a></li>
         </ul>
       </div>
-
       <div
         class="action-btns text-end me-5 me-lg-0 d-none d-md-block d-lg-block"
         *ngIf="isLoggedIn == false"
