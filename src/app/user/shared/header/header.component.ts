@@ -41,10 +41,9 @@ export class HeaderComponent implements OnInit {
     this.notificationService.startPolling().subscribe(
       newNotifications => {
         this.notifications = newNotifications;
-        console.log(this.notifications)
         const hasUnseenNotification = newNotifications.some((notification: any) => notification.seen === false);
         if (hasUnseenNotification) {
-          this.hasNewNotifications = true;
+          this.hasNewNotifications = hasUnseenNotification;
         }
       }
     );

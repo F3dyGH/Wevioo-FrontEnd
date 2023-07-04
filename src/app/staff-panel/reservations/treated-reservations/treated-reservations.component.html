@@ -17,11 +17,11 @@
       <tbody>
       <ng-container *ngIf="reservations && reservations.length > 0; else noReservations">
         <tr *ngFor="let d of reservations">
-          <ng-container *ngIf="d.foodAndDrinks == null; else foodRow">
+          <ng-container *ngIf="d.food == null; else foodRow">
             <td class="text-center">{{ d.menu.name }}</td>
           </ng-container>
           <ng-template #foodRow>
-            <td class="text-center">{{ d.foodAndDrinks.name }}</td>
+            <td class="text-center">{{ d.food.name }}</td>
           </ng-template>
           <td class="text-center">{{ d.user.firstname }} {{ d.user.lastname }}</td>
           <td class="text-center">{{ d.date | ago }}</td>

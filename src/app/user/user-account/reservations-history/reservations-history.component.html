@@ -30,7 +30,7 @@
                   <ng-container *ngIf="h.value as data">
                     <div class="timeline-content custom-shadow mt-4 p-4 rounded-custom"
                          *ngFor="let reservation of data">
-                      <div class="row" *ngIf="reservation.foodAndDrinks==null">
+                      <div class="row" *ngIf="reservation.food==null">
                         <h3 class="text-center">{{ reservation.menu.name }}</h3>
                         <div class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0">
                           <img [src]="('data:image/*;base64,' + reservation.menu.image)" alt="Menu Photo"
@@ -68,9 +68,9 @@
                         </div>
                       </div>
                       <div class="row" *ngIf="reservation.menu==null">
-                        <h3 class="text-center">{{ reservation.foodAndDrinks.name }}</h3>
+                        <h3 class="text-center">{{ reservation.food.name }}</h3>
                         <div class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0">
-                          <img [src]="('data:image/*;base64,' + reservation.foodAndDrinks.image)" alt="Menu Photo"
+                          <img [src]="('data:image/*;base64,' + reservation.food.image)" alt="Menu Photo"
                                class="img-fluid">
                         </div>
                         <div class="col-md-8">
@@ -86,7 +86,7 @@
                             </div>
                             <div class="text-right">
                               <span
-                                class="badge px-3 py-2 bg-primary text-light rounded-pill">{{ reservation.foodAndDrinks.price }} DT</span>
+                                class="badge px-3 py-2 bg-primary text-light rounded-pill">{{ reservation.food.price }} DT</span>
                             </div>
                           </div>
                         </div>

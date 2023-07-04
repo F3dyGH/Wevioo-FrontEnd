@@ -18221,6 +18221,12 @@ dl li {
   animation: pulse 3s ease-out;
   -webkit-animation-iteration-count: infinite;
   animation-iteration-count: infinite;
+  display: none;
+}
+
+.navbar .navbar-menu-wrapper .count-indicator.active .count-symbol,
+.navbar .navbar-menu-wrapper .count-indicator.active .count-number {
+  display: block;
 }
 
 @keyframes pulse {

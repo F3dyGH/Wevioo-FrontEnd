@@ -10,6 +10,7 @@ import {DialogModule} from "@angular/cdk/dialog";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { DisabledUsersComponent } from './disabled-users/disabled-users.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import {AgoModule} from "../pipes/ago/ago.module";
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
     AdminPanelRoutingModule,
     DialogModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AgoModule
   ]
 })
 export class AdminPanelModule { }
