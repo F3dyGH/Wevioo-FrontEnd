@@ -11,6 +11,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { DisabledUsersComponent } from './disabled-users/disabled-users.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import {AgoModule} from "../pipes/ago/ago.module";
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import {AgoModule} from "../pipes/ago/ago.module";
     HomeComponent,
     UserManagementComponent,
     DisabledUsersComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    DashboardComponent
   ],
   exports: [
     SidebarComponent,
