@@ -25,14 +25,14 @@
               Track </a>
           </li>
           <li class="nav-item dropdown mt-1">
-            <a class="nav-link text-light" href="#" (click)="clearNotification(currentUser.id)"
+            <a class="nav-link text-light" (click)="clearNotification(currentUser.id)"
                id="notificationsDropdown"
                role="button"
                data-bs-toggle="dropdown" aria-expanded="false">
               <span class="notification-dot" [ngClass]="{'active': hasNewNotifications}"></span> <i
               class="fa fa-bell"></i>
             </a>
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="notificationsDropdown" style="width: 250px">
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="notificationsDropdown" style="width: 300px">
               <ng-container *ngIf="notifications && notifications.length > 0; else noNotifications">
                 <li *ngFor="let notification of notifications" [class.seen]="notification.seen">
                   <div class="row">
@@ -44,7 +44,7 @@
                     </div>
                     <div class="col">
                       <div class="row">
-                        <span class="notification-message"
+                        <span class="notification-message pe-5"
                               style="white-space: normal;">{{ notification.message }}</span>
                       </div>
                       <div class="row">
