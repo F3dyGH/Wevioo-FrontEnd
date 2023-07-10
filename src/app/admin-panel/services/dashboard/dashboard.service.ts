@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {AuthService} from "../../../auth/services/auth/auth.service";
 import {environment} from "../../../../environments/environment.development";
@@ -8,10 +8,10 @@ import {Observable} from "rxjs";
   providedIn: 'root'
 })
 export class DashboardService {
-  private apiUrl : string;
+  apiUrl: string;
 
   constructor(private http: HttpClient, private authService: AuthService) {
-    this.apiUrl = environment.apiUrl+"stats/"
+    this.apiUrl = environment.apiUrl + "stats/"
   }
 
   getHeader(): any {
@@ -22,16 +22,33 @@ export class DashboardService {
     return headers;
   }
 
-  getTodayDrinksCount(): Observable<any>{
+  getTodayDrinksCount(): Observable<any> {
     const headers = this.getHeader();
     return this.http.get(this.apiUrl + 'reservations/drinks/today', {headers});
   }
-  getTodayBreakfastCount(): Observable<any>{
+
+  getTodayBreakfastCount(): Observable<any> {
     const headers = this.getHeader();
     return this.http.get(this.apiUrl + 'reservations/breakfast/today', {headers});
   }
-  getTodayMenuCount(): Observable<any>{
+
+  getTodayMenuCount(): Observable<any> {
     const headers = this.getHeader();
     return this.http.get(this.apiUrl + 'reservations/menu/today', {headers});
+  }
+
+  getTodayAllReservationsCount(): Observable<any> {
+    const headers = this.getHeader();
+    return this.http.get(this.apiUrl + 'reservations/today', {headers});
+  }
+
+  getMealPopularity(): Observable<any> {
+    const headers = this.getHeader();
+    return this.http.get(this.apiUrl + 'popularity', {headers});
+  }
+
+  getReservationTrends(): Observable<any> {
+    const headers = this.getHeader();
+    return this.http.get(this.apiUrl + 'monthly', {headers});
   }
 }
