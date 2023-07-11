@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
         this.roles = this.storageService.getUser().roles;
         const user = this.storageService.getUser();
         if (user.roles == "ROLE_ADMIN") {
-          this.router.navigate(['/admin']);
+          this.router.navigate(['/admin/dashboard']);
         } else if (user.roles == "ROLE_STAFF") {
           this.router.navigate(['/staff/reservations']);
         } else {

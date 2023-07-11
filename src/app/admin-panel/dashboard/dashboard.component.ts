@@ -14,14 +14,37 @@ export class DashboardComponent implements OnInit {
 
   totalOrders: number = 0;
   totalTreatedOrders: number = 0;
+  totalCancelledOrders: number = 0;
+  totalPendingOrders: number = 0;
   mealPopularityData: any[] = [];
   reservationsTrendsData: any[] = [];
+  reservationsMonthlyProfitData: any[] = [];
+  menuDailyProfit : number = 0;
+  breakfastDailyProfit : number = 0;
+  drinksDailyProfit : number = 0;
+  allDailyProfit : number = 0;
 
 
   constructor(private dashboardService: DashboardService, private datePipe: DatePipe) {
   }
 
   ngOnInit(): void {
+
+    this.getTodayTreatedReservations();
+    this.getTodayCancelledReservations();
+    this.getTodayPendingReservations();
+    this.todayTotalReservations();
+    this.todayTotalReservations();
+    this.mealPopularity();
+    this.reservationsTrends();
+    this.calculateMenuDailyProfit();
+    this.calculateDrinksDailyProfit();
+    this.calculateBreakfastDailyProfit();
+    this.calculateAllDailyProfit();
+
+  }
+
+  getTodayTreatedReservations() {
     const breakfastCount = this.dashboardService.getTodayBreakfastCount();
     const drinksCount = this.dashboardService.getTodayDrinksCount();
     const menuCount = this.dashboardService.getTodayMenuCount();
@@ -32,39 +55,72 @@ export class DashboardComponent implements OnInit {
 
       const countsArray: number[] = [breakfastCount, drinksCount, menuCount];
       const labelArray: string[] = ["Breakfast Orders", "Drinks Orders", "Daily Menu Orders"];
-      this.generateDoughnutChart(countsArray, labelArray);
+      this.generateDoughnutChart(countsArray, labelArray, "doughnutTreatedChart");
     });
-    this.todayTotalReservations();
-    this.mealPopularity();
-    this.reservationsTrends();
-
   }
 
-  generateDoughnutChart(data: any[], labels: string[]): void {
-    const canvas: HTMLCanvasElement | null = document.getElementById('doughnutChart') as HTMLCanvasElement | null;
+  getTodayCancelledReservations() {
+    const breakfastCount = this.dashboardService.getTodayCancelledBreakfastCount();
+    const drinksCount = this.dashboardService.getTodayCancelledDrinksCount();
+    const menuCount = this.dashboardService.getTodayCancelledMenuCount();
+
+    forkJoin([breakfastCount, drinksCount, menuCount]).subscribe(([breakfastCount, drinksCount, menuCount]) => {
+
+      this.totalCancelledOrders = breakfastCount + drinksCount + menuCount;
+
+      const countsArray: number[] = [breakfastCount, drinksCount, menuCount];
+      const labelArray: string[] = ["Breakfast Orders", "Drinks Orders", "Daily Menu Orders"];
+      this.generateDoughnutChart(countsArray, labelArray, "doughnutCancelledChart");
+    });
+  }
+
+  getTodayPendingReservations() {
+    const breakfastCount = this.dashboardService.getTodayPendingBreakfastCount();
+    const drinksCount = this.dashboardService.getTodayPendingDrinksCount();
+    const menuCount = this.dashboardService.getTodayPendingMenuCount();
+
+    forkJoin([breakfastCount, drinksCount, menuCount]).subscribe(([breakfastCount, drinksCount, menuCount]) => {
+
+      this.totalPendingOrders = breakfastCount + drinksCount + menuCount;
+
+      const countsArray: number[] = [breakfastCount, drinksCount, menuCount];
+      const labelArray: string[] = ["Breakfast Orders", "Drinks Orders", "Daily Menu Orders"];
+      this.generateDoughnutChart(countsArray, labelArray, "doughnutPendingChart");
+    });
+  }
+
+  generateDoughnutChart(data: any[], labels: string[], elementId: string): void {
+    const canvas: HTMLCanvasElement | null = document.getElementById(elementId) as HTMLCanvasElement | null;
 
     if (canvas) {
       const ctx: CanvasRenderingContext2D | null = canvas.getContext('2d');
 
       if (ctx) {
-        new Chart(ctx, {
-          type: 'doughnut',
-          data: {
-            datasets: [{
-              data: data,
-              backgroundColor: [
-                '#ff0019',
-                '#36A2EB',
-                '#FFCE56'
-              ]
-            }],
-            labels: labels
-          },
-          options: {
-            responsive: true,
-            maintainAspectRatio: false
-          }
-        });
+        const existingChart = Chart.getChart(canvas);
+        if (existingChart) {
+          existingChart.data.datasets[0].data = data;
+          existingChart.data.labels = labels;
+          existingChart.update();
+        } else {
+          new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+              datasets: [{
+                data: data,
+                backgroundColor: [
+                  '#ff0019',
+                  '#36A2EB',
+                  '#FFCE56'
+                ]
+              }],
+              labels: labels
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false
+            }
+          });
+        }
       }
     }
   }
@@ -103,8 +159,8 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  generateLineChart(data: any[], labels: any[], counts: any): void {
-    const canvas: HTMLCanvasElement | null = document.getElementById('trends') as HTMLCanvasElement | null;
+  generateLineChart(data: any[], labels: any[], counts: any, elementId: any): void {
+    const canvas: HTMLCanvasElement | null = document.getElementById(elementId) as HTMLCanvasElement | null;
 
     if (canvas) {
       const ctx: CanvasRenderingContext2D | null = canvas.getContext('2d');
@@ -152,12 +208,61 @@ export class DashboardComponent implements OnInit {
       const dates = this.reservationsTrendsData.map(item => this.datePipe.transform(item[0], 'YYYY MMM'));
       const counts = this.reservationsTrendsData.map(item => item[1]);
 
-      this.generateLineChart(data, dates, counts);
+      this.generateLineChart(data, dates, counts, "trends");
     });
   }
-  todayTotalReservations(){
-    this.dashboardService.getTodayAllReservationsCount().subscribe((data:any)=>{
-      this.totalOrders = data;
+
+  todayTotalReservations() {
+    /* this.dashboardService.getTodayAllReservationsCount().subscribe((data: any) => {
+       this.totalOrders = data;
+     })*/
+    const breakfastCount = this.dashboardService.getTodayAllBreakfastCount();
+    const drinksCount = this.dashboardService.getTodayAllDrinksCount();
+    const menuCount = this.dashboardService.getTodayAllMenuCount();
+
+    forkJoin([breakfastCount, drinksCount, menuCount]).subscribe(([breakfastCount, drinksCount, menuCount]) => {
+
+      this.totalOrders = breakfastCount + drinksCount + menuCount;
+
+      const countsArray: number[] = [breakfastCount, drinksCount, menuCount];
+      const labelArray: string[] = ["Breakfast Orders", "Drinks Orders", "Daily Menu Orders"];
+      this.generateDoughnutChart(countsArray, labelArray, "doughnutAllChart");
+    });
+  }
+
+  private calculateMenuDailyProfit() {
+    this.dashboardService.getTodayMenuReservationProfit().subscribe((data:any)=>{
+      this.menuDailyProfit = data;
+    })
+  }
+
+  private calculateDrinksDailyProfit() {
+    this.dashboardService.getTodayDrinksReservationProfit().subscribe((data:any)=>{
+      this.drinksDailyProfit = data;
+    })
+  }
+
+  private calculateBreakfastDailyProfit() {
+    this.dashboardService.getTodayBreakfastReservationProfit().subscribe((data:any)=>{
+      this.breakfastDailyProfit = data;
+    })
+
+  }
+
+  private calculateAllDailyProfit() {
+    this.dashboardService.getTodayReservationsProfit().subscribe((data:any)=>{
+      this.allDailyProfit = data
+    })
+  }
+
+  private calculateMonthlyProfits(){
+    this.dashboardService.getMonthlyReservationsProfit().subscribe((data:any)=>{
+      this.reservationsMonthlyProfitData = data;
+
+      const dates = this.reservationsMonthlyProfitData.map(item => this.datePipe.transform(item[0], 'YYYY MMM'));
+      const counts = this.reservationsMonthlyProfitData.map(item => item[1]);
+
+      this.generateLineChart(data, dates, counts, "profits");
     })
   }
 }

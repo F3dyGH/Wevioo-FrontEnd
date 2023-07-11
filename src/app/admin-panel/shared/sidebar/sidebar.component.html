@@ -22,21 +22,66 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="../../pages/forms/basic_elements.html">
-          <span class="icon-bg"><i class="fa fa-m menu-icon"></i></span>
-          <span class="menu-title">menu 4</span>
+        <a class="nav-link"  style="cursor: pointer" (click)="toggleDropdown('Reservations')">
+          <span class="icon-bg"><i class="fa fa-check-double menu-icon"></i></span>
+          <span class="menu-title">Reservations</span>
+          <i class="fa fa-chevron-down arrow"></i>
+        </a>
+        <ul class="nav flex-column sub-arrow sub-menu" *ngIf="isDropdownOpen('Reservations')">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/admin/reservations/today">Today's Reservations</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/admin/reservations/treated">Treated Reservations</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/admin/reservations/pending">Pending Reservations</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/admin/reservations/cancelled">Cancelled Reservations</a>
+          </li>
+        </ul>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/admin/starters">
+          <span class="icon-bg"><i class="fa fa-salad menu-icon"></i></span>
+          <span class="menu-title">Starters</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="../../pages/charts/chartjs.html">
-          <span class="icon-bg"><i class="fa fa-m menu-icon"></i></span>
-          <span class="menu-title">menu 5</span>
+        <a class="nav-link" routerLink="/admin/desserts">
+          <span class="icon-bg"><i class="fa fa-pie menu-icon"></i></span>
+          <span class="menu-title">Desserts</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="../../pages/tables/basic-table.html">
-          <span class="icon-bg"><i class="fa fa-m menu-icon"></i></span>
-          <span class="menu-title">menu 6</span>
+        <a class="nav-link" routerLink="/admin/menus" >
+          <span class="icon-bg"><i class="fa fa-book menu-icon"></i></span>
+          <span class="menu-title">Menus Management</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="'/admin/sandwiches'" >
+          <span class="icon-bg"><i class="fa fa-sandwich menu-icon"></i></span>
+          <span class="menu-title">Sandwiches</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="'/admin/pizza'">
+          <span class="icon-bg"><i class="fa fa-pizza menu-icon"></i></span>
+          <span class="menu-title">Pizzas</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="'/admin/breakfast'">
+          <span class="icon-bg"><i class="fa fa-croissant menu-icon"></i></span>
+          <span class="menu-title">Breakfast</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="'/admin/drinks'">
+          <span class="icon-bg"><i class="fa fa-mug-hot menu-icon"></i></span>
+          <span class="menu-title">Drinks</span>
         </a>
       </li>
       <li class="nav-item">
@@ -90,9 +135,9 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" routerLink="/staff/dishes">
+        <a class="nav-link" routerLink="/staff/starters">
           <span class="icon-bg"><i class="fa fa-salad menu-icon"></i></span>
-          <span class="menu-title">Starter Dishes</span>
+          <span class="menu-title">Starters</span>
         </a>
       </li>
       <li class="nav-item">

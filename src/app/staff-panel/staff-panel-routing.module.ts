@@ -16,7 +16,7 @@ const routes: Routes = [
   {path:'reservations/treated', component:TreatedReservationsComponent},
   {path:'reservations/pending', component:PendingReservationsComponent},
   {path:'reservations/cancelled', component:CancelledReservationsComponent},
-  {path:'dishes', component:StarterDishManagementComponent},
+  {path:'starters', component:StarterDishManagementComponent},
   {path:'desserts', component: DessertManagementComponent},
   {path:'change-password', component: ChangePasswordComponent},
   {path:'menu-management', component:MenuManagementComponent},

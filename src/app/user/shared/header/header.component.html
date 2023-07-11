@@ -125,7 +125,7 @@
         class="action-btns text-end me-5 me-lg-0 d-none d-md-block d-lg-block"
         *ngIf="isLoggedIn == true && getUserRole() == 'ROLE_ADMIN' "
       >
-        <a routerLink="/admin" class="btn text-light bg-dark text-decoration-none me-2"
+        <a routerLink="/admin/dashboard" class="btn text-light bg-dark text-decoration-none me-2"
         >Admin Dashboard</a>
         <a class="btn bg-danger-light right--10" (click)="logout()">Logout</a>
       </div>

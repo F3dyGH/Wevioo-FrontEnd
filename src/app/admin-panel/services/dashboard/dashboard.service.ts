@@ -27,14 +27,59 @@ export class DashboardService {
     return this.http.get(this.apiUrl + 'reservations/drinks/today', {headers});
   }
 
+  getTodayCancelledDrinksCount(): Observable<any> {
+    const headers = this.getHeader();
+    return this.http.get(this.apiUrl + 'reservations/drinks/today/cancelled', {headers});
+  }
+
+  getTodayPendingDrinksCount(): Observable<any> {
+    const headers = this.getHeader();
+    return this.http.get(this.apiUrl + 'reservations/drinks/today/pending', {headers});
+  }
+
+  getTodayAllDrinksCount(): Observable<any> {
+    const headers = this.getHeader();
+    return this.http.get(this.apiUrl + 'reservations/drinks/today/all', {headers});
+  }
+
   getTodayBreakfastCount(): Observable<any> {
     const headers = this.getHeader();
     return this.http.get(this.apiUrl + 'reservations/breakfast/today', {headers});
   }
 
+  getTodayAllBreakfastCount(): Observable<any> {
+    const headers = this.getHeader();
+    return this.http.get(this.apiUrl + 'reservations/breakfast/today/all', {headers});
+  }
+
+  getTodayCancelledBreakfastCount(): Observable<any> {
+    const headers = this.getHeader();
+    return this.http.get(this.apiUrl + 'reservations/breakfast/today/cancelled', {headers});
+  }
+
+  getTodayPendingBreakfastCount(): Observable<any> {
+    const headers = this.getHeader();
+    return this.http.get(this.apiUrl + 'reservations/breakfast/today/pending', {headers});
+  }
+
   getTodayMenuCount(): Observable<any> {
     const headers = this.getHeader();
     return this.http.get(this.apiUrl + 'reservations/menu/today', {headers});
+  }
+
+  getTodayAllMenuCount(): Observable<any> {
+    const headers = this.getHeader();
+    return this.http.get(this.apiUrl + 'reservations/menu/today/all', {headers});
+  }
+
+  getTodayCancelledMenuCount(): Observable<any> {
+    const headers = this.getHeader();
+    return this.http.get(this.apiUrl + 'reservations/menu/today/cancelled', {headers});
+  }
+
+  getTodayPendingMenuCount(): Observable<any> {
+    const headers = this.getHeader();
+    return this.http.get(this.apiUrl + 'reservations/menu/today/pending', {headers});
   }
 
   getTodayAllReservationsCount(): Observable<any> {
@@ -51,4 +96,31 @@ export class DashboardService {
     const headers = this.getHeader();
     return this.http.get(this.apiUrl + 'monthly', {headers});
   }
+
+  getTodayReservationsProfit(): Observable<any> {
+    const headers = this.getHeader();
+    return this.http.get(this.apiUrl + 'reservations/today/profit', {headers});
+  }
+
+  getTodayDrinksReservationProfit(): Observable<any> {
+    const headers = this.getHeader();
+    return this.http.get(this.apiUrl + 'reservations/today/drinks/profit', {headers});
+  }
+
+  getTodayBreakfastReservationProfit(): Observable<any> {
+    const headers = this.getHeader();
+    return this.http.get(this.apiUrl + 'reservations/today/breakfast/profit', {headers});
+  }
+
+  getTodayMenuReservationProfit(): Observable<any> {
+    const headers = this.getHeader();
+    return this.http.get(this.apiUrl + 'reservations/today/menu/profit', {headers});
+  }
+
+  getMonthlyReservationsProfit(): Observable<any> {
+    const headers = this.getHeader();
+    return this.http.get(this.apiUrl + 'reservations/monthly/profit', {headers});
+  }
+
+
 }
