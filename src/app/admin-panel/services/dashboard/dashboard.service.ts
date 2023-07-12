@@ -122,5 +122,10 @@ export class DashboardService {
     return this.http.get(this.apiUrl + 'reservations/monthly/profit', {headers});
   }
 
+  getProfitPercentageBetweenYesterdayAndToday(): Observable<any> {
+    const headers = this.getHeader();
+    return this.http.get(this.apiUrl + 'reservations/profit/percentage', {headers});
+  }
+
 
 }

@@ -19,10 +19,11 @@ export class DashboardComponent implements OnInit {
   mealPopularityData: any[] = [];
   reservationsTrendsData: any[] = [];
   reservationsMonthlyProfitData: any[] = [];
-  menuDailyProfit : number = 0;
-  breakfastDailyProfit : number = 0;
-  drinksDailyProfit : number = 0;
-  allDailyProfit : number = 0;
+  menuDailyProfit: number = 0;
+  breakfastDailyProfit: number = 0;
+  drinksDailyProfit: number = 0;
+  allDailyProfit: number = 0;
+  percentage: any;
 
 
   constructor(private dashboardService: DashboardService, private datePipe: DatePipe) {
@@ -41,6 +42,8 @@ export class DashboardComponent implements OnInit {
     this.calculateDrinksDailyProfit();
     this.calculateBreakfastDailyProfit();
     this.calculateAllDailyProfit();
+    this.calculateMonthlyProfits();
+    this.profitPercentageBetweenYesterdayAndToday();
 
   }
 
@@ -159,7 +162,7 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  generateLineChart(data: any[], labels: any[], counts: any, elementId: any): void {
+  generateLineChart(data: any[], labels: any[], counts: any, elementId: any, chartLabel: string): void {
     const canvas: HTMLCanvasElement | null = document.getElementById(elementId) as HTMLCanvasElement | null;
 
     if (canvas) {
@@ -171,7 +174,7 @@ export class DashboardComponent implements OnInit {
           data: {
             labels: labels,
             datasets: [{
-              label: 'Reservations',
+              label: chartLabel,
               data: counts,
               fill: true,
               borderColor: 'rgba(75, 192, 192, 1)',
@@ -208,7 +211,7 @@ export class DashboardComponent implements OnInit {
       const dates = this.reservationsTrendsData.map(item => this.datePipe.transform(item[0], 'YYYY MMM'));
       const counts = this.reservationsTrendsData.map(item => item[1]);
 
-      this.generateLineChart(data, dates, counts, "trends");
+      this.generateLineChart(data, dates, counts, "trends", "Reservations");
     });
   }
 
@@ -231,38 +234,48 @@ export class DashboardComponent implements OnInit {
   }
 
   private calculateMenuDailyProfit() {
-    this.dashboardService.getTodayMenuReservationProfit().subscribe((data:any)=>{
+    this.dashboardService.getTodayMenuReservationProfit().subscribe((data: any) => {
       this.menuDailyProfit = data;
     })
   }
 
   private calculateDrinksDailyProfit() {
-    this.dashboardService.getTodayDrinksReservationProfit().subscribe((data:any)=>{
+    this.dashboardService.getTodayDrinksReservationProfit().subscribe((data: any) => {
       this.drinksDailyProfit = data;
     })
   }
 
   private calculateBreakfastDailyProfit() {
-    this.dashboardService.getTodayBreakfastReservationProfit().subscribe((data:any)=>{
+    this.dashboardService.getTodayBreakfastReservationProfit().subscribe((data: any) => {
       this.breakfastDailyProfit = data;
     })
 
   }
 
   private calculateAllDailyProfit() {
-    this.dashboardService.getTodayReservationsProfit().subscribe((data:any)=>{
+    this.dashboardService.getTodayReservationsProfit().subscribe((data: any) => {
       this.allDailyProfit = data
     })
   }
 
-  private calculateMonthlyProfits(){
-    this.dashboardService.getMonthlyReservationsProfit().subscribe((data:any)=>{
+  private calculateMonthlyProfits() {
+    this.dashboardService.getMonthlyReservationsProfit().subscribe((data: any) => {
       this.reservationsMonthlyProfitData = data;
 
       const dates = this.reservationsMonthlyProfitData.map(item => this.datePipe.transform(item[0], 'YYYY MMM'));
       const counts = this.reservationsMonthlyProfitData.map(item => item[1]);
 
-      this.generateLineChart(data, dates, counts, "profits");
+      this.generateLineChart(data, dates, counts, "profits", "Profits per month");
     })
+  }
+
+  profitPercentageBetweenYesterdayAndToday() {
+    this.dashboardService.getProfitPercentageBetweenYesterdayAndToday().subscribe((data: any) => {
+      this.percentage = data;
+    })
+  }
+
+  getAbsoluteValue(number: number): number {
+    return Math.abs(number);
   }
 }
