@@ -22,6 +22,7 @@ export class DrinksManagementComponent implements OnInit {
   showErrorMessage: boolean = false;
   selectedDrink!: any;
   page: number = 1;
+  search: any;
 
   constructor(private route: ActivatedRoute, private drinksService: Food_by_categoriesService, private formBuilder: FormBuilder) {
     this.drinksForm = this.formBuilder.group({
@@ -45,6 +46,7 @@ export class DrinksManagementComponent implements OnInit {
       this.category = params['category'];
       this.getByCategory(this.category);
     });
+    this.applySearchFilter(this.category);
   }
 
 
@@ -163,5 +165,14 @@ export class DrinksManagementComponent implements OnInit {
     this.drinksForm.reset();
   }
 
+  public applySearchFilter(category: string) {
+    if (this.search && this.search.trim() !== '') {
+      this.drinks = this.drinks.filter(d =>
+        d.name.toLowerCase().includes(this.search.toLowerCase())
+      );
+    } else {
+      this.getByCategory(category)
+    }
+  }
 }
 

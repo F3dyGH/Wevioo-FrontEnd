@@ -22,6 +22,7 @@ import {CancelledReservationsComponent} from './reservations/cancelled-reservati
 import {BreakfastManagementComponent} from './breakfast-management/breakfast-management.component';
 import {DrinksManagementComponent} from './drinks-management/drinks-management.component';
 import {AgoModule} from "../pipes/ago/ago.module";
+import {Ng2SearchPipeModule} from "ng2-search-filter";
 
 
 @NgModule({
@@ -41,16 +42,17 @@ import {AgoModule} from "../pipes/ago/ago.module";
     BreakfastManagementComponent,
     DrinksManagementComponent,
   ],
-  imports: [
-    CommonModule,
-    StaffPanelRoutingModule,
-    AdminPanelModule,
-    AuthModule,
-    ReactiveFormsModule,
-    FormsModule,
-    NgxPaginationModule,
-    AgoModule
-  ],
+    imports: [
+        CommonModule,
+        StaffPanelRoutingModule,
+        AdminPanelModule,
+        AuthModule,
+        ReactiveFormsModule,
+        FormsModule,
+        NgxPaginationModule,
+        AgoModule,
+        Ng2SearchPipeModule
+    ],
   providers: [JwtInterceptorProviders],
   entryComponents: [
     SandwichesManagementComponent,

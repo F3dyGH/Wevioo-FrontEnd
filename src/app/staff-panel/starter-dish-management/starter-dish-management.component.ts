@@ -20,9 +20,13 @@ export class StarterDishManagementComponent implements OnInit {
   dish!: any;
   selectedDish!: any;
   imageData!: string;
+  search: any;
+  page: number = 1;
+
 
   ngOnInit(): void {
     this.AllDishes();
+    this.applySearchFilter();
   }
 
   constructor(private dishService: StarterDishManagementService, private http: HttpClient, private formBuilder: FormBuilder) {
@@ -112,7 +116,7 @@ export class StarterDishManagementComponent implements OnInit {
     formData.append('description', this.DishFormUpdate.get('description')!.value);
     if (this.fileUpdate.length > 0) {
       formData.append('photo', this.fileUpdate[0], this.fileUpdate[0].name);
-    }else {
+    } else {
       formData.append('photo', this.selectedDish.photo);
     }
     console.log(formData.get('photo'))
@@ -137,17 +141,17 @@ export class StarterDishManagementComponent implements OnInit {
   AllDishes() {
     this.dishService.getAllDishes().subscribe((response: any) => {
       this.dishes = response;
-      this.dishes.forEach((dish: any) => {
+     /* this.dishes.forEach((dish: any) => {
         if (dish.image && dish.image.data) {
 
           dish.imageData = 'data:image/jpeg;base64,' + this.arrayBufferToBase64(dish.photo.data);
         }
-      });
+      });*/
     })
 
   }
 
-  arrayBufferToBase64(buffer: ArrayBuffer) {
+ /* arrayBufferToBase64(buffer: ArrayBuffer) {
     let binary = '';
     const bytes = new Uint8Array(buffer);
     const len = bytes.byteLength;
@@ -155,5 +159,16 @@ export class StarterDishManagementComponent implements OnInit {
       binary += String.fromCharCode(bytes[i]);
     }
     return binary;
+  }*/
+  public applySearchFilter() {
+    if (this.search && this.search.trim() !== '') {
+      this.dishes = this.dishes.filter(d =>
+        d.name.toLowerCase().includes(this.search.toLowerCase())
+      );
+    } else {
+      this.AllDishes();
+    }
   }
+
+
 }

@@ -21,6 +21,7 @@ export class PizzasManagementComponent implements OnInit {
   errorMessage?: string;
   selectedPizza!: any;
   page: number = 1;
+  search: any;
 
   constructor(private route: ActivatedRoute, private pizzaService: Food_by_categoriesService, private formBuilder: FormBuilder) {
     this.PizzaForm = this.formBuilder.group({
@@ -44,6 +45,7 @@ export class PizzasManagementComponent implements OnInit {
       this.category = params['category'];
       this.getByCategory(this.category);
     });
+    this.getByCategory(this.category)
   }
 
 
@@ -153,8 +155,17 @@ export class PizzasManagementComponent implements OnInit {
     });
   }
 
-  clearAddForm(){
+  clearAddForm() {
     this.PizzaForm.reset();
   }
 
+  public applySearchFilter(category: string) {
+    if (this.search && this.search.trim() !== '') {
+      this.pizzas = this.pizzas.filter(p =>
+        p.name.toLowerCase().includes(this.search.toLowerCase())
+      );
+    } else {
+      this.getByCategory(category)
+    }
+  }
 }

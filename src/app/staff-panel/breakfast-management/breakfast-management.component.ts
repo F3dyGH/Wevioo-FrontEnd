@@ -22,6 +22,8 @@ export class BreakfastManagementComponent implements OnInit {
   showErrorMessage: boolean = false;
   selectedBreakfast!: any;
   page: number = 1;
+  search?: any;
+
 
   constructor(private route: ActivatedRoute, private breakfastService: Food_by_categoriesService, private formBuilder: FormBuilder) {
     this.breakfastForm = this.formBuilder.group({
@@ -45,6 +47,8 @@ export class BreakfastManagementComponent implements OnInit {
       this.category = params['category'];
       this.getByCategory(this.category);
     });
+
+    this.applySearchFilter(this.category);
   }
 
 
@@ -160,6 +164,16 @@ export class BreakfastManagementComponent implements OnInit {
 
   clearAddForm() {
     this.breakfastForm.reset();
+  }
+
+  public applySearchFilter(category: string) {
+    if (this.search && this.search.trim() !== '') {
+      this.breakfast = this.breakfast.filter(b =>
+        b.name.toLowerCase().includes(this.search.toLowerCase())
+      );
+    } else {
+      this.getByCategory(category);
+    }
   }
 
 }

@@ -21,6 +21,7 @@ export class SandwichesManagementComponent implements OnInit {
   errorMessage?: string;
   selectedSandwich: any;
   p: number = 1;
+  search: any;
 
   constructor(private route: ActivatedRoute, private sandwichService: Food_by_categoriesService, private formBuilder: FormBuilder) {
     this.SandwichForm = this.formBuilder.group({
@@ -44,6 +45,8 @@ export class SandwichesManagementComponent implements OnInit {
       this.category = params['category'];
       this.getByCategory(this.category);
     });
+
+    this.applySearchFilter(this.category)
   }
 
   getByCategory(category: any) {
@@ -154,6 +157,16 @@ export class SandwichesManagementComponent implements OnInit {
 
   clearAddForm() {
     this.SandwichForm.reset();
+  }
+
+  public applySearchFilter(category: string) {
+    if (this.search && this.search.trim() !== '') {
+      this.sandwiches = this.sandwiches.filter(s =>
+        s.name.toLowerCase().includes(this.search.toLowerCase())
+      );
+    } else {
+      this.getByCategory(category)
+    }
   }
 
 }

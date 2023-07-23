@@ -75,13 +75,13 @@
             <div class="input-group-prepend bg-transparent">
               <i class="input-group-text border-0 fa fa-search pr-3"></i>
             </div>
-            <input type="text" class="form-control bg-transparent border-1" placeholder="Search">
+            <input type="text" class="form-control bg-transparent border-1" placeholder="Search" [(ngModel)]="search">
           </div>
         </div>
       </div>
     </div>
     <div class="row">
-      <div class="col-lg-4 col-md-6 mt-4" *ngFor="let m of menus | paginate: {itemsPerPage: 6, currentPage: p}">
+      <div class="col-lg-4 col-md-6 mt-4" *ngFor="let m of menus | filter: search | paginate: {itemsPerPage: 6, currentPage: p}">
         <div class="single-article rounded-custom mb-4 mb-lg-0">
           <a (click)="dialog3.showModal()" class="article-img">
             <img

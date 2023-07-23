@@ -9,6 +9,7 @@ import {ReservationsService} from "../../services/reservations/reservations.serv
 export class TreatedReservationsComponent implements OnInit {
 
   reservations: any[] = [];
+  page : number = 1;
 
   constructor(private reservationService: ReservationsService) {
   }

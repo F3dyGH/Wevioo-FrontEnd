@@ -19,6 +19,8 @@ export class DessertManagementComponent implements OnInit {
   dessert!: any;
   selectedDessert!: any;
   imageData!: string;
+  search?: any;
+  p: number = 1;
 
   ngOnInit(): void {
     this.AllDesserts();
@@ -153,4 +155,13 @@ export class DessertManagementComponent implements OnInit {
     return binary;
   }
 
+  public applySearchFilter() {
+    if (this.search && this.search.trim() !== '') {
+      this.desserts = this.desserts.filter(d =>
+        d.name.toLowerCase().includes(this.search.toLowerCase())
+      );
+    } else {
+      this.AllDesserts();
+    }
+  }
 }

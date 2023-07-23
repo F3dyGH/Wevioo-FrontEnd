@@ -16,7 +16,7 @@
       </thead>
       <tbody>
       <ng-container *ngIf="reservations && reservations.length > 0; else noReservations">
-        <tr *ngFor="let d of reservations">
+        <tr *ngFor="let d of reservations | paginate: {itemsPerPage: 10, currentPage: page}">
           <ng-container *ngIf="d.food == null; else foodRow">
             <td class="text-center">{{ d.menu.name }}</td>
           </ng-container>
@@ -41,5 +41,10 @@
       </ng-template>
       </tbody>
     </table>
+    <div class="row">
+      <div class="mt-5 d-flex align-items-center justify-content-center text-success">
+        <pagination-controls [responsive]=true (pageChange)="page = $event"></pagination-controls>
+      </div>
+    </div>
   </div>
 </app-sidebar>

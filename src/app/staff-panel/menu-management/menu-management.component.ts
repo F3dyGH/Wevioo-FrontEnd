@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {MenuService} from "../services/menu/menu.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {DessertsService} from "../services/desserts/desserts.service";
-import {dateTimestampProvider} from "rxjs/internal/scheduler/dateTimestampProvider";
 
 @Component({
   selector: 'app-menu-management',
@@ -26,11 +25,13 @@ export class MenuManagementComponent implements OnInit {
   imageData!: string;
   p: number = 1;
   isSidebarVisible = false;
-  errorMessage?:string;
+  errorMessage?: string;
+  search?: any;
 
   toggleSidebar() {
     this.isSidebarVisible = !this.isSidebarVisible;
   }
+
   constructor(private menuService: MenuService, private dessertService: DessertsService, private formBuilder: FormBuilder) {
     this.MenuForm = this.formBuilder.group({
       name: ['', Validators.required],
@@ -51,18 +52,14 @@ export class MenuManagementComponent implements OnInit {
   ngOnInit(): void {
     this.menuService.getAllMenus().subscribe((data: any) => {
       this.menus = data;
-    /*  this.menus.forEach((menu: any) => {
-        if (menu.image && menu.image.data) {
-          menu.imageData = 'data:image/jpeg;base64,' + this.arrayBufferToBase64(menu.photo.data);
-        }
-      });*/
-      console.log(data);
     });
 
     this.dessertService.getAllDesserts().subscribe((data: any) => {
       this.desserts = data;
       console.log(data)
     })
+
+    this.applySearchFilter();
   }
 
   onSubmit() {
@@ -83,9 +80,9 @@ export class MenuManagementComponent implements OnInit {
         });
       },
       (error) => {
-      if(error.status = 409){
-        this.errorMessage = "Menu already exists, change the name to add a new one"
-      }
+        if (error.status = 409) {
+          this.errorMessage = "Menu already exists, change the name to add a new one"
+        }
       })
   }
 
@@ -157,18 +154,29 @@ export class MenuManagementComponent implements OnInit {
     });
   }
 
-  delete(menu:any){
+  delete(menu: any) {
     this.selectedMenu = menu
-    this.menuService.deleteMenu(this.selectedMenu.id).subscribe(res =>{
-      this.menuService.getAllMenus().subscribe((data:any)=>{
-        this.menus = data;
-      });
+    this.menuService.deleteMenu(this.selectedMenu.id).subscribe(res => {
+        this.menuService.getAllMenus().subscribe((data: any) => {
+          this.menus = data;
+        });
       }
     )
   }
 
-  clearUpdateForm(){
+  clearUpdateForm() {
     this.menuFormUpdate.reset();
   }
 
+  public applySearchFilter() {
+    if (this.search && this.search.trim() !== '') {
+      this.menus = this.menus.filter(menu =>
+        menu.name.toLowerCase().includes(this.search.toLowerCase())
+      );
+    } else {
+      this.menuService.getAllMenus().subscribe((data: any) => {
+        this.menus = data;
+      });
+    }
+  }
 }
