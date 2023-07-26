@@ -1,4 +1,4 @@
-FROM node:16.18.1-alpine AS builder
+FROM node:16.18.1-alpine
 
 WORKDIR /app
 
@@ -13,7 +13,7 @@ RUN ng build --configuration=production
 
 FROM nginx:latest
 
-COPY --from=builder /app/dist/cantine-ng /usr/share/nginx/html
+COPY --from=0 /app/dist/cantine-ng /usr/share/nginx/html
 
 EXPOSE 80
 
