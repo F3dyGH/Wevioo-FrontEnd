@@ -1,18 +1,19 @@
-FROM node:lts as build-stage
+FROM node:16.15.1-alpine AS builder
 
 WORKDIR /app
 
-COPY package*.json ./
+COPY package.json package-lock.json ./
 
+RUN npm install -g @angular/cli
 RUN npm install
 
 COPY . .
 
-RUN npm run build --prod
+RUN ng build --configuration=production
 
-FROM nginx:alpine as production-stage
+FROM nginx:latest
 
-COPY --from=build-stage /app/dist/your-angular-app-name /usr/share/nginx/html
+COPY --from=builder /app/dist/client /usr/share/nginx/html
 
 EXPOSE 80
 
