@@ -135,9 +135,9 @@ echo "${projectVersion}"
            /* def angularVersion = new groovy.json.JsonSlurper().parseText(packageJsonContent).version.replaceAll('"', '\\"')
             */
 
-
-            sh "docker build -t app:${projectVersion} ."
-            sh "docker tag app:${projectVersion} 192.168.33.10:8082/repository/docker-images/client-app:${angularVersion}"
+            sh "docker build -t clientside-builder -f Dockerfile.build ."
+            sh "docker build -t clientside:${projectVersion} ."
+            sh "docker tag clientside:${projectVersion} 192.168.33.10:8082/repository/docker-images/clientside-app:${angularVersion}"
         }
     }
 }
