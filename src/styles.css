@@ -161,6 +161,9 @@ ul {
 .ptb-120 {
   padding: 120px 0;
 }
+.ptb-240 {
+  padding: 200px 0;
+}
 .ptb-100 {
   padding: 100px 0;
 }
@@ -200,6 +203,9 @@ ul {
 }
 .mt-100 {
   margin-top: 100px;
+}
+.mt-120 {
+  margin-top: 120px;
 }
 .mt-210 {
   margin-top: 210px;

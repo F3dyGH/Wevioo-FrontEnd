@@ -77,7 +77,7 @@ export class MenuDetailsComponent implements OnInit {
             }, 3000);
           }
           if (err.status == 400) {
-            this.errorMsg = "You have only one reservation a day"
+            this.errorMsg = "You have only one reservation per day"
             this.successMsg = ""
             this.showErrorMsg = true;
             this.showMsg = false;

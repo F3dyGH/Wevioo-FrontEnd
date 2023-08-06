@@ -2,8 +2,3 @@
 img{
   object-fit: contain;
 }
-.image-preview{
-  height: 500px;
-  width: 350px;
-  object-fit: fill;
-}

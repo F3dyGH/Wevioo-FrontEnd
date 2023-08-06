@@ -10,62 +10,114 @@
     <div class="row">
       <div class="col-lg-12 mb-3 d-flex justify-content-between">
         <div class="col-lg-1">
-          <dialog #dialog2 class="col-lg-5">
+          <dialog #dialog2 class="col-lg-5 modal-xl">
             <div class="modal-title text-center">
               <h4> Add Menu </h4>
             </div>
-            <div class="modal-body">
-              <form name="form" [formGroup]="MenuForm" (ngSubmit)="onSubmit(); dialog2.close()"
-                    enctype="multipart/form-data">
-                <div class="modal-body">
-                  <div class="container-fluid">
-                    <div class="row">
-                      <div class="col-md-4">
-                        <div class="card ml-5">
-                          <img src="assets/img/office-img-1.jpg" alt="default image">
-                        </div>
+            <form name="form" [formGroup]="MenuForm"
+                  enctype="multipart/form-data">
+              <div class="modal-body">
+                <div class="container-fluid">
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="card ml-5">
+                        <img *ngIf="!fileData" class="image-preview" src="assets/img/blank-preview.jpg">
+                        <img *ngIf="fileData" class="image-preview" [src]="fileData">
                       </div>
-                      <div class="col-md-5 ml-auto">
-                        <div class="row">
-                          <div class="form-row">
-                            <div class="form-group col-md-6">
-                              <label class="col-form-label">Name</label>
-                              <input type="text" class="form-control" formControlName="name">
-                            </div>
-                            <div class="form-group col-md-6">
-                              <label class="col-form-label">Price</label>
-                              <input type="number" class="form-control" formControlName="price">
-                            </div>
-                            <div class="form-group col-md-6">
-                              <select class="dropdown col-5 ml-lg-auto text-center center" formControlName="dessert">
-                                <option class="text-success" *ngFor="let d of desserts" [value]="d.id"> {{d.name}}
-                                </option>
-                              </select>
-                            </div>
-                            <div class="form-group col-md-6">
-                              <label class="col-form-label">Date</label>
-                              <input type="date" class="form-control" formControlName="date">
-                            </div>
+                    </div>
+                    <div class="col-md-5 ml-auto">
+                      <div class="row">
+                        <div class="form-row">
+                          <div class="form-group col-md-6">
+                            <label class="col-form-label">Name</label>
+                            <input type="text" class="form-control" formControlName="name">
                           </div>
-                          <div class="form-row">
-                            <div class="col">
-                              <label for="file-upload1" class="custom-file-button">Upload Main Dish Photo</label>
-                              <input id="file-upload1" type="file"
-                                     (change)="onFileSelected($event)">
-                            </div>
+                          <div class="form-group col-md-6">
+                            <label class="col-form-label">Price</label>
+                            <input type="number" class="form-control" formControlName="price">
+                          </div>
+                          <div class="form-group col-6 mt-2">
+                            <select class="dropdown form-select col-12" formControlName="dessert">
+                              <option value="" selected disabled hidden>Select a dessert</option>
+                              <option class="text-success" *ngFor="let d of desserts" [value]="d.id"> {{d.name}}
+                              </option>
+                            </select>
+                          </div>
+                          <div class="form-group col-6 mt-2">
+                            <input type="date" class="form-control" formControlName="date">
+                          </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="col">
+                            <label for="file-upload1" class="custom-file-button">Upload Photo</label>
+                            <input id="file-upload1" type="file"
+                                   (change)="onFileSelected($event)">
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="modal-footer btn col-lg">
-                  <button type="submit" class="btn btn-success">Save</button>
-                  <button class="btn btn-danger" (click)="dialog2.close();">Close</button>
-                </div>
-              </form>
+              </div>
+            </form>
+            <div class="modal-footer btn col-lg">
+              <button type="submit" class="btn btn-success" (click)="onSubmit(); dialog2.close()">Save</button>
+              <button class="btn btn-danger" (click)="dialog2.close(); clearAddForm()">Close</button>
             </div>
           </dialog>
+
+          <!--
+                        <form name="form" [formGroup]="MenuForm" (ngSubmit)="onSubmit(); dialog2.close()"
+                              enctype="multipart/form-data">
+                          <div class="modal-body">
+                            <div class="container-fluid">
+                              <div class="row">
+                                <div class="col-md-4">
+                                  <div class="card ml-5">
+                                    <img src="assets/img/office-img-1.jpg" alt="default image">
+                                  </div>
+                                </div>
+                                <div class="col-md-5 ml-auto">
+                                  <div class="row">
+                                    <div class="form-row">
+                                      <div class="form-group col-md-6">
+                                        <label class="col-form-label">Name</label>
+                                        <input type="text" class="form-control" formControlName="name">
+                                      </div>
+                                      <div class="form-group col-md-6">
+                                        <label class="col-form-label">Price</label>
+                                        <input type="number" class="form-control" formControlName="price">
+                                      </div>
+                                      <div class="form-group col-md-6">
+                                        <select class="dropdown col-5 ml-lg-auto text-center center" formControlName="dessert">
+                                          <option class="text-success" *ngFor="let d of desserts" [value]="d.id"> {{d.name}}
+                                          </option>
+                                        </select>
+                                      </div>
+                                      <div class="form-group col-md-6">
+                                        <label class="col-form-label">Date</label>
+                                        <input type="date" class="form-control" formControlName="date">
+                                      </div>
+                                    </div>
+                                    <div class="form-row">
+                                      <div class="col">
+                                        <label for="file-upload1" class="custom-file-button">Upload Main Dish Photo</label>
+                                        <input id="file-upload1" type="file"
+                                               (change)="onFileSelected($event)">
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="modal-footer btn col-lg">
+                            <button type="submit" class="btn btn-success">Save</button>
+                            <button class="btn btn-danger" (click)="dialog2.close();">Close</button>
+                          </div>
+                        </form>
+          -->
+
           <button class="btn btn-inverse-success" style="width: 100px" (click)="dialog2.showModal()"><i
             class="fa fa-add"></i> Add
           </button>
@@ -81,7 +133,8 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-lg-4 col-md-6 mt-4" *ngFor="let m of menus | filter: search | paginate: {itemsPerPage: 6, currentPage: p}">
+      <div class="col-lg-4 col-md-6 mt-4"
+           *ngFor="let m of menus | filter: search | paginate: {itemsPerPage: 6, currentPage: p}">
         <div class="single-article rounded-custom mb-4 mb-lg-0">
           <a (click)="dialog3.showModal()" class="article-img">
             <img
@@ -143,7 +196,8 @@
                   <div class="row">
                     <div class="col-md-4">
                       <div class="card ml-5 mt-5">
-                        <img class="edit-dish-photo embed-responsive" [src]="('data:image/*;base64,' + m.image)" alt="{{m.name}}">
+                        <img class="edit-dish-photo embed-responsive" [src]="('data:image/*;base64,' + m.image)"
+                             alt="{{m.name}}">
                       </div>
                     </div>
                     <div class="col-md-5 ml-auto">

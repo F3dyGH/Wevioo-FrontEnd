@@ -31,3 +31,27 @@
   height: 100%;
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
 }
+
+.square-anchor {
+  width: 390px;
+  height: 302px;
+  display: block;
+  position: relative;
+  overflow: hidden;
+}
+
+.square-anchor .blur-image {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.square-anchor .container-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 15px;
+}

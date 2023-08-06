@@ -16,6 +16,7 @@ export class MenuManagementComponent implements OnInit {
   dessert: any;
   desserts: any[] = [];
   selectedMenu!: any;
+  select =  "Select a dessert";
   MenuForm!: FormGroup;
   menuFormUpdate!: FormGroup;
   file: File[] = [];
@@ -179,4 +180,8 @@ export class MenuManagementComponent implements OnInit {
       });
     }
   }
+  clearAddForm() {
+    this.MenuForm.reset();
+  }
+
 }

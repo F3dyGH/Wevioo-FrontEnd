@@ -140,7 +140,7 @@ export class DashboardComponent implements OnInit {
           data: {
             labels: labels,
             datasets: [{
-              label: 'Food Popularity',
+              label: 'Total reservations',
               data: counts,
               backgroundColor: 'rgba(51, 201, 45, 1)',
               borderColor: 'rgba(75, 192, 192, 1)',

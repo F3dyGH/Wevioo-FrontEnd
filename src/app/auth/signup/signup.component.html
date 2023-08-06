@@ -1,13 +1,16 @@
 <div class="main-wrapper">
   <section
-    class="sign-up-in-section bg-purple"
+    class="sign-up-in-section bg-gradient"
     style="
       background: url('../../../assets/img/page-header-bg.svg') no-repeat right bottom;
     "
   >
     <div class="container">
-      <a href="/" class="text-decoration-none " style="color: #1e2125; font-size: x-large; position: absolute"><i class="fa fa-arrow-left-long top-left" ></i> Home</a>
-      <div class="row align-items-center justify-content-center">
+      <div class="home-link-container">
+        <a href="/" class="text-decoration-none home-link">
+          <i class="fa fa-arrow-left-long"></i> Home
+        </a>
+      </div>      <div class="row align-items-center justify-content-center">
         <div class="col-lg-5 col-md-8 col-12">
           <div class="register-wrap p-signup bg-light shadow rounded-custom">
             <h1 class="h4">Create an Account</h1>
@@ -106,17 +109,17 @@
                 <div class="col-12">
                   <button
                     type="submit"
-                    class="btn btn-primary mt-4 d-block w-100"
+                    class="btn bg-gradient text-light fw-semi-bold mt-4 d-block w-100"
                   >
                     Sign Up
                   </button>
                 </div>
               </div>
               <p
-                class="text-center text-muted mt-4 mb-0 fw-medium font-monospace"
+                class="text-center text-muted mt-4 mb-0 font-monospace"
               >
                 Already have an account?
-                <a routerLink="/login" class="text-decoration-none text-success"
+                <a routerLink="/login" class="text-decoration-none fw-semi-bold text-info"
                 >Sign in</a
                 >
               </p>

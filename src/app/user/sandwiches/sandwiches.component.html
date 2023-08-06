@@ -1,5 +1,5 @@
 <app-header></app-header>
-<section id="open-positions" class="open-jobs ptb-60">
+<section class="ptb-60">
   <div class="container">
     <div class="row">
       <div class="col">
@@ -12,32 +12,19 @@
       <div class="col-lg-4 col-md-6 mt-5 mb-5" *ngFor="let s of sandwiches">
         <a
           [routerLink]="['/sandwiches', s.name ]"
-          class="text-decoration-none mt-3 mt-xl-0 mt-lg-0 p-5 text-white rounded-custom">
+          class="text-decoration-none mt-3 mt-xl-0 mt-lg-0 p-5 text-white rounded-custom square-anchor">
           <div class="blur-image ml-3" [style.background-image]="'url(data:image/*;base64,' + s.image + ')'"
                style="background-size: cover;
                       background-position: center;">
             <div class="overlay rounded-custom"></div>
           </div>
-          <div class="container-content ml-3 rounded-custom position-relative p-4">
+          <div class="container-content top-0 rounded-custom position-relative p-4">
             <div class="d-flex mb-3 justify-content-between align-items-center">
-              <span class="mb-2 mr-3 h5 text-light">{{s.name}}</span>
-              <span class="badge px-3 py-2 bg-light text-dark rounded-pill small ml-3"
-              >{{s.price}} DT</span
-              >
+              <span class="mb-2 h5 text-light position-absolute top-0 start-0">{{s.name}}</span>
+              <span class="badge px-3 py-2 bg-light text-dark rounded-pill small position-absolute top-0 end-0">{{s.price}} DT</span>
             </div>
-            <ul class="list-unstyled text-light">
-              <li>
-                <span class="far fa-salad me-1"></span> <strong> Starter Dish of your choice</strong>
-              </li>
-              <li>
-                <span class="far fa-burger-cheese me-1"></span> <strong> {{s.name}}</strong>
-              </li>
-              <li>
-                <span class="far fa-candy-cane me-1"></span> <strong> {{s.description}}</strong>
-              </li>
-            </ul>
-            <div class="btn btn-outline-light btn-sm d-inline-block bg-dark-dark  mt-4">
-              See Details
+            <div class="d-flex flex-column justify-content-start mt-120">
+              <span class="text-light">{{s.description}}</span>
             </div>
           </div>
         </a>

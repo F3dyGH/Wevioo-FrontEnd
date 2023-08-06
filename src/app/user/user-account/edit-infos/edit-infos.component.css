@@ -8,8 +8,8 @@
   margin-left: 150px;
   padding-top: 13px;
   cursor: pointer;
-  color: orange;
+  color: #000056;
 }
 .upload-photo:hover{
-  color: purple;
+  color: rgba(0, 75, 255, 0.6);
 }

@@ -12,7 +12,6 @@
       <div class="col-lg-6 pt-5 pb-5 pr-5 pl-5 d-flex flex-column justify-content-between">
         <div>
           <h2>{{ menu.name }}</h2>
-          <p>Menu Description.</p>
         </div>
         <div class="text-center">
           <span *ngIf="showMsg" class="alert alert-success">{{successMsg}}</span>
@@ -83,11 +82,11 @@
           </div>
           <div class="col-md-3 center ptb-60 menu-items">
             <div class="row mb-3">
-              <h6>Main Dish</h6>
+              <h6>Main</h6>
             </div>
             <div class="row">
               <img [src]="('data:image/*; base64, ' + menu.image)" class="img-fluid rounded-custom"
-                   alt="Main Dish Photo">
+                   alt="Main Photo">
             </div>
           </div>
           <div class="col-md-3 center menu-items">
