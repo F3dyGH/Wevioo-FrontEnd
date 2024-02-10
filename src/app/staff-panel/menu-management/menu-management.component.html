@@ -209,10 +209,11 @@
                           </div>
                           <div class="form-group col-md-6">
                             <label class="col-form-label">Price</label>
-                            <input type="number" class="form-control" formControlName="price">
+                              <input type="number" class="form-control" formControlName="price">
                           </div>
                           <div class="form-group col-md-6">
-                            <select class="dropdown col-5 ml-lg-auto text-center center" formControlName="dessert">
+                            <select class="dropdown form-select col-12 text-center center" formControlName="dessert">
+<!--                            <select class="dropdown col-5 ml-lg-auto text-center center" formControlName="dessert">-->
                               <option class="text-success" *ngFor="let d of desserts" [value]="d.id"> {{d.name}}
                               </option>
                             </select>

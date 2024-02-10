@@ -1,7 +1,7 @@
 <app-headerAdmin></app-headerAdmin>
 <app-sidebar>
   <div title>
-    <h3 class="page-title"> Dishes Management </h3>
+    <h3 class="page-title"> Starters Management </h3>
   </div>
   <div content>
     <div class="row">
@@ -23,7 +23,7 @@
     </div>
     <dialog #dialog3 class="col-lg-5 modal-xl">
       <div class="modal-title text-center">
-        <h4> Add Dish </h4>
+        <h4> Add Starter </h4>
       </div>
       <form name="form" [formGroup]="DishForm" (ngSubmit)="onSubmit(); dialog3.close()" enctype="multipart/form-data">
         <div class="modal-body">

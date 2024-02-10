@@ -6,13 +6,14 @@
         <div class="container-fluid">
           <div class="row">
             <div class="col-md-4 ml-auto mr-auto mt-4 text-center">
-
               <div *ngIf="currentUser.image;">
-                <img style="height: 180px; width: 200px; object-fit: fill"
-                     [src]="('data:image/*;base64,' + currentUser.image)"
-                     alt="{{currentUser.firstname}}">
+                <div style="position: absolute;">
+                  <img style="height: 180px; width: 250px; object-fit: fill;" [src]="('data:image/*;base64,' + currentUser.image)" alt="{{currentUser.firstname}}">
+                  <label for="file-upload" class="btn btn-outline-light btn-sm px-3 mr-2 mt-2" style="position: absolute; top: 0; right: 0;">
+                    <i class="fa fa-pen"></i>
+                  </label>
+                </div>
               </div>
-              <label for="file-upload"><i class="col-md-1 fa fa-pen upload-photo"></i></label>
               <input type="file" id="file-upload" (change)="onFileSelected($event)">
             </div>
             <div class="col-md-5 ml-auto" style="margin-top: -20px;">
